@@ -6,7 +6,7 @@ For example, using
 
 .. code-block:: python
 
-    gdcapi.dictionary.init(gdcdictionary.gdcdictionary)
+    dictionary.init(gdcdictionary.gdcdictionary)
 """
 
 import sys
