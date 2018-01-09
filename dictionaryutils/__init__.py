@@ -1,3 +1,5 @@
+from .json_load import json_loads_byteified
+
 from copy import deepcopy
 from collections import namedtuple
 from contextlib import contextmanager
@@ -45,8 +47,8 @@ def load_schemas_from_url(url, logger):
         logger.error('Fail to get schema from {}: {}'.format(url, r.text))
         raise
     schemas, resolvers = {}, {}
-
-    for key, schema in r.json().iteritems():
+    response = json_loads_byteified(r.text)
+    for key, schema in response.iteritems():
         schemas[key] = schema
         resolver = RefResolver('{}#'.format(key), schema)
         resolvers[key] = ResolverPair(resolver, schema)
