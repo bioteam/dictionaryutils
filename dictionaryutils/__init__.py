@@ -1,4 +1,5 @@
 from .json_load import json_loads_byteified
+from .errors import DictionaryError
 
 from copy import deepcopy
 from collections import namedtuple
@@ -38,14 +39,17 @@ def load_yaml(name):
 
 
 def load_schemas_from_url(url, logger):
+    error_msg = 'Fail to get schema from {}'.format(url)
     try:
         r = requests.get(url)
-    except:
-        logger.exception('Fail to get schema from {}'.format(url))
-        raise
+    except Exception as e:
+        error_msg = '{}: {}'.format(error_msg, e.message)
+        logger.exception(error_msg)
+        raise DictionaryError(error_msg)
     if r.status_code != 200:
-        logger.error('Fail to get schema from {}: {}'.format(url, r.text))
-        raise
+        error_msg = '{}: {}'.format(error_msg, r.text)
+        logger.error(error_msg)
+        raise DictionaryError(error_msg)
     schemas, resolvers = {}, {}
     response = json_loads_byteified(r.text)
     for key, schema in response.iteritems():
