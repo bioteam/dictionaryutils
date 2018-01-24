@@ -128,7 +128,7 @@ class DataDictionary(object):
             yamls, resolvers = load_schemas_from_url(url, self.logger)
 
 
-        self.settings = yamls.get(self.settings_path)
+        self.settings = yamls.get(self.settings_path) or {}
         self.resolvers.update(resolvers)
 
         schemas = {
