@@ -20,16 +20,24 @@ import unittest
 from gdcdictionary import gdcdictionary, SCHEMA_DIR
 
 
-
 def load_yaml_schema(path):
     with open(path, 'r') as f:
         return yaml.load(f)
 
+
+def load_project_specific_schema():
+    project_path = os.path.join(CUR_DIR, 'schemas/projects/')
+    projects = {}
+    if os.path.exists(project_path):
+        for fp in os.listdir(project_path):
+            projects[fp.replace('.yaml', '')] = load_yaml_schema(fp)
+    return projects
+
+
 CUR_DIR = os.path.dirname(SCHEMA_DIR)
 
 DATA_DIR = os.path.join(CUR_DIR, 'examples')
-project1 = load_yaml_schema(os.path.join(CUR_DIR, 'schemas/projects/project1.yaml'))
-projects = {'project1': project1}
+
 
 def merge_schemas(a, b, path=None):
     """Recursively zip schemas together
