@@ -38,7 +38,22 @@ def load_yaml(name):
         return yaml.safe_load(f)
 
 
-def load_schemas_from_url(url, logger):
+def add_default_schema(dictionary):
+    """
+    add default schema nodes to a dictionary
+    """
+    yamls, resolvers = load_schemas_from_dir(os.path.join(MOD_DIR, 'schemas'))
+    dictionary.resolvers.update(resolvers)
+
+    schemas = {
+        schema['id']: dictionary.resolve_schema(schema, deepcopy(schema))
+        for path, schema in yamls.iteritems()
+        if path not in dictionary.exclude
+    }
+    dictionary.schema.update(schemas)
+
+
+def load_schemas_from_url(url, logger, schemas=None, resolvers=None):
     error_msg = 'Fail to get schema from {}'.format(url)
     try:
         r = requests.get(url)
@@ -50,7 +65,10 @@ def load_schemas_from_url(url, logger):
         error_msg = '{}: {}'.format(error_msg, r.text)
         logger.error(error_msg)
         raise DictionaryError(error_msg)
-    schemas, resolvers = {}, {}
+    if schemas is None:
+        schemas = {}
+    if resolvers is None:
+        resolvers = {}
     response = json_loads_byteified(r.text)
     for key, schema in response.iteritems():
         schemas[key] = schema
@@ -67,10 +85,13 @@ def dump_schemas_from_dir(directory):
         return {path: load_yaml(path) for path in glob.glob('*.yaml')}
 
 
-def load_schemas_from_dir(directory):
+def load_schemas_from_dir(directory, schemas=None, resolvers=None):
     """Returns all yamls and resolvers of those yamls from dir"""
 
-    schemas, resolvers = {}, {}
+    if schemas is None:
+        schemas = {}
+    if resolvers is None:
+        resolvers = {}
 
     with visit_directory(directory):
         for path in glob.glob("*.yaml"):
@@ -121,11 +142,14 @@ class DataDictionary(object):
 
     def load_data(self, directory=None, url=None):
         """Load and reslove all schemas from directory or url"""
+        yamls, resolvers = load_schemas_from_dir(os.path.join(MOD_DIR, 'schemas'))
 
         if url is None:
-            yamls, resolvers = load_schemas_from_dir(directory)
+            yamls, resolvers = load_schemas_from_dir(
+                directory, schemas=yamls, resolvers=resolvers)
         else:
-            yamls, resolvers = load_schemas_from_url(url, self.logger)
+            yamls, resolvers = load_schemas_from_url(
+                url, self.logger, schemas=yamls, resolvers=resolvers)
 
 
         self.settings = yamls.get(self.settings_path) or {}

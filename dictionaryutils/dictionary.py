@@ -10,6 +10,7 @@ For example, using
 """
 
 import sys
+from dictionaryutils import add_default_schema
 
 
 # Get this module as a variable so its attributes can be set later.
@@ -60,6 +61,7 @@ def init(dictionary):
 
 try:
     from gdcdictionary import gdcdictionary
+    add_default_schema(gdcdictionary)
     init(gdcdictionary)
 except:
     pass
