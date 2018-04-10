@@ -1,0 +1,27 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "root"
+title: Root
+type: object
+program: '*'
+root: '*'
+category: internal
+additionalProperties: false
+submittable: false
+validators: null
+
+systemProperties:
+  - id
+
+uniqueKeys:
+  - [id]
+
+constraints: null
+
+properties:
+  type:
+    type: string
+  id:
+    description: "UUID for the root" # TOREVIEW
+    $ref: "_definitions.yaml#/UUID"
+    systemAlias: node_id
