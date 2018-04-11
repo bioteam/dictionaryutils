@@ -34,7 +34,7 @@ uniqueKeys:
 properties:
 # Ubiquitous Properties
   type:
-    enum: [ "_data_release" ]
+    enum: [ "data_release" ]
   id:
     $ref: "_definitions.yaml#/UUID"
     systemAlias: node_id
