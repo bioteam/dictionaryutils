@@ -7,10 +7,10 @@ def get_version():
         tag = check_output([
             'git', 'describe',  '--tags', '--abbrev=0', '--match=[0-9]*'])
         return tag.strip('\n')
-    except:
+    except Exception:
         # if somehow you get the repo not from git,
-        # hardcode default major.minor version
-        return '1.2.0'
+        # hardcode default major version
+        return '2.0.0'
 
 
 setup(
