@@ -22,6 +22,7 @@ properties:
   type:
     type: string
   id:
-    description: "UUID for the root" # TOREVIEW
-    $ref: "_definitions.yaml#/UUID"
-    systemAlias: node_id
+    enum:
+      - "root"
+  schema_version:
+    type: string
