@@ -4,6 +4,7 @@ python: 2.7
 
 script:
   - echo 'no test'
+  - sed -i.bak "s/2.0.0/$(git describe --tags --abbrev=0 --match=[0-9]*)/g" setup.py
 
 deploy:
   provider: pypi
