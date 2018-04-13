@@ -30,13 +30,15 @@ def load_project_specific_schema():
     projects = {}
     if os.path.exists(project_path):
         for fp in os.listdir(project_path):
-            projects[fp.replace('.yaml', '')] = load_yaml_schema(fp)
+            path = os.path.join(project_path, fp)
+            projects[fp.replace('.yaml', '')] = load_yaml_schema(path)
     return projects
 
 
 CUR_DIR = os.path.dirname(SCHEMA_DIR)
 
 DATA_DIR = os.path.join(CUR_DIR, 'examples')
+projects = load_project_specific_schema()
 
 
 def merge_schemas(a, b, path=None):
