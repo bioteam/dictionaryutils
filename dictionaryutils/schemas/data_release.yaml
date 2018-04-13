@@ -4,6 +4,8 @@ id: "data_release"
 title: Data Release
 type: object
 namespace: http://gdc.nci.nih.gov
+program: '*'
+project: '*'
 category: internal
 description: >
   Internal node to store different data releases.
