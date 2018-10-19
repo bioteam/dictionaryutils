@@ -42,7 +42,8 @@ def test_required_program_fields():
 
 def test_required_ubiquitous_fields():
     required_fields = [
-        'updated_datetime', 'created_datetime', 'id', 'type'
+        'updated_datetime', 'created_datetime', 'id', 'type',
+        'submitter_id'
     ]
     for schema in dictionary.schema.values():
         if not schema['id'] == 'program' and not schema['id'] == 'project' \
