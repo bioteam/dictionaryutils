@@ -47,7 +47,7 @@ def test_required_ubiquitous_fields():
     ]
     for schema in dictionary.schema.values():
         if not schema['id'] == 'program' and not schema['id'] == 'project' \
-            and not schema['id'] == 'root':
+            and not schema['category'] == 'internal':
             for field in required_fields:
                 assert field in schema['properties'], \
                     '{} is required but not in {}'.format(field, schema['id'])
