@@ -27,6 +27,7 @@ links:
     required: true
 
 required:
+  - name
   - major_version
   - minor_version
 
@@ -46,6 +47,11 @@ properties:
     $ref: "_definitions.yaml#/datetime"
 
   # Node Properties
+  name:
+    description: >
+      String representing release name.
+    type: string
+
   major_version:
     description: >
       The number identifying the major version.
