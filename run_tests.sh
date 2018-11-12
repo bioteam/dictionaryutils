@@ -8,6 +8,6 @@ pip install -r dev-requirements.txt
 # always use this version of dictionaryutils...
 pip uninstall -y dictionaryutils
 python setup.py install --force
-nosetests -v
+nosetests -s -v
 python bin/dump_schema.py
 set +e
