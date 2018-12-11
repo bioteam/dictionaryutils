@@ -66,7 +66,9 @@ definitions:
       subgroup:
         type: array
         items:
-          $ref: "#/definitions/link"
+          oneOf:
+            - $ref: "#/definitions/link"
+            - $ref: "#/definitions/link_subgroup"
 
   validator_def:
     title: "Define a validator to be used on a property"
