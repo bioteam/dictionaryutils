@@ -3,7 +3,7 @@ from dictionaryutils import dictionary
 
 def test_require_core_metadata_collections():
     for schema in dictionary.schema.values():
-        if schema["category"].endswith("data_file"):
+        if schema["category"].endswith("_file"):
             assert (
                 "core_metadata_collections" in schema["properties"]
             ), "core_metadata_collections is required for data node {}".format(
@@ -17,7 +17,6 @@ def test_required_fields_in_links():
             if (
               not "subgroup" in link
               and not link["target_type"] == "program"
-              and not link["target_type"] == "project"
               and not dictionary.schema[link["target_type"]]["category"] == "internal"
             ):
                 for nodeprops in schema["properties"][link["name"]]["anyOf"][0][
