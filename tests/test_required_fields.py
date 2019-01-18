@@ -3,6 +3,7 @@ import glob
 import os
 import yaml
 from dictionaryutils import dictionary
+from gdcdictionary import SCHEMA_DIR
 
 
 def test_required_nodes():
@@ -80,7 +81,7 @@ def test_id_matches():
         with open(name, "r") as f:
             return yaml.safe_load(f)
 
-    with visit_directory("../gdcdictionary/schemas/"):
+    with visit_directory(SCHEMA_DIR):
         for path in glob.glob("*.yaml"):
             filename = os.path.splitext(path)[0]
             schema = load_yaml(path)
