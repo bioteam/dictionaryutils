@@ -25,6 +25,6 @@ def test_required_fields_in_links():
                     assert (
                         nodeprops
                         in dictionary.schema[link["target_type"]]["properties"]
-                    ), "Link {} requires a property {} that doesn't exist in target type {}".format(
-                        link["name"], nodeprops, link["target_type"]
+                    ), "Node {} Link {} requires a property {} that doesn't exist in target type {}".format(
+                        schema["id"], link["name"], nodeprops, link["target_type"]
                     )
