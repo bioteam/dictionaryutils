@@ -14,8 +14,12 @@ validators: null
 systemProperties:
   - id
 
+required:
+  - type
+
 uniqueKeys:
   - [id]
+
 links: []
 
 constraints: null

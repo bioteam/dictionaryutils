@@ -30,6 +30,7 @@ required:
   - name
   - major_version
   - minor_version
+  - type
 
 uniqueKeys:
   - [id]
