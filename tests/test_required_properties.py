@@ -24,7 +24,10 @@ def test_required_project_property():
 def test_required_ubiquitous_properties():
     required = ["submitter_id", "type"]
     for schema in dictionary.schema.values():
-        if not schema["id"] in ("program", "project"):
+        if (
+            not schema["id"] in ("program", "project")
+            and not schema["category"] == "internal"
+        ):
             assert "required" in schema, (
                     "No required properties defined in a {} "
                     "node".format(schema["id"]))
@@ -32,3 +35,15 @@ def test_required_ubiquitous_properties():
                 assert property in schema["required"], (
                     "{} is required property for a {} node, but not defined "
                     "as required".format(property, schema["id"]))
+
+
+def test_required_internal_properties():
+    required = "type"
+    for schema in dictionary.schema.values():
+        if schema["category"] == "internal":
+            assert "required" in schema, (
+                    "No required properties defined in a {} "
+                    "node".format(schema["id"]))
+            assert required in schema["required"], (
+                    "{} is required property for a {} node, but not defined "
+                    "as required".format(required, schema["id"]))
