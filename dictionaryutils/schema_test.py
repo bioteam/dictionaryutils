@@ -93,8 +93,9 @@ def validate_entity(entity, schemata, project=None, name=""):
 
 def validate_schemata(schemata, metaschema):
     # validate schemata
-    print("Validating schemas against metaschema... "),
+    print("Validating schemas against metaschema...")
     for s in schemata.values():
+        print("Validating '{}'".format(s.get("title")))
         validate(s, metaschema)
 
         def assert_link_is_also_prop(link):
