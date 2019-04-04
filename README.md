@@ -1,12 +1,13 @@
 # dictionaryutils
 
-## Here from the workshop? Copy this:
-```
-docker run --rm -v $(pwd):/dictionary -v $(pwd)/simdata:/simdata quay.io/cdis/dictionaryutils:master /bin/sh -c "cd /dictionary && python setup.py install --force; python /src/datasimulator/bin/data-simulator simulate --path /simdata/ --program workshop --project project1 --max_samples 10 --node_num_instances_file instances.json $*; export SUCCESS=$?; rm -rf build dictionaryutils dist gdcdictionary.egg-info; exit $SUCCESS";
-```
-And add the following to your `instances.json`: 
+## Here from the workshop?
+Add the following to your `instances.json`: 
 ```
 {"encounter": 100}
+```
+Then run the following: 
+```
+docker run --rm -v $(pwd):/dictionary -v $(pwd)/simdata:/simdata quay.io/cdis/dictionaryutils:master /bin/sh -c "cd /dictionary && python setup.py install --force; python /src/datasimulator/bin/data-simulator simulate --path /simdata/ --program workshop --project project1 --max_samples 10 --node_num_instances_file instances.json $*; export SUCCESS=$?; rm -rf build dictionaryutils dist gdcdictionary.egg-info; exit $SUCCESS";
 ```
 End workshop specific content.
 
