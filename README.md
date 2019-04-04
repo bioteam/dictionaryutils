@@ -1,4 +1,11 @@
 # dictionaryutils
+
+## Here from the workshop? Copy this:
+```
+docker run --rm -v $(pwd):/dictionary -v $(pwd)/simdata:/simdata quay.io/cdis/dictionaryutils:master /bin/sh -c "cd /dictionary && python setup.py install --force; python /src/datasimulator/bin/data-simulator simulate --path /simdata/ --program workshop --project project1 --max_samples 10 --node_num_instances_file instances.json $*; export SUCCESS=$?; rm -rf build dictionaryutils dist gdcdictionary.egg-info; exit $SUCCESS";
+```
+
+
 python wrapper and metaschema for datadictionary.
 It can be used to:
 - load a local dictionary to a python object.
