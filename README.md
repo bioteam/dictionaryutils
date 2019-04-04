@@ -4,6 +4,11 @@
 ```
 docker run --rm -v $(pwd):/dictionary -v $(pwd)/simdata:/simdata quay.io/cdis/dictionaryutils:master /bin/sh -c "cd /dictionary && python setup.py install --force; python /src/datasimulator/bin/data-simulator simulate --path /simdata/ --program workshop --project project1 --max_samples 10 --node_num_instances_file instances.json $*; export SUCCESS=$?; rm -rf build dictionaryutils dist gdcdictionary.egg-info; exit $SUCCESS";
 ```
+And add the following to your `instances.json`: 
+```
+{"encounter": 100}
+```
+End workshop specific content.
 
 
 python wrapper and metaschema for datadictionary.
