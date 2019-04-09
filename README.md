@@ -39,7 +39,7 @@ If you wish to generate fake simulated data you can also do that with dictionary
 
 ```
 simdata() { docker run --rm -v $(pwd):/dictionary -v $(pwd)/simdata:/simdata quay.io/cdis/dictionaryutils:master /bin/sh -c "cd /dictionary && python setup.py install --force; python /src/datasimulator/bin/data-simulator simulate --path /simdata/ $*; export SUCCESS=$?; rm -rf build dictionaryutils dist gdcdictionary.egg-info; chmod -R a+rwX /simdata; exit $SUCCESS"; }
-simdataurl() { docker run --rm -v $(pwd):/dictionary -v $(pwd)/simdata:/simdata quay.io/cdis/dictionaryutils:master /bin/sh -c "python /src/datasimulator/bin/data-simulator simulate --path /simdata/ $*"; chmod -R a+rwX /simdata; }
+simdataurl() { docker run --rm -v $(pwd):/dictionary -v $(pwd)/simdata:/simdata quay.io/cdis/dictionaryutils:master /bin/sh -c "python /src/datasimulator/bin/data-simulator simulate --path /simdata/ $*; chmod -R a+rwX /simdata"; }
 
 ```
 
