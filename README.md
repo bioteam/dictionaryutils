@@ -12,7 +12,7 @@ Add the following to your `instances.json`:
 ```
 Then run the following: 
 ```
-docker run --rm -v $(pwd):/dictionary -v $(pwd)/simdata:/simdata quay.io/cdis/dictionaryutils:master /bin/sh -c "cd /dictionary && python setup.py install --force; python /src/datasimulator/bin/data-simulator simulate --path /simdata/ --program workshop --project project1 --max_samples 10 --node_num_instances_file instances.json $*; export SUCCESS=$?; rm -rf build dictionaryutils dist gdcdictionary.egg-info; exit $SUCCESS";
+docker run --rm -v $(pwd):/dictionary -v $(pwd)/simdata:/simdata quay.io/cdis/dictionaryutils:master /bin/sh -c "cd /dictionary && python setup.py install --force; python /src/datasimulator/bin/data-simulator simulate --path /simdata/ --program workshop --project project1 --max_samples 10 --node_num_instances_file instances.json $*; export SUCCESS=$?; rm -rf build dictionaryutils dist gdcdictionary.egg-info; chmod -R a+rwX /simdata; exit $SUCCESS";
 ```
 End workshop specific content.
 
@@ -38,8 +38,8 @@ Then from the directory containing the `gdcdictionary` directory run `testdict`.
 If you wish to generate fake simulated data you can also do that with dictionaryutils and the data-simulator.
 
 ```
-simdata() { docker run --rm -v $(pwd):/dictionary -v $(pwd)/simdata:/simdata quay.io/cdis/dictionaryutils:master /bin/sh -c "cd /dictionary && python setup.py install --force; python /src/datasimulator/bin/data-simulator simulate --path /simdata/ $*; export SUCCESS=$?; rm -rf build dictionaryutils dist gdcdictionary.egg-info; exit $SUCCESS"; }
-simdataurl() { docker run --rm -v $(pwd):/dictionary -v $(pwd)/simdata:/simdata quay.io/cdis/dictionaryutils:master /bin/sh -c "python /src/datasimulator/bin/data-simulator simulate --path /simdata/ $*"; }
+simdata() { docker run --rm -v $(pwd):/dictionary -v $(pwd)/simdata:/simdata quay.io/cdis/dictionaryutils:master /bin/sh -c "cd /dictionary && python setup.py install --force; python /src/datasimulator/bin/data-simulator simulate --path /simdata/ $*; export SUCCESS=$?; rm -rf build dictionaryutils dist gdcdictionary.egg-info; chmod -R a+rwX /simdata; exit $SUCCESS"; }
+simdataurl() { docker run --rm -v $(pwd):/dictionary -v $(pwd)/simdata:/simdata quay.io/cdis/dictionaryutils:master /bin/sh -c "python /src/datasimulator/bin/data-simulator simulate --path /simdata/ $*"; chmod -R a+rwX /simdata; }
 
 ```
 
