@@ -3,7 +3,12 @@
 ## Here from the workshop?
 Add the following to your `instances.json`: 
 ```
-{"encounter": 100}
+{
+        "case": 100,
+        "demographic": 100,
+        "encounter": 1000
+}
+
 ```
 Then run the following: 
 ```
