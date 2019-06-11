@@ -19,6 +19,11 @@ def test_required_fields_in_links():
                 and not link["target_type"] == "program"
                 and not dictionary.schema[link["target_type"]]["category"] == "internal"
             ):
+                # guard against not-iterable errors in the schema
+                try:
+                    my_it = iter(schema["properties"][link["name"]]["anyOf"][0]["items"]["properties"])
+                except:
+                    assert False, "Node {} cannot iterate properties on link {}".format(schema["id"], link["name"])
                 for nodeprops in schema["properties"][link["name"]]["anyOf"][0][
                     "items"
                 ]["properties"]:
