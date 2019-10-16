@@ -171,14 +171,16 @@ class DataDictionary(object):
         """Load and reslove all schemas from directory or url"""
         yamls, resolvers = load_schemas_from_dir(os.path.join(MOD_DIR, "schemas"))
         if url:
-            yamls, resolvers = load_schemas_from_dir(
-                directory, schemas=yamls, resolvers=resolvers
-            )
-        elif local_file:
-            yamls, resolvers = load_schemas_from_file(local_file, schemas=yamls, resolvers=resolvers)
-        else:
             yamls, resolvers = load_schemas_from_url(
                 url, self.logger, schemas=yamls, resolvers=resolvers
+            )
+        elif local_file:
+            yamls, resolvers = load_schemas_from_file(
+                local_file, schemas=yamls, resolvers=resolvers
+            )
+        else:
+            yamls, resolvers = load_schemas_from_dir(
+                directory, schemas=yamls, resolvers=resolvers
             )
 
         self.settings = yamls.get(self.settings_path) or {}
