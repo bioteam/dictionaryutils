@@ -170,11 +170,11 @@ class DataDictionary(object):
     def load_data(self, directory=None, url=None, local_file=None):
         """Load and reslove all schemas from directory or url"""
         yamls, resolvers = load_schemas_from_dir(os.path.join(MOD_DIR, "schemas"))
-        if url is None and local_file is None:
+        if url:
             yamls, resolvers = load_schemas_from_dir(
                 directory, schemas=yamls, resolvers=resolvers
             )
-        elif url is None:
+        elif file:
             yamls, resolvers = load_schemas_from_file(local_file, schemas=yamls, resolvers=resolvers)
         else:
             yamls, resolvers = load_schemas_from_url(
