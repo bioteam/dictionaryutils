@@ -7,7 +7,6 @@ from exceptions import OSError
 import json
 import os
 
-from gdcdictionary import SCHEMA_DIR
 from dictionaryutils import dump_schemas_from_dir
 
 try:
@@ -16,4 +15,4 @@ except OSError:
     pass
 
 with open(os.path.join("artifacts", "schema.json"), "w") as f:
-    json.dump(dump_schemas_from_dir(SCHEMA_DIR), f)
+    json.dump(dump_schemas_from_dir("schemas"), f)

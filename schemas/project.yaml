@@ -1,0 +1,254 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "project"
+title: Project
+type: object
+program: '*'
+project: '*'
+category: administrative
+description: >
+  Any specifically defined piece of work that is undertaken or attempted to meet a single
+  requirement. (NCIt C47885)
+additionalProperties: false
+submittable: true
+validators: null
+
+systemProperties:
+  - id
+  - state
+  - released
+  - releasable
+  - intended_release_date
+
+required:
+  - code
+  - name
+  - programs
+  - dbgap_accession_number
+  - project_barcode
+  - project_description
+  - project_type
+  - availability_type
+  - bms_availability_type
+  - investigator_name
+  - creator
+
+uniqueKeys:
+  - [ id ]
+  - [ code ]
+
+links:
+  - name: programs
+    backref: projects
+    label: member_of
+    target_type: program
+    multiplicity: many_to_one
+    required: true
+
+constraints: null
+
+properties:
+  type:
+    type: string
+  id:
+    $ref: "_definitions.yaml#/UUID"
+    systemAlias: node_id
+    description: "UUID for the project." # TOREVIEW
+  name:
+    type: string
+    description: "Display name/brief description for the project." # TOREVIEW
+  code:
+    type: string
+    description: "Unique identifier for the project."
+  project_barcode:
+    type: string
+    description: "Unique barcode identifier for the project."
+  project_description:
+    type: string
+    description: "Free flow description of the Project."
+  project_type:
+    description: "Describes the Type of the Project."
+    enum:
+    - Clinical
+    - Non Clinical
+    - Speciality
+    - Assay Validation
+  indication: 
+    description: "Describes the Type Indication tested for this Analysis."
+    enum:
+    - Lung
+    - Renal
+    - Melonoma
+    - Lung - NSLC - Sqamous cell carcinoma
+    - Lung - NSLC - Large cell carcinoma
+  investigator_name:
+    description: "Name of the principal investigator for the project."
+    type: string
+  creator:
+    description: "Username of user who created the project."
+    type: string
+  investigator_affiliation:
+    description: "The investigator's affiliation with respect to a research institution."
+    type: string
+  date_collected:
+    description: "The date or date range in which the project data was collected."
+    type: string
+  translational_program: 
+    description: "Describes the Translational Program that it came from."
+    enum:
+    - Research
+    - IPF
+    - Fraction
+    - RCC
+    - Pilot
+  therapeutic_area:
+    enum:
+    - Oncology
+    - Immunoscience
+    - Fibrosis
+    - Cardiovascular
+    description: "Describes the Therapeutic Areas Being Tested for in the Analysis."
+  trial:
+    type: string
+    description: "Describes the Trial that was included for the analysis."
+  molecular_analysis_method:
+    enum: 
+    - Comparative Genomic Hybridization
+    - Cytogenetics, NOS
+    - FISH
+    - Flow Cytometery
+    - IHC
+    - ISH
+    - Karyotype
+    - Microarray
+    - Microsatellite Analysis
+    - Nuclear Staining
+    - RNA Sequencing
+    - RT-PCR
+    - Sequencing - NOS
+    - Targeted Proteome
+    - Targeted Sequencing
+    - WGS
+    - WXS
+    - Edge-Sequencing
+    - Other
+    - Unknown
+    - Not Reported
+    description: "Describes the various Analysis Method a analysis can support."
+  project_lead:
+    type: string
+    description: "List the name of the Project Lead."
+  ngs_lead:
+    type: string
+    description: "List the name of the NGS Lead."
+  analyst_lead:
+    type: string
+    description: "List the name of the Analyst Lead."
+  data_provider:
+    enum: 
+    - BMS Discovery
+    - BMS Clinical
+    - BBRC
+    - Expression Analysis
+    - HTG Molecular
+    description: "List the name of the Vendor who is processing the data."
+  start_date:
+    description: "The date when the project was originally requested."
+    type: string
+    format: date-time
+  due_date:
+    description: "The date when the project was requested to be completed."
+    type: string
+    format: date-time
+  end_date:
+    description: "The date when the project was requested to be completed."
+    type: string
+    format: date-time
+  availability_type:
+    description: "Is the project open or restricted? Unused field"
+    enum:
+      - Open
+      - Restricted
+  bms_availability_type:
+    description: "Is the project open or restricted? Used in UI"
+    enum:
+      - Open
+      - Restricted
+  availability_mechanism:
+    description: "Mechanism by which the project will be made avilable."
+    type: string
+  support_source:
+    description: "The name of source providing support/grant resources."
+    type: string
+  support_id:
+    description: "The ID of the source providing support/grant resources."
+    type: string
+  programs:
+    $ref: "_definitions.yaml#/to_one"
+    description: >
+      Indicates that the project is logically part of the indicated project.
+  state:
+    description: >
+      The possible states a project can be in.  All but `open` are
+      equivalent to some type of locked state.
+    default: open
+    enum:
+        # open: the only state users can perform 'upload' actions
+        # possible actions in `open`:
+        #   - upload (no state change)
+        #   - review -> review
+        #   - release (project.released -> true)
+        - open
+
+        # locked: admin has locked project for review
+        # possible actions in `locked`:
+        #   - open -> open
+        #   - submit -> submitted
+        #   - release (project.released -> true)
+        - review
+
+        # submitted: An admin has submitted project, it is locked against
+        #            upload.
+        # possible actions in `submitted`:
+        #   - process -> processing
+        #   - release (project.released -> true)
+        - submitted
+
+        # processing: The system is processing data in the project and
+        #             is locked against upload and submission
+        #   - (system transition to open)
+        #   - release (project.released -> true)
+        - processing
+
+
+        # closed: The closed state is introduced to replace the
+        #         ``legacy`` state and means that no further action
+        #         can be taken on the project
+        #   - (system transition to open)
+        #   - release (project.released -> true)
+        - closed
+
+        # DEPRECATED(2016-03-01): synonymous with closed. included for
+        #                         backwards compatibility
+        - legacy
+
+  released:
+    description: >
+      To release a project is to tell the GDC to include all submitted
+      entities in the next GDC index.
+    default: false
+    type: boolean
+
+  releasable:
+    description: >
+      A project can only be released by the user when `releasable` is true.
+    default: false
+    type: boolean
+
+  intended_release_date:
+    description: Tracks a Project's intended release date.
+    type: string
+    format: date-time
+  dbgap_accession_number:
+    type: string
+    description: "The dbgap accession number provided for the project."
