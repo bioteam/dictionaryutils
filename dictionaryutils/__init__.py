@@ -174,7 +174,7 @@ class DataDictionary(object):
             yamls, resolvers = load_schemas_from_dir(
                 directory, schemas=yamls, resolvers=resolvers
             )
-        elif file:
+        elif local_file:
             yamls, resolvers = load_schemas_from_file(local_file, schemas=yamls, resolvers=resolvers)
         else:
             yamls, resolvers = load_schemas_from_url(
