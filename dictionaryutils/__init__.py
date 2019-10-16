@@ -79,12 +79,12 @@ def load_schemas_from_url(url, logger, schemas=None, resolvers=None):
     return schemas, resolvers
 
 
-def load_schemas_from_file(file, schemas=None, resolvers=None):
+def load_schemas_from_file(local_file, schemas=None, resolvers=None):
     if schemas is None:
         schemas = {}
     if resolvers is None:
         resolvers = {}
-    with open(file, "r") as r:
+    with open(local_file, "r") as r:
         response = json_loads_byteified(r.read())
         for key, schema in response.iteritems():
             schemas[key] = schema
@@ -139,7 +139,7 @@ class DataDictionary(object):
         definitions_paths=None,
         metaschema_path=None,
         url=None,
-        file=None
+        local_file=None
     ):
         """Creates a new dictionary instance.
 
@@ -165,17 +165,17 @@ class DataDictionary(object):
         )
 
         if not lazy:
-            self.load_data(directory=self.root_dir, url=url, file=file)
+            self.load_data(directory=self.root_dir, url=url, local_file=local_file)
 
-    def load_data(self, directory=None, url=None, file=None):
+    def load_data(self, directory=None, url=None, local_file=None):
         """Load and reslove all schemas from directory or url"""
         yamls, resolvers = load_schemas_from_dir(os.path.join(MOD_DIR, "schemas"))
-        if url is None and file is None:
+        if url is None and local_file is None:
             yamls, resolvers = load_schemas_from_dir(
                 directory, schemas=yamls, resolvers=resolvers
             )
         elif url is None:
-            yamls, resolvers = load_schemas_from_file(file, schemas=yamls, resolvers=resolvers)
+            yamls, resolvers = load_schemas_from_file(local_file, schemas=yamls, resolvers=resolvers)
         else:
             yamls, resolvers = load_schemas_from_url(
                 url, self.logger, schemas=yamls, resolvers=resolvers
