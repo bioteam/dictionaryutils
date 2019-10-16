@@ -79,6 +79,21 @@ def load_schemas_from_url(url, logger, schemas=None, resolvers=None):
     return schemas, resolvers
 
 
+def load_schemas_from_file(local_file, schemas=None, resolvers=None):
+    if schemas is None:
+        schemas = {}
+    if resolvers is None:
+        resolvers = {}
+    with open(local_file, "r") as r:
+        response = json_loads_byteified(r.read())
+        for key, schema in response.iteritems():
+            schemas[key] = schema
+            resolver = RefResolver("{}#".format(key), schema)
+            resolvers[key] = ResolverPair(resolver, schema)
+    return schemas, resolvers
+
+
+
 def dump_schemas_from_dir(directory):
     """Dump schema as a json"""
 
@@ -124,6 +139,7 @@ class DataDictionary(object):
         definitions_paths=None,
         metaschema_path=None,
         url=None,
+        local_file=None
     ):
         """Creates a new dictionary instance.
 
@@ -149,19 +165,22 @@ class DataDictionary(object):
         )
 
         if not lazy:
-            self.load_data(directory=self.root_dir, url=url)
+            self.load_data(directory=self.root_dir, url=url, local_file=local_file)
 
-    def load_data(self, directory=None, url=None):
+    def load_data(self, directory=None, url=None, local_file=None):
         """Load and reslove all schemas from directory or url"""
         yamls, resolvers = load_schemas_from_dir(os.path.join(MOD_DIR, "schemas"))
-
-        if url is None:
-            yamls, resolvers = load_schemas_from_dir(
-                directory, schemas=yamls, resolvers=resolvers
-            )
-        else:
+        if url:
             yamls, resolvers = load_schemas_from_url(
                 url, self.logger, schemas=yamls, resolvers=resolvers
+            )
+        elif local_file:
+            yamls, resolvers = load_schemas_from_file(
+                local_file, schemas=yamls, resolvers=resolvers
+            )
+        else:
+            yamls, resolvers = load_schemas_from_dir(
+                directory, schemas=yamls, resolvers=resolvers
             )
 
         self.settings = yamls.get(self.settings_path) or {}
