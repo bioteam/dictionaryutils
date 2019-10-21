@@ -29,7 +29,6 @@ required:
   - project_description
   - project_type
   - availability_type
-  - bms_availability_type
   - investigator_name
   - creator
 
@@ -165,12 +164,7 @@ properties:
     type: string
     format: date-time
   availability_type:
-    description: "Is the project open or restricted? Unused field"
-    enum:
-      - Open
-      - Restricted
-  bms_availability_type:
-    description: "Is the project open or restricted? Used in UI"
+    description: "Is the project open or restricted? Functionality unused in BMS instance."
     enum:
       - Open
       - Restricted
