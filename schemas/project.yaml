@@ -151,18 +151,6 @@ properties:
     - Expression Analysis
     - HTG Molecular
     description: "List the name of the Vendor who is processing the data."
-  start_date:
-    description: "The date when the project was originally requested."
-    type: string
-    format: date-time
-  due_date:
-    description: "The date when the project was requested to be completed."
-    type: string
-    format: date-time
-  end_date:
-    description: "The date when the project was requested to be completed."
-    type: string
-    format: date-time
   availability_type:
     description: "Is the project open or restricted? Functionality unused in BMS instance."
     enum:
