@@ -134,15 +134,6 @@ properties:
     - Unknown
     - Not Reported
     description: "Describes the various Analysis Method a analysis can support."
-  project_lead:
-    type: string
-    description: "List the name of the Project Lead."
-  ngs_lead:
-    type: string
-    description: "List the name of the NGS Lead."
-  analyst_lead:
-    type: string
-    description: "List the name of the Analyst Lead."
   data_provider:
     enum: 
     - BMS Discovery
