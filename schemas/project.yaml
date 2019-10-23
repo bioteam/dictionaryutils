@@ -59,6 +59,9 @@ properties:
   code:
     type: string
     description: "Unique identifier for the project."
+  collaborators:
+    type: array
+    description: "List of collaborators who have data read access to the project. Expressed as '{email}:{role1},{role2}'. Modifying this field will change Arborist permissions."
   project_barcode:
     type: string
     description: "Unique barcode identifier for the project."
