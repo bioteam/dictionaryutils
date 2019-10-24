@@ -13,7 +13,9 @@ fi
 pip install -r dev-requirements.txt
 # always use this version of dictionaryutils...
 pip uninstall -y dictionaryutils
+pip freeze
 python setup.py install --force
+pip freeze
 nosetests -s -v
 python bin/dump_schema.py
 set +e
