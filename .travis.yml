@@ -1,6 +1,6 @@
 language: python
 dist: xenial
-python: 2.7
+python: 3.6
 before_script:
 - git clone https://github.com/uc-cdis/datadictionary && (cd datadictionary && yes | python setup.py install)
 script:
@@ -17,7 +17,7 @@ deploy:
   password:
     secure: j7bF5YHHnwbuGAoOfePyEW1qT5DQ91PAzidUFRhu1qn+O1rTX4AjzGmCDw2NAzlqsOk8a3itjqm3hCkz3BOjZMCa3tN1bbB95ne4QJQuLOr40g5XG7m7dnlaGfemze1Ppo8a5m9HozSBqXKWis3JkrDYDi4MnDgtfZZ+v8ulPgkY8Iwyn+1Rjf9I8nb+89+vQujXEXNL5aaWMTMiJK+ys/k2Uhx/9mqXKyOuau1lSZpVUi55ibNsKRxXItv44pkNJN47Ddm7Epx7kj9WcTiw+B5HxfvaWa0aHTDRmv7r5Rpxp7GNt28U6bdVQw0Aays/6tMKwFTz+pjwD03okZYNo46YaswHbIAITWUkYsNmonSGqt6rrazpS6hWnvM4hQoXSlEOIKl5eGjnQt/AnZC0ye+RGHG5UjExcMG2VAaQUoiBm0wdH8WmoOxJfoYpVOdUxHTqBjzyQjIgcq5k8+iC6gbsVCJJAS/YMqvNBoshJZX733yQGhpr1NV5MGSEnQvstkX/zNE0jEeBsbOLV320U6k7XrfQNqEtDFYa/T++wv1/cmFOYLc+Guh3C0SywU8LJM+ZlNJFbqHTmMeE0R0JSwveAyOQY9IHuKnBSSXg41nWuTnq0+tHK0j1O+47GWiouzUScSwLmyx8Jp4HYSsg84zUolJVFQuEaF588jvlaaE=
   on:
-    python: 2.7
+    python: 3.6
     repo: uc-cdis/dictionaryutils
     tags: true
 after_deploy:
