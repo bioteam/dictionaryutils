@@ -79,10 +79,55 @@ properties:
     description: "Describes the Type Indication tested for this Analysis."
     enum:
     - Lung
-    - Renal
+    - Lung - NSCLC
+    - Lung - NSCLC - Adenocarcinoma
+    - Lung - NSCLC - Squamous Cell Carcinoma
+    - Lung - NSCLC -Large Cell Carcinoma
+    - Lung - NSCLC -Large Cell Neuroendocrine Tumors
+    - Lung - SCLC
+    - Lung - Mesothelimia
     - Melonoma
-    - Lung - NSLC - Sqamous cell carcinoma
-    - Lung - NSLC - Large cell carcinoma
+    - Renal
+    - Bladder
+    - CRC and MSI Tumors
+    - Prostate
+    - HCC
+    - HCC - uninfected
+    - HCC - HBV
+    - HCC - HCV
+    - GBM
+    - GBM - MGMT Methylated
+    - GBM - MGMT Un-Methylated
+    - HEME - Hodgkin Lymphoma
+    - HEME - Hodgkin Lymphoma - LHL
+    - HEME - Hodgkin Lymphoma - MHL
+    - HEME - Hodgkin Lymphoma - OHL
+    - HEME - B Cell Non -Hodgkin Lymphoma
+    - HEME - B Cell Non -Hodgkin Lymphoma - DLBCL
+    - HEME - B Cell Non -Hodgkin Lymphoma - FL
+    - HEME - B Cell Non -Hodgkin Lymphoma - OBL
+    - HEME - B Cell Non -Hodgkin Lymphoma - PMBCL
+    - HEME - T Cell Non -Hodgkin Lymphoma
+    - HEME - T Cell Non -Hodgkin Lymphoma - CTCL
+    - HEME - T Cell Non -Hodgkin Lymphoma - ONCTCL
+    - HEME - T Cell Non -Hodgkin Lymphoma - OCTCL
+    - HEME - T Cell Non -Hodgkin Lymphoma - PTCL
+    - HEME - T Cell Non -Hodgkin Lymphoma - SCTCL
+    - HEME - MM
+    - HEME - LEUKEMIA
+    - HEME - LEUKEMIA - AML
+    - HEME - LEUKEMIA - CML
+    - Fraction
+    - Head and Neck
+    - Gastric/Esophogeal
+    - Other - Pediatric
+    - Other - Ovarian
+    - IOCC - Trials
+    - Other - Viral
+    - Other - Daratumab/Nivo Combo
+    - Other - CNS
+    - Custom
+    - None
   investigator_name:
     description: "Name of the principal investigator for the project."
     type: string
@@ -139,11 +184,16 @@ properties:
     description: "Describes the various Analysis Method a analysis can support."
   data_provider:
     enum: 
-    - BMS Discovery
-    - BMS Clinical
-    - BBRC
+    - BMS
+    - Broad
+    - BSSI
+    - FMI
     - Expression Analysis
-    - HTG Molecular
+    - Grail
+    - HTG
+    - Orien
+    - QuartzBio
+    - BBRC
     description: "List the name of the Vendor who is processing the data."
   availability_type:
     description: "Is the project open or restricted? Functionality unused in BMS instance."
