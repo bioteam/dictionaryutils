@@ -33,12 +33,6 @@ links:
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-      - name: tangent_copy_numbers
-        backref: copy_number_segments
-        label: derived_from
-        target_type: tangent_copy_number
-        multiplicity: one_to_many
-        required: false
 
 required:
   - submitter_id
@@ -96,5 +90,3 @@ properties:
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
 
-  tangent_copy_numbers:
-    $ref: "_definitions.yaml#/to_many"

@@ -43,12 +43,6 @@ links:
         target_type: submitted_unaligned_reads
         multiplicity: many_to_many
         required: false
-      - name: mrna_microarrays
-        backref: rna_expression_workflows
-        label: performed_on
-        target_type: mrna_microarray
-        multiplicity: many_to_many
-        required: false
 
 required:
   - submitter_id
@@ -86,7 +80,4 @@ properties:
     $ref: "_definitions.yaml#/to_many"
 
   submitted_unaligned_reads_files:
-    $ref: "_definitions.yaml#/to_many"
-
-  mrna_microarrays:
     $ref: "_definitions.yaml#/to_many"

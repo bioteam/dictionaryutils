@@ -38,12 +38,6 @@ links:
         target_type: copy_number_variation_workflow
         multiplicity: one_to_one
         required: false
-      - name: tangent_copy_numbers
-        backref: copy_number_estimates
-        label: derived_from
-        target_type: tangent_copy_number
-        multiplicity: many_to_many
-        required: false
       - name: copy_number_segments
         backref: copy_number_estimates
         label: derived_from
@@ -112,9 +106,6 @@ properties:
 
   copy_number_variation_workflows:
     $ref: "_definitions.yaml#/to_one"
-
-  tangent_copy_numbers:
-    $ref: "_definitions.yaml#/to_many"
 
   copy_number_segments:
     $ref: "_definitions.yaml#/to_one"
