@@ -4,4 +4,4 @@ cdislogging
 -e git+https://git@github.com/NCI-GDC/cdisutils.git@1.4.0#egg=cdisutils
 -e git+https://git@github.com/NCI-GDC/psqlgraph.git@release/py3#egg=psqlgraph
 -e git+https://git@github.com/uc-cdis/data-simulator.git@chore/py3#egg=datasimulator
--e git+https://git@github.com/uc-cdis/gdcdatamodel.git@chore/py3#egg=gdcdatamodel
+-e git+https://git@github.com/uc-cdis/gdcdatamodel.git@chore/py3#egg=gen3datamodel
