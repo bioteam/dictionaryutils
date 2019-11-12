@@ -19,6 +19,8 @@ systemProperties:
   - released
   - releasable
   - intended_release_date
+  - created_datetime
+  - updated_datetime
 
 required:
   - code
@@ -47,6 +49,12 @@ links:
 constraints: null
 
 properties:
+
+  created_datetime:
+    $ref: "#/datetime"
+  updated_datetime:
+    $ref: "#/datetime"
+
   type:
     type: string
   id:
