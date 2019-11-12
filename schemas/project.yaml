@@ -51,9 +51,9 @@ constraints: null
 properties:
 
   created_datetime:
-    $ref: "#/datetime"
+    $ref: "_definitions.yaml#/datetime"
   updated_datetime:
-    $ref: "#/datetime"
+    $ref: "_definitions.yaml#/datetime"
 
   type:
     type: string
