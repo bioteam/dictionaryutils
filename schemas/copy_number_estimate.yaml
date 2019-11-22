@@ -3,51 +3,52 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "copy_number_estimate"
 title: Copy Number Estimate
 type: object
-nodeTerms: null
-namespace: https://nci-crdc-demo.datacommons.io/
+namespace: https://gdc.cancer.gov
 category: data_file
 program: '*'
 project: '*'
-description: Data file containing copy number variation information.
+description: >
+  Data file containing copy number variation information generated internally by the GDC.
 additionalProperties: false
-submittable: true
+submittable: false
+downloadable: true
+previous_version_downloadable: true
 validators: null
 
 systemProperties:
   - id
   - project_id
-  - state
   - created_datetime
   - updated_datetime
+  - state
   - file_state
   - error_type
 
 links:
-  - exclusive: false
+  - exclusive: true
     required: true
     subgroup:
-      - name: core_metadata_collections
-        backref: copy_number_estimates
-        label: data_from
-        target_type: core_metadata_collection
-        multiplicity: many_to_one
-        required: false
       - name: copy_number_variation_workflows
         backref: copy_number_estimates
         label: derived_from
         target_type: copy_number_variation_workflow
         multiplicity: one_to_one
         required: false
-      - name: copy_number_segments
+      - name: genomic_profile_harmonization_workflows
         backref: copy_number_estimates
         label: derived_from
-        target_type: copy_number_segment
+        target_type: genomic_profile_harmonization_workflow
+        multiplicity: one_to_one
+        required: false
+      - name: somatic_copy_number_workflows 
+        backref: copy_number_estimates
+        label: derived_from
+        target_type: somatic_copy_number_workflow
         multiplicity: one_to_one
         required: false
 
 required:
   - submitter_id
-  - type
   - file_name
   - file_size
   - data_format
@@ -58,11 +59,10 @@ required:
   - platform
 
 uniqueKeys:
-  - [id]
-  - [project_id, submitter_id]
+  - [ id ]
+  - [ project_id, submitter_id ]
 
 properties:
-
   $ref: "_definitions.yaml#/data_file_properties"
 
   data_category:
@@ -71,19 +71,19 @@ properties:
     enum:
       - Copy Number Variation
 
+  data_type:
+    term:
+      $ref: "_terms.yaml#/data_type"
+    enum:
+      - Gene Level Copy Number
+      - Gene Level Copy Number Scores
+      - Cohort Level Copy Number Scores
+
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
     enum:
       - TXT
-
-  data_type:
-    term:
-      $ref: "_terms.yaml#/data_type"
-    enum:
-      - Cohort Level Copy Number Scores
-      - Gene Level Copy Number
-      - Gene Level Copy Number Scores
 
   experimental_strategy:
     term:
@@ -92,6 +92,7 @@ properties:
       - Genotyping Array
       - Targeted Sequencing
       - WGS
+      - WXS
 
   platform:
     term:
@@ -101,11 +102,9 @@ properties:
       - Illumina
       - Ion Torrent
 
-  core_metadata_collections:
-    $ref: "_definitions.yaml#/to_one"
-
   copy_number_variation_workflows:
     $ref: "_definitions.yaml#/to_one"
-
-  copy_number_segments:
+  genomic_profile_harmonization_workflows:
+    $ref: "_definitions.yaml#/to_one"
+  somatic_copy_number_workflows:
     $ref: "_definitions.yaml#/to_one"

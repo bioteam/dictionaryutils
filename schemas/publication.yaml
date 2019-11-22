@@ -3,49 +3,57 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "publication"
 title: Publication
 type: object
-nodeTerms: null
-namespace: https://nci-crdc-demo.datacommons.io/
-category: administrative
+namespace: https://gdc.cancer.gov
+category: TBD
 program: '*'
 project: '*'
-description: Publication for a project.
+description: "Publication for a legacy file (depreciated)."
 additionalProperties: false
-submittable: true
+submittable: false
+downloadable: true
+previous_version_downloadable: true 
 validators: null
 
 systemProperties:
   - id
   - project_id
-  - state
   - created_datetime
   - updated_datetime
 
 links:
-  - name: projects
+  - name: files
     backref: publications
     label: refers_to
-    target_type: project
+    target_type: file
     multiplicity: many_to_many
     required: true
 
 required:
-  - submitter_id
-  - type
-  - projects
+  - pmid
+  - doi
+  - files
 
 uniqueKeys:
   - [id]
-  - [project_id, submitter_id]
+  - [pmid]
+  - [doi]
 
+# publication properties
 properties:
-
-  $ref: "_definitions.yaml#/ubiquitous_properties"
-
-  doi:
+  type:
     type: string
-
+  id:
+    $ref: "_definitions.yaml#/UUID"
+    systemAlias: node_id
   pmid:
     type: string
-
-  projects:
-    $ref: "_definitions.yaml#/to_many_project"
+  doi:
+    type: string
+  files:
+    $ref: "_definitions.yaml#/to_many"
+  project_id:
+    type: string
+  created_datetime:
+    $ref: "_definitions.yaml#/datetime"
+  updated_datetime:
+    $ref: "_definitions.yaml#/datetime"

@@ -3,23 +3,25 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "rna_expression_workflow"
 title: RNA Expression Workflow
 type: object
-nodeTerms: null
-namespace: https://nci-crdc-demo.datacommons.io/
+namespace: https://gdc.cancer.gov
 category: analysis
 program: '*'
 project: '*'
-description: Metadata for the RNA expression pipeline used to quantify RNA gene and
-  exon expression from unharmonized or GDC harmonized data.
+description: >
+  Metadata for the RNA expression pipeline used to quantify RNA gene and exon expression from
+  unharmonized or GDC harmonized data.
 additionalProperties: false
-submittable: true
+submittable: false
+downloadable: false
+previous_version_downloadable: false
 validators: null
 
 systemProperties:
   - id
   - project_id
-  - state
   - created_datetime
   - updated_datetime
+  - state
 
 links:
   - exclusive: true
@@ -29,55 +31,53 @@ links:
         backref: rna_expression_workflows
         label: performed_on
         target_type: aligned_reads
-        multiplicity: many_to_many
+        multiplicity: many_to_one
         required: false
       - name: submitted_aligned_reads_files
         backref: rna_expression_workflows
         label: performed_on
         target_type: submitted_aligned_reads
-        multiplicity: many_to_many
+        multiplicity: many_to_one
         required: false
       - name: submitted_unaligned_reads_files
         backref: rna_expression_workflows
         label: performed_on
         target_type: submitted_unaligned_reads
-        multiplicity: many_to_many
+        multiplicity: many_to_one
         required: false
 
 required:
   - submitter_id
-  - type
-  - workflow_type
   - workflow_link
+  - workflow_type
 
 uniqueKeys:
-  - [id]
-  - [project_id, submitter_id]
+  - [ id ]
+  - [ project_id, submitter_id ]
 
 properties:
-
   $ref: "_definitions.yaml#/workflow_properties"
 
   workflow_type:
     term:
       $ref: "_terms.yaml#/workflow_type"
     enum:
-      - ASE
       - Cufflinks
       - DEXSeq
-      - Flux
-      - HTSeq - Counts
       - HTSeq - FPKM
       - HTSeq - FPKM-UQ
-      - Kallisto
-      - RNASeQC
-      - RSEM
+      - HTSeq - Counts
+      - Kallisto - HDF5
+      - Kallisto - Quantification
+      - RNA-SeQC - Counts
+      - RNA-SeQC - FPKM
+      - RSEM - Quantification
+      - STAR - Counts
+      - STAR - FPKM
 
   aligned_reads_files:
-    $ref: "_definitions.yaml#/to_many"
-
+    $ref: "_definitions.yaml#/to_one"
   submitted_aligned_reads_files:
-    $ref: "_definitions.yaml#/to_many"
-
+    $ref: "_definitions.yaml#/to_one"
   submitted_unaligned_reads_files:
-    $ref: "_definitions.yaml#/to_many"
+    $ref: "_definitions.yaml#/to_one"

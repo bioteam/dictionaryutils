@@ -10,7 +10,9 @@ description: >
   Any specifically defined piece of work that is undertaken or attempted to meet a single
   requirement. (NCIt C47885)
 additionalProperties: false
-submittable: true
+submittable: false
+downloadable: false
+previous_version_downloadable: false
 validators: null
 
 systemProperties:
@@ -25,6 +27,7 @@ systemProperties:
 required:
   - code
   - name
+  - state
   - programs
   - dbgap_accession_number
   - project_barcode

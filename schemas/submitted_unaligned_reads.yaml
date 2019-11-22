@@ -3,45 +3,36 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "submitted_unaligned_reads"
 title: Submitted Unaligned Reads
 type: object
-nodeTerms: null
-namespace: https://nci-crdc-demo.datacommons.io/
+namespace: https://gdc.cancer.gov
 category: data_file
 program: '*'
 project: '*'
-description: Data file containing unaligned reads that have not been GDC Harmonized.
+description: "Data file containing unaligned reads that have not been GDC Harmonized."
 additionalProperties: false
 submittable: true
+downloadable: false
+previous_version_downloadable: false
 validators: null
 
 systemProperties:
   - id
   - project_id
-  - state
   - created_datetime
   - updated_datetime
+  - state
   - file_state
   - error_type
 
 links:
-  - exclusive: false
+  - name: read_groups
+    backref: submitted_unaligned_reads_files # pretty ugly
+    label: data_from
+    target_type: read_group
+    multiplicity: many_to_one
     required: true
-    subgroup:
-      - name: core_metadata_collections
-        backref: submitted_unaligned_reads_files
-        label: data_from
-        target_type: core_metadata_collection
-        multiplicity: many_to_one
-        required: false
-      - name: read_groups
-        backref: submitted_unaligned_reads_files
-        label: data_from
-        target_type: read_group
-        multiplicity: many_to_one
-        required: false
 
 required:
   - submitter_id
-  - type
   - file_name
   - file_size
   - md5sum
@@ -49,36 +40,32 @@ required:
   - data_type
   - data_format
   - experimental_strategy
+  - read_pair_number
 
 uniqueKeys:
-  - [id]
-  - [project_id, submitter_id]
+  - [ id ]
+  - [ project_id, submitter_id ]
 
 properties:
-
   $ref: "_definitions.yaml#/data_file_properties"
 
   data_category:
     term:
       $ref: "_terms.yaml#/data_category"
     enum:
-      - Raw Sequencing Data
-      - Sequencing Data
       - Sequencing Reads
+
+  data_type:
+    term:
+      $ref: "_terms.yaml#/data_type"
+    enum: [ "Unaligned Reads" ]
 
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
     enum:
       - BAM
-      - FASTA
       - FASTQ
-
-  data_type:
-    term:
-      $ref: "_terms.yaml#/data_type"
-    enum:
-      - Unaligned Reads
 
   experimental_strategy:
     term:
@@ -88,21 +75,19 @@ properties:
       - Bisulfite-Seq
       - ChIP-Seq
       - Low Pass WGS
+      - miRNA-Seq
       - RNA-Seq
       - Targeted Sequencing
       - WGS
       - WXS
-      - miRNA-Seq
 
-  read_pair_number:
+  read_pair_number: 
     term:
       $ref: "_terms.yaml#/read_pair_number"
     enum:
       - R1
       - R2
-
-  core_metadata_collections:
-    $ref: "_definitions.yaml#/to_one"
+      - Not Applicable
 
   read_groups:
     $ref: "_definitions.yaml#/to_one"
