@@ -3,16 +3,17 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "aliquot"
 title: Aliquot
 type: object
-nodeTerms: null
-namespace: https://nci-crdc-demo.datacommons.io/
 category: biospecimen
 program: '*'
 project: '*'
-description: Pertaining to a portion of the whole; any one of two or more samples
-  of something, of the same volume or weight.
+description: >
+  Pertaining to a portion of the whole; any one of two or more samples of something, of the same
+  volume or weight.
 additionalProperties: false
 submittable: true
-validators: null
+downloadable: false
+previous_version_downloadable: false
+validators: []
 
 systemProperties:
   - id
@@ -21,31 +22,38 @@ systemProperties:
   - created_datetime
   - updated_datetime
 
-links:
-  - name: samples
-    backref: aliquots
-    label: derived_from
-    target_type: sample
-    multiplicity: many_to_one
-    required: true
-
 required:
   - submitter_id
-  - type
-  - samples
 
 uniqueKeys:
   - [id]
   - [project_id, submitter_id]
 
+links:
+  - exclusive: true
+    required: true
+    subgroup:
+      - name: analytes
+        backref: aliquots
+        label: derived_from
+        multiplicity: many_to_one
+        target_type: analyte
+        required: false
+      - name: samples
+        backref: aliquots
+        label: derived_from
+        multiplicity: many_to_many
+        target_type: sample
+        required: false
+  - name: centers
+    label: shipped_to
+    backref: aliquots
+    multiplicity: many_to_one
+    target_type: center
+    required: false
+
 properties:
-
   $ref: "_definitions.yaml#/ubiquitous_properties"
-
-  a260_a280_ratio:
-    term:
-      $ref: "_terms.yaml#/a260_a280_ratio"
-    type: number
 
   aliquot_quantity:
     term:
@@ -63,37 +71,72 @@ properties:
     type: number
 
   analyte_type:
-    term:
-      $ref: "_terms.yaml#/analyte_type"
-    type: string
+    $ref: "analyte.yaml#/properties/analyte_type"
 
   analyte_type_id:
-    term:
-      $ref: "_terms.yaml#/analyte_type_id"
-    enum:
-      - D
-      - E
-      - G
-      - H
-      - R
-      - S
-      - T
-      - W
-      - X
-      - Y
+    $ref: "analyte.yaml#/properties/analyte_type_id"
 
   concentration:
     term:
       $ref: "_terms.yaml#/concentration"
     type: number
 
-  project_id:
-    $ref: "_definitions.yaml#/project_id"
+  no_matched_normal_low_pass_wgs:
+    term:
+      $ref: "_terms.yaml#/no_matched_normal_low_pass_wgs"
+    type: boolean
+    default: false
+
+  no_matched_normal_targeted_sequencing:
+    term:
+      $ref: "_terms.yaml#/no_matched_normal_targeted_sequencing"
+    type: boolean
+    default: false
+
+  no_matched_normal_wgs:
+    term:
+      $ref: "_terms.yaml#/no_matched_normal_wgs"
+    type: boolean
+    default: false
+
+  no_matched_normal_wxs:
+    term:
+      $ref: "_terms.yaml#/no_matched_normal_wxs"
+    type: boolean
+    default: false
 
   source_center:
     term:
       $ref: "_terms.yaml#/source_center"
     type: string
 
+  selected_normal_wxs:
+    term:
+      $ref: "_terms.yaml#/selected_normal_wxs"
+    type: boolean
+    default: false
+
+  selected_normal_wgs:
+    term:
+      $ref: "_terms.yaml#/selected_normal_wgs"
+    type: boolean
+    default: false
+
+  selected_normal_targeted_sequencing:
+    term:
+      $ref: "_terms.yaml#/selected_normal_targeted_sequencing"
+    type: boolean
+    default: false
+
+  selected_normal_low_pass_wgs:
+    term:
+      $ref: "_terms.yaml#/selected_normal_low_pass_wgs"
+    type: boolean
+    default: false
+
+  analytes:
+    $ref: "_definitions.yaml#/to_one"
   samples:
+    $ref: "_definitions.yaml#/to_one"
+  centers:
     $ref: "_definitions.yaml#/to_one"

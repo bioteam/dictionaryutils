@@ -3,40 +3,53 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "copy_number_segment"
 title: Copy Number Segment
 type: object
-nodeTerms: null
-namespace: https://nci-crdc-demo.datacommons.io/
+namespace: https://gdc.cancer.gov
 category: data_file
 program: '*'
 project: '*'
-description: Data file containing the copy number data. Contains all copy numbers
-  detected.
+description: >
+  Data file containing the copy number data from a copy number liftover workflow. Contains all copy
+  numbers detected.
 additionalProperties: false
-submittable: true
+submittable: false
+downloadable: true
+previous_version_downloadable: true
 validators: null
 
 systemProperties:
   - id
   - project_id
-  - state
   - created_datetime
   - updated_datetime
+  - state
   - file_state
   - error_type
 
 links:
-  - exclusive: false
+  - exclusive: true
     required: true
     subgroup:
-      - name: core_metadata_collections
+      - name: copy_number_liftover_workflows
         backref: copy_number_segments
-        label: data_from
-        target_type: core_metadata_collection
-        multiplicity: many_to_one
+        label: derived_from
+        target_type: copy_number_liftover_workflow
+        multiplicity: one_to_one
+        required: false
+      - name: genomic_profile_harmonization_workflows
+        backref: copy_number_segments
+        label: derived_from
+        target_type: genomic_profile_harmonization_workflow
+        multiplicity: one_to_one
+        required: false
+      - name: somatic_copy_number_workflows
+        backref: copy_number_segments
+        label: derived_from
+        target_type: somatic_copy_number_workflow
+        multiplicity: one_to_one
         required: false
 
 required:
   - submitter_id
-  - type
   - file_name
   - file_size
   - data_format
@@ -47,11 +60,10 @@ required:
   - platform
 
 uniqueKeys:
-  - [id]
-  - [project_id, submitter_id]
+  - [ id ]
+  - [ project_id, submitter_id ]
 
 properties:
-
   $ref: "_definitions.yaml#/data_file_properties"
 
   data_category:
@@ -60,18 +72,19 @@ properties:
     enum:
       - Copy Number Variation
 
+  data_type:
+    term:
+      $ref: "_terms.yaml#/data_type"
+    enum:
+      - Allele-specific Copy Number Segment
+      - Copy Number Segment
+      - Masked Copy Number Segment
+
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
     enum:
       - TXT
-
-  data_type:
-    term:
-      $ref: "_terms.yaml#/data_type"
-    enum:
-      - Copy Number Segment
-      - Masked Copy Number Segment
 
   experimental_strategy:
     term:
@@ -87,6 +100,9 @@ properties:
       - Affymetrix SNP 6.0
       - Illumina
 
-  core_metadata_collections:
+  copy_number_liftover_workflows:
     $ref: "_definitions.yaml#/to_one"
-
+  genomic_profile_harmonization_workflows:
+    $ref: "_definitions.yaml#/to_one"
+  somatic_copy_number_workflows:
+    $ref: "_definitions.yaml#/to_one"

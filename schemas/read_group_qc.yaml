@@ -3,30 +3,25 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "read_group_qc"
 title: Read Group QC
 type: object
-nodeTerms: null
-namespace: https://nci-crdc-demo.datacommons.io/
-category: analysis
-program: '*'
+namespace: https://gdc.cancer.gov
+category: notation
 project: '*'
-description: GDC QC run metadata.
+program: '*'
+description: "GDC QC run metadata."
 additionalProperties: false
-submittable: true
+submittable: false
+downloadable: false
+previous_version_downloadable: false
 validators: null
 
 systemProperties:
   - id
   - project_id
-  - state
   - created_datetime
   - updated_datetime
+  - state
 
 links:
-  - name: read_groups
-    backref: read_group_qcs
-    label: generated_from
-    target_type: read_group
-    multiplicity: many_to_one
-    required: true
   - exclusive: true
     required: true
     subgroup:
@@ -42,34 +37,22 @@ links:
         target_type: submitted_unaligned_reads
         multiplicity: one_to_many
         required: false
+  - name: read_groups
+    label: generated_from
+    target_type: read_group
+    multiplicity: many_to_one
+    required: true
+    backref: read_group_qcs
 
 required:
   - submitter_id
-  - type
   - workflow_link
-  - percent_gc_content
-  - encoding
-  - total_sequences
-  - basic_statistics
-  - per_base_sequence_quality
-  - per_tile_sequence_quality
-  - per_sequence_quality_score
-  - per_base_sequence_content
-  - per_sequence_gc_content
-  - per_base_n_content
-  - sequence_length_distribution
-  - sequence_duplication_levels
-  - overrepresented_sequences
-  - adapter_content
-  - kmer_content
-  - read_groups
 
 uniqueKeys:
-  - [id]
-  - [project_id, submitter_id]
+  - [ id ]
+  - [ project_id, submitter_id ]
 
 properties:
-
   $ref: "_definitions.yaml#/workflow_properties"
 
   adapter_content:
@@ -94,46 +77,36 @@ properties:
   overrepresented_sequences:
     $ref: "_definitions.yaml#/qc_metrics_state"
 
-  per_base_n_content:
-    $ref: "_definitions.yaml#/qc_metrics_state"
-
-  per_base_sequence_content:
-    $ref: "_definitions.yaml#/qc_metrics_state"
-
   per_base_sequence_quality:
-    $ref: "_definitions.yaml#/qc_metrics_state"
-
-  per_sequence_gc_content:
-    $ref: "_definitions.yaml#/qc_metrics_state"
-
-  per_sequence_quality_score:
     $ref: "_definitions.yaml#/qc_metrics_state"
 
   per_tile_sequence_quality:
     $ref: "_definitions.yaml#/qc_metrics_state"
 
-  percent_aligned:
-    description: The percent of reads with at least one reported alignment.
-    type: integer
-    maximum: 100
-    minimum: 0
+  per_sequence_quality_score:
+    $ref: "_definitions.yaml#/qc_metrics_state"
+
+  per_base_sequence_content:
+    $ref: "_definitions.yaml#/qc_metrics_state"
+
+  per_sequence_gc_content:
+    $ref: "_definitions.yaml#/qc_metrics_state"
+
+  per_base_n_content:
+    $ref: "_definitions.yaml#/qc_metrics_state"
 
   percent_gc_content:
     term:
       $ref: "_terms.yaml#/percent_gc_content"
     type: integer
-    maximum: 100
     minimum: 0
-
-  sequence_duplication_levels:
-    $ref: "_definitions.yaml#/qc_metrics_state"
+    maximum: 100
 
   sequence_length_distribution:
     $ref: "_definitions.yaml#/qc_metrics_state"
 
-  total_aligned_reads:
-    description: The total number of reads with at least one reported alignment.
-    type: integer
+  sequence_duplication_levels:
+    $ref: "_definitions.yaml#/qc_metrics_state"
 
   total_sequences:
     term:
@@ -143,14 +116,11 @@ properties:
   workflow_type:
     term:
       $ref: "_terms.yaml#/workflow_type"
-    enum:
-      - Read Group Quality Control
+    enum: [ "Read Group Quality Control" ]
 
   submitted_aligned_reads_files:
     $ref: "_definitions.yaml#/to_one"
-
   submitted_unaligned_reads_files:
     $ref: "_definitions.yaml#/to_many"
-
   read_groups:
     $ref: "_definitions.yaml#/to_one"
