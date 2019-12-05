@@ -3,7 +3,6 @@ This script dumps all schema files in currently installed gdcdictionary
 to one json schema to ./artifacts folder.
 
 """
-from exceptions import OSError
 import json
 import os
 

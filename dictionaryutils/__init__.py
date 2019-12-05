@@ -1,4 +1,3 @@
-from .json_load import json_loads_byteified
 from .errors import DictionaryError
 from .version_data import DICTVERSION, DICTCOMMIT
 
@@ -12,6 +11,7 @@ import logging
 import requests
 import os
 import yaml
+import json
 
 MOD_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -48,7 +48,7 @@ def add_default_schema(dictionary):
 
     schemas = {
         schema["id"]: dictionary.resolve_schema(schema, deepcopy(schema))
-        for path, schema in yamls.iteritems()
+        for path, schema in yamls.items()
         if path not in dictionary.exclude
     }
     dictionary.schema.update(schemas)
@@ -70,8 +70,8 @@ def load_schemas_from_url(url, logger, schemas=None, resolvers=None):
         schemas = {}
     if resolvers is None:
         resolvers = {}
-    response = json_loads_byteified(r.text)
-    for key, schema in response.iteritems():
+    response = json.loads(r.text)
+    for key, schema in response.items():
         schemas[key] = schema
         resolver = RefResolver("{}#".format(key), schema)
         resolvers[key] = ResolverPair(resolver, schema)
@@ -85,8 +85,8 @@ def load_schemas_from_file(local_file, schemas=None, resolvers=None):
     if resolvers is None:
         resolvers = {}
     with open(local_file, "r") as r:
-        response = json_loads_byteified(r.read())
-        for key, schema in response.iteritems():
+        response = json.loads(r.read())
+        for key, schema in response.items():
             schemas[key] = schema
             resolver = RefResolver("{}#".format(key), schema)
             resolvers[key] = ResolverPair(resolver, schema)
@@ -188,7 +188,7 @@ class DataDictionary(object):
 
         schemas = {
             schema["id"]: self.resolve_schema(schema, deepcopy(schema))
-            for path, schema in yamls.iteritems()
+            for path, schema in yamls.items()
             if path not in self.exclude
         }
         self.schema.update(schemas)
