@@ -10,7 +10,9 @@ description: >
   Any specifically defined piece of work that is undertaken or attempted to meet a single
   requirement. (NCIt C47885)
 additionalProperties: false
-submittable: true
+submittable: false
+downloadable: false
+previous_version_downloadable: false
 validators: null
 
 systemProperties:
@@ -23,8 +25,10 @@ systemProperties:
   - updated_datetime
 
 required:
+  - type
   - code
   - name
+  - state
   - programs
   - dbgap_accession_number
   - project_barcode
@@ -48,13 +52,16 @@ links:
 
 constraints: null
 
+# project properties
+# code, disease_type and primary_site are in the current data model for project
+# and likely shouldn't be
 properties:
 
   created_datetime:
     $ref: "_definitions.yaml#/datetime"
   updated_datetime:
     $ref: "_definitions.yaml#/datetime"
-
+  
   type:
     type: string
   id:
@@ -64,6 +71,13 @@ properties:
   name:
     type: string
     description: "Display name/brief description for the project." # TOREVIEW
+
+  awg_review:
+    description: >
+      Indicates that the project is an AWG project.
+    default: false
+    type: boolean
+
   code:
     type: string
     description: "Unique identifier for the project."
@@ -84,8 +98,6 @@ properties:
     enum:
     - Clinical
     - Non Clinical
-    - Speciality
-    - Assay Validation
   indication: 
     description: "Describes the Type Indication tested for this Analysis."
     enum:
@@ -161,11 +173,19 @@ properties:
     - Pilot
   therapeutic_area:
     enum:
-    - Oncology
-    - Immunoscience
-    - Fibrosis
+    - Atherosclerosis NOS
     - Cardiovascular
-    - CGG
+    - Dermatology
+    - Fibrosis - DA
+    - Hematology
+    - Immuno Sciences
+    - Infectious Diseases - Discovery
+    - Metabolic Diseases
+    - NASH
+    - Oncology
+    - TBD - Discovery
+    - Virology
+    - Other
     description: "Describes the Therapeutic Areas Being Tested for in the Analysis."
   trial:
     type: string
@@ -174,6 +194,9 @@ properties:
     enum: 
     - Comparative Genomic Hybridization
     - Cytogenetics, NOS
+    - DNA-Seq
+    - Edge-Sequencing
+    - Exploratory
     - FISH
     - Flow Cytometery
     - IHC
@@ -181,32 +204,86 @@ properties:
     - Karyotype
     - Microarray
     - Microsatellite Analysis
-    - NanoString
+    - Not Reported
     - Nuclear Staining
-    - RNA Sequencing
+    - RNA-Seq
     - RT-PCR
     - Sequencing - NOS
     - Targeted Proteome
     - Targeted Sequencing
+    - Unknown
+    - WES
     - WGS
     - WXS
-    - Edge-Sequencing
     - Other
-    - Unknown
-    - Not Reported
     description: "Describes the various Analysis Method a analysis can support."
   data_provider:
     enum: 
+    - 10x genomics
+    - ABI
+    - Active Motif
+    - Adaptive
+    - AltraBio
+    - Asuragen
+    - Baylor College Of Medicine
+    - BBRC
+    - Beijing Chaoyang Hospital, Capital Medical University
+    - BGI
+    - Biognosys
+    - BLUEPRINT
+    - BMA
     - BMS
     - Broad
-    - BSSI
-    - FMI
+    - Brooks
+    - CGG
+    - CGI
+    - Cytapex
+    - DDL
+    - DFCI
+    - EGA
     - Expression Analysis
-    - Grail
-    - HTG
-    - Orien
-    - QuartzBio
-    - BBRC
+    - Flagship Bioscience
+    - Foundation Medicine
+    - Genewiz
+    - Genomics
+    - GEO
+    - GRC
+    - Guardant
+    - HCA
+    - HTG Molecular
+    - Illumbia
+    - illumina
+    - M2GEN
+    - Medgenome
+    - Moffitt
+    - MSKCC
+    - NIH
+    - Novo Nordisk
+    - Novogene - China
+    - NYGC
+    - Other
+    - Parker Institute for Cancer Immunotherapy
+    - PathAI INC
+    - Personal Genome Diagnostic
+    - Public
+    - Q2 Expression Analysis
+    - Qiagen
+    - QPS
+    - Rockefeller University
+    - Second Genome Solutions
+    - SGI
+    - SRA
+    - Stanford
+    - Swift Biosciences
+    - Tempus
+    - TGEN
+    - Tsinghua
+    - U Lausanne
+    - UCSD
+    - UKBiobank/Regeneron
+    - VCU
+    - Vendor
+    - WUXI NextCode
     description: "List the name of the Vendor who is processing the data."
   availability_type:
     description: "Is the project open or restricted? Functionality unused in BMS instance."
@@ -218,6 +295,18 @@ properties:
     type: string
   support_source:
     description: "The name of source providing support/grant resources."
+    type: string #Adding this even though not in GDC model
+  in_review:
+    description: >
+      Indicates that the project is under review by the submitter. Upload and data modification is disabled.
+    default: false
+    type: boolean
+
+  is_legacy:
+    description: >
+      Indicates whether a project will appear in the Legacy Archive.
+    default: false
+    type: boolean
     type: string
   support_id:
     description: "The ID of the source providing support/grant resources."
@@ -259,6 +348,7 @@ properties:
         #   - release (project.released -> true)
         - processing
 
+        - processed
 
         # closed: The closed state is introduced to replace the
         #         ``legacy`` state and means that no further action
@@ -270,6 +360,13 @@ properties:
         # DEPRECATED(2016-03-01): synonymous with closed. included for
         #                         backwards compatibility
         - legacy
+
+  release_requested:
+    description: >
+      User requests that the GDC release the project. Release can only be requested if the project
+      is releasable.
+    default: false
+    type: boolean
 
   released:
     description: >
@@ -291,3 +388,27 @@ properties:
   dbgap_accession_number:
     type: string
     description: "The dbgap accession number provided for the project."
+  request_submission:
+    description: >
+      Indicates that the user has requested submission to the GDC for harmonization.
+    default: false
+    type: boolean
+
+  submission_enabled:
+    description: >
+      Indicates if submission to a project is allowed.
+    default: true
+    type: boolean
+  disease_type:
+    description: "Full name for the project" # TOREVIEW
+    type: string
+  intended_release_date:
+    description: Tracks a Project's intended release date.
+    type: string
+  primary_site:
+    description: "Primary site for the project" # TOREVIEW
+    type: string
+  programs:
+    description: >
+      Indicates that the project is logically part of the indicated project.
+    $ref: "_definitions.yaml#/to_one"
