@@ -32,13 +32,12 @@ links:
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-# BioTeam TODO: Ask Dan if we need to pull in this relationship workflow
-#   - name: germline_mutation_calling_workflows
-#     backref: simple_germline_variations
-#     label: data_from
-#     target_type: germline_mutation_calling_workflow
-#     multiplicity: many_to_one
-#     required: false
+      - name: germline_mutation_calling_workflows
+        backref: simple_germline_variations
+        label: data_from
+        target_type: germline_mutation_calling_workflow
+        multiplicity: many_to_one
+        required: false
       - name: read_groups
         backref: simple_germline_variations
         label: data_from
@@ -99,9 +98,8 @@ properties:
       - WXS
       - Low Pass WGS
       - Validation
-# BioTeam TODO: Ask Dan if we need to pull in this relationship workflow
-#   germline_mutation_calling_workflows:
-#     $ref: "_definitions.yaml#/to_one"
+  germline_mutation_calling_workflows:
+    $ref: "_definitions.yaml#/to_one"
   read_groups:
     $ref: "_definitions.yaml#/to_many"
   aligned_reads_files:

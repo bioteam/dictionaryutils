@@ -34,20 +34,18 @@ links:
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-# BioTeam TODO: Ask Dan if we need to pull in this relationship workflow
-#   - name: somatic_mutation_calling_workflows
-#     backref: simple_somatic_mutations
-#     label: data_from
-#     target_type: somatic_mutation_calling_workflow
-#     multiplicity: many_to_one
-#     required: false
-# BioTeam TODO: Ask Dan if we need to pull in this relationship workflow
-#   - name: genomic_profile_harmonization_workflows
-#     backref: simple_somatic_mutations
-#     label: data_from
-#     target_type: genomic_profile_harmonization_workflow
-#     multiplicity: one_to_one
-#     required: false
+  - name: somatic_mutation_calling_workflows
+    backref: simple_somatic_mutations
+    label: data_from
+    target_type: somatic_mutation_calling_workflow
+    multiplicity: many_to_one
+    required: false
+  - name: genomic_profile_harmonization_workflows
+    backref: simple_somatic_mutations
+    label: data_from
+    target_type: genomic_profile_harmonization_workflow
+    multiplicity: one_to_one
+    required: false
 
 required:
   - submitter_id
@@ -96,9 +94,9 @@ properties:
       - Validation
       - Targeted Sequencing
 
-#   genomic_profile_harmonization_workflows:
-#     $ref: "_definitions.yaml#/to_one"
-#   somatic_mutation_calling_workflows:
-#     $ref: "_definitions.yaml#/to_one"
+  genomic_profile_harmonization_workflows:
+    $ref: "_definitions.yaml#/to_one"
+  somatic_mutation_calling_workflows:
+    $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
