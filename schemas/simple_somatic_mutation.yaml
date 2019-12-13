@@ -1,0 +1,104 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "simple_somatic_mutation"
+title: Simple Somatic Mutation
+type: object
+namespace: https://vpodc.org/
+category: data_file
+program: '*'
+project: '*'
+description: >
+  Data file containing simple somatic mutations, which have not been annotated or filtered, called
+  from aligned reads.
+additionalProperties: false
+submittable: false
+downloadable: true
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - created_datetime
+  - updated_datetime
+  - state
+  - file_state
+  - error_type
+
+links:
+  - exclusive: false
+    required: true
+    subgroup:
+      - name: core_metadata_collections
+        backref: simple_somatic_mutations
+        label: data_from
+        target_type: core_metadata_collection
+        multiplicity: many_to_one
+        required: false
+# BioTeam TODO: Ask Dan if we need to pull in this relationship workflow
+#   - name: somatic_mutation_calling_workflows
+#     backref: simple_somatic_mutations
+#     label: data_from
+#     target_type: somatic_mutation_calling_workflow
+#     multiplicity: many_to_one
+#     required: false
+# BioTeam TODO: Ask Dan if we need to pull in this relationship workflow
+#   - name: genomic_profile_harmonization_workflows
+#     backref: simple_somatic_mutations
+#     label: data_from
+#     target_type: genomic_profile_harmonization_workflow
+#     multiplicity: one_to_one
+#     required: false
+
+required:
+  - submitter_id
+  - file_name
+  - file_size
+  - md5sum
+  - data_category
+  - data_type
+  - data_format
+  - experimental_strategy
+
+uniqueKeys:
+  - [ id ]
+  - [ project_id, submitter_id ]
+
+properties:
+  $ref: "_definitions.yaml#/data_file_properties"
+
+  data_category:
+    term:
+      $ref: "_terms.yaml#/data_category"
+    enum:
+      - Combined Nucleotide Variation
+      - Simple Nucleotide Variation
+
+  data_type:
+    term:
+      $ref: "_terms.yaml#/data_type"
+    enum:
+      - Raw CGI Variant
+      - Raw Simple Somatic Mutation
+
+  data_format:
+    term:
+      $ref: "_terms.yaml#/data_format"
+    enum:
+      - VCF
+
+  experimental_strategy:
+    term:
+      $ref: "_terms.yaml#/experimental_strategy"
+    enum:
+      - WGS
+      - WXS
+      - Low Pass WGS
+      - Validation
+      - Targeted Sequencing
+
+#   genomic_profile_harmonization_workflows:
+#     $ref: "_definitions.yaml#/to_one"
+#   somatic_mutation_calling_workflows:
+#     $ref: "_definitions.yaml#/to_one"
+  core_metadata_collections:
+    $ref: "_definitions.yaml#/to_one"

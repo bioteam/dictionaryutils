@@ -1,0 +1,112 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "simple_germline_variation"
+title: Simple Germline Variation
+type: object
+namespace: https://dcp.bionimbus.org/
+category: data_file
+program: '*'
+project: '*'
+description: >
+  Data file containing simple germline variations called from aligned reads.
+additionalProperties: false
+submittable: false
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - created_datetime
+  - updated_datetime
+  - state
+  - file_state
+  - error_type
+
+links:
+  - exclusive: false
+    required: true
+    subgroup:
+      - name: core_metadata_collections
+        backref: simple_germline_variations
+        label: data_from
+        target_type: core_metadata_collection
+        multiplicity: many_to_one
+        required: false
+# BioTeam TODO: Ask Dan if we need to pull in this relationship workflow
+#   - name: germline_mutation_calling_workflows
+#     backref: simple_germline_variations
+#     label: data_from
+#     target_type: germline_mutation_calling_workflow
+#     multiplicity: many_to_one
+#     required: false
+      - name: read_groups
+        backref: simple_germline_variations
+        label: data_from
+        target_type: read_group
+        multiplicity: many_to_many
+        required: false
+      - name: submitted_aligned_reads_files
+        backref: simple_germline_variations
+        label: data_from
+        target_type: submitted_aligned_reads
+        multiplicity: many_to_many
+        required: false
+      - name: aligned_reads_files
+        backref: simple_germline_variations
+        label: data_from
+        target_type: aligned_reads
+        multiplicity: many_to_many
+        required: false
+
+required:
+  - type
+  - submitter_id
+  - file_name
+  - file_size
+  - md5sum
+  - data_category
+  - data_type
+  - data_format
+  - experimental_strategy
+
+uniqueKeys:
+  - [ id ]
+  - [ project_id, submitter_id ]
+
+properties:
+  $ref: "_definitions.yaml#/data_file_properties"
+
+  data_category:
+    term:
+      $ref: "_terms.yaml#/data_category"
+    enum: [ "Simple Nucleotide Variation" ]
+
+  data_type:
+    term:
+      $ref: "_terms.yaml#/data_type"
+    enum: [ "Simple Germline Variation" ]
+
+  data_format:
+    term:
+      $ref: "_terms.yaml#/data_format"
+    enum: [ "VCF" ]
+
+  experimental_strategy:
+    term:
+      $ref: "_terms.yaml#/experimental_strategy"
+    enum:
+      - WGS
+      - WXS
+      - Low Pass WGS
+      - Validation
+# BioTeam TODO: Ask Dan if we need to pull in this relationship workflow
+#   germline_mutation_calling_workflows:
+#     $ref: "_definitions.yaml#/to_one"
+  read_groups:
+    $ref: "_definitions.yaml#/to_many"
+  aligned_reads_files:
+    $ref: "_definitions.yaml#/to_many"
+  submitted_aligned_reads_files:
+    $ref: "_definitions.yaml#/to_many"
+  core_metadata_collections:
+    $ref: "_definitions.yaml#/to_many"
