@@ -13,6 +13,36 @@ parent_uuids:
         $ref: "#/UUID"
     uniqueItems: true
 
+foreign_key_project:
+    type: object
+    # Allow true here because we can have other unique keys defined on
+    # a target type
+    additionalProperties: true
+    #Can either use 'id' which are Gen3 IDs (UUID) or 'code'
+    #which is the user defined ID for project
+    properties:
+        id:
+            $ref: "#/UUID"
+        code:
+            type: string
+
+to_one_project:
+  anyOf:
+    - type: array
+      items:
+        $ref: "#/foreign_key_project"
+        minItems: 1
+        maxItems: 1
+    - $ref: "#/foreign_key_project"
+
+to_many_project:
+  anyOf:
+    - type: array
+      items:
+        $ref: "#/foreign_key_project"
+        minItems: 1
+    - $ref: "#/foreign_key_project"
+
 foreign_key:
     type: object
     # Allow true here because we can have other unique keys defined on
@@ -71,6 +101,10 @@ md5sum:
     pattern: "^[a-f0-9]{32}$"
     term:
         $ref: "_terms.yaml#/md5sum"
+
+object_id:
+    type: string
+    description: "The GUID of the object in the index service."
 
 release_state:
     description: "Release state of an entity."
@@ -145,7 +179,6 @@ file_state:
         - processed
         - released
         - error
-        - deleted
 
 qc_metrics_state:
     term:
@@ -154,8 +187,6 @@ qc_metrics_state:
         - FAIL
         - PASS
         - WARN
-        - Unknown
-        - Not Reported
 
 project_id:
     type: string
@@ -172,13 +203,12 @@ data_file_properties:
     $ref: "#/md5sum"
   file_state:
     $ref: "#/file_state"
+  object_id:
+    $ref: "#/object_id"
+  state:
+    $ref: "#/state"
   error_type:
     $ref: "#/data_file_error_type"
-  state_comment:
-    type: string
-    description: >
-      Optional comment about why the file is in the
-      current state, mainly for invalid state.
 
 workflow_properties:
   $ref: "#/ubiquitous_properties"
@@ -205,10 +235,6 @@ ubiquitous_properties:
     description: >
       A project-specific identifier for a node. This property is the calling card/nickname/alias for
       a unit of submission. It can be used in place of the UUID for identifying or recalling a node.
-  batch_id:
-    type: integer
-    description: >
-      GDC submission batch indicator. It is unique within the context of a project.
   state:
     $ref: "#/state"
   project_id:

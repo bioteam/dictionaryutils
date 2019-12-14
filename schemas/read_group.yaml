@@ -3,59 +3,48 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "read_group"
 title: Read Group
 type: object
-description: "Sequencing reads from one lane of an NGS experiment."
-namespace: https://gdc.cancer.gov
+nodeTerms: null
+namespace: https://nci-crdc-demo.datacommons.io/
 category: biospecimen
-project: '*'
 program: '*'
+project: '*'
+description: Sequencing reads from one lane of an NGS experiment.
 additionalProperties: false
 submittable: true
-downloadable: false
-previous_version_downloadable: false
 validators: null
 
 systemProperties:
   - id
   - project_id
+  - state
   - created_datetime
   - updated_datetime
-  - state
 
 links:
   - name: aliquots
+    backref: read_groups
     label: derived_from
     target_type: aliquot
     multiplicity: many_to_one
     required: true
-    backref: read_groups
 
 required:
   - submitter_id
+  - type
   - aliquots
-  - experiment_name
-  - sequencing_center
-  - platform
-  - library_selection
-  - library_strategy
-  - library_name
-  - is_paired_end
-  - read_length
-  - read_group_name
-  - target_capture_kit
-
-deprecated:
-  - target_capture_kit_catalog_number
-  - target_capture_kit_name
-  - target_capture_kit_target_region
-  - target_capture_kit_vendor
-  - target_capture_kit_version
 
 uniqueKeys:
-  - [ id ]
-  - [ project_id, submitter_id ]
+  - [id]
+  - [project_id, submitter_id]
 
 properties:
+
   $ref: "_definitions.yaml#/ubiquitous_properties"
+
+  RIN:
+    term:
+      $ref: "_terms.yaml#/RIN"
+    type: number
 
   adapter_name:
     term:
@@ -76,11 +65,6 @@ properties:
     term:
       $ref: "_terms.yaml#/base_caller_version"
     type: string
-
-  days_to_sequencing:
-    term:
-      $ref: "_terms.yaml#/days_to_sequencing"
-    type: integer
 
   experiment_name:
     term:
@@ -118,37 +102,34 @@ properties:
     type: boolean
 
   instrument_model:
-    terms:
+    term:
       $ref: "_terms.yaml#/instrument_model"
     enum:
       - 454 GS FLX Titanium
-      - AB SOLiD 4
       - AB SOLiD 2
       - AB SOLiD 3
+      - AB SOLiD 4
       - Complete Genomics
-      - Illumina HiSeq X Ten
-      - Illumina HiSeq X Five
       - Illumina Genome Analyzer II
       - Illumina Genome Analyzer IIx
       - Illumina HiSeq 2000
       - Illumina HiSeq 2500
       - Illumina HiSeq 4000
+      - Illumina HiSeq X Five
+      - Illumina HiSeq X Ten
       - Illumina MiSeq
-      - Illumina NextSeq
+      - Illumina NextSeq 500
+      - Illumina NextSeq 550
+      - Illumina NovaSeq 6000
       - Ion Torrent PGM
       - Ion Torrent Proton
-      - Ion Torrent S5
-      - PacBio RS
       - Other
-      - Unknown
-      - Not Reported
+      - PacBio RS
 
   is_paired_end:
     term:
       $ref: "_terms.yaml#/is_paired_end"
-    type:
-      - boolean
-      - "null"
+    type: boolean
 
   lane_number:
     term:
@@ -158,6 +139,11 @@ properties:
   library_name:
     term:
       $ref: "_terms.yaml#/library_name"
+    type: string
+
+  library_preparation_kit_catalog_number:
+    term:
+      $ref: "_terms.yaml#/library_preparation_kit_catalog_number"
     type: string
 
   library_preparation_kit_name:
@@ -170,11 +156,6 @@ properties:
       $ref: "_terms.yaml#/library_preparation_kit_vendor"
     type: string
 
-  library_preparation_kit_catalog_number:
-    term:
-      $ref: "_terms.yaml#/library_preparation_kit_catalog_number"
-    type: string
-
   library_preparation_kit_version:
     term:
       $ref: "_terms.yaml#/library_preparation_kit_version"
@@ -184,68 +165,63 @@ properties:
     term:
       $ref: "_terms.yaml#/library_selection"
     enum:
-      - Hybrid Selection
-      - PCR
       - Affinity Enrichment
+      - Hybrid Selection
+      - Other
+      - PCR
       - Poly-T Enrichment
       - Random
-      - rRNA Depletion
       - miRNA Size Fractionation
-      - Other
+      - rRNA Depletion
 
   library_strand:
     term:
       $ref: "_terms.yaml#/library_strand"
     enum:
-      - Unstranded
-      - First_Stranded
-      - Second_Stranded
+      - First Stranded
       - Not Applicable
+      - Second Stranded
+      - Unstranded
 
   library_strategy:
     term:
       $ref: "_terms.yaml#/library_strategy"
     enum:
-      - ATAC-Seq
+      - Amplicon
       - Bisulfite-Seq
       - ChIP-Seq
-      - miRNA-Seq
+      - Other
       - RNA-Seq
       - Targeted Sequencing
+      - Validation
       - WGS
       - WXS
+      - miRNA-Seq
 
   multiplex_barcode:
     term:
       $ref: "_terms.yaml#/multiplex_barcode"
     type: string
-    pattern: "^[0-9ACGTURYSWKMBDHVN]+(\\+[0-9ACGTURYSWKMBDHVN]+)?$"
 
   platform:
     term:
       $ref: "_terms.yaml#/platform"
     enum:
-      - Illumina
-      - SOLiD
-      - LS454
-      - Ion Torrent
       - Complete Genomics
-      - PacBio
+      - Illumina
+      - Ion Torrent
+      - LS454
       - Other
+      - PacBio
+      - SOLiD
 
-  read_group_name:  # it may be good to assign UUID to read group
-    description: "Read Group Name"
+  read_group_name:
+    description: Read Group Name
     type: string
 
   read_length:
-    type:
-     - integer
-     - "null"
-
-  RIN:
-    term:
-      $ref: "_terms.yaml#/RIN"
-    type: number
+    description: Length of the reads
+    type: integer
 
   sequencing_center:
     term:
@@ -285,7 +261,6 @@ properties:
       - Custom MSK IMPACT Panel - 410 Genes
       - Custom MSK IMPACT Panel - 468 Genes
       - Custom Myeloid GENIE-VICC Panel - 37 Genes
-      - Custom Personalis ACEcp VAREPOP-APOLLO Panel v2
       - Custom PGDX SureSelect CancerSelect VAREPOP-APOLLO Panel - 203 Genes
       - Custom PGDX SureSelect CancerSelect VAREPOP-APOLLO Panel - 88 Genes
       - Custom SeqCap EZ HGSC VCRome v2.1 ER Augmented v1
@@ -293,53 +268,21 @@ properties:
       - Custom SeqCap EZ TARGET-OS Panel - 7.0 Mb
       - Custom Solid Tumor GENIE-VICC Panel - 34 Genes
       - Custom SureSelect CGCI-BLGSP Panel - 4.6 Mb
-      - Custom SureSelect CGCI-HTMCP-CC Panel - 19.7 Mb
       - Custom SureSelect GENIE-UHN Panel - 555 Genes
-      - Custom SureSelect Human All Exon v1.1 Plus 3 Boosters
       - Custom SureSelect TARGET-AML_NBL_WT Panel - 2.8 Mb
       - Foundation Medicine T5a Panel - 322 Genes
       - Foundation Medicine T7 Panel - 429 Genes
       - Ion AmpliSeq Cancer Hotspot Panel v2
       - Ion AmpliSeq Comprehensive Cancer Panel
       - Nextera Rapid Capture Exome v1.2
+      - Not Applicable
       - SeqCap EZ HGSC VCRome v2.1
-      - SeqCap EZ Human Exome v2.0
-      - SeqCap EZ Human Exome v3.0
       - SureSelect Human All Exon v3
       - SureSelect Human All Exon v5
-      - SureSelect Human All Exon v4
-      - SureSelect Human All Exon v5 + UTR
       - TruSeq Amplicon Cancer Panel
       - TruSeq Exome Enrichment - 62 Mb
       - TruSight Myeloid Sequencing Panel
-      - xGen Exome Research Panel v1.0
-      - Not Applicable
       - Unknown
-
-  target_capture_kit_catalog_number:
-    term:
-      $ref: "_terms.yaml#/target_capture_kit_catalog_number"
-    type: string
-
-  target_capture_kit_name:  # conditionally required for WXS etc
-    term:
-      $ref: "_terms.yaml#/target_capture_kit_name"
-    type: string
-
-  target_capture_kit_target_region:
-    term:
-      $ref: "_terms.yaml#/target_capture_kit_target_region"
-    type: string
-
-  target_capture_kit_vendor:
-    term:
-      $ref: "_terms.yaml#/target_capture_kit_vendor"
-    type: string
-
-  target_capture_kit_version:
-    term:
-      $ref: "_terms.yaml#/target_capture_kit_version"
-    type: string
 
   to_trim_adapter_sequence:
     term:

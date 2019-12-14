@@ -3,7 +3,7 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "genomic_profile_harmonization_workflow"
 title: Genomic Profile Harmonization Workflow
 type: object
-namespace: https://gdc.cancer.gov
+namespace: https://vpodc.org/
 category: analysis 
 program: '*'
 project: '*'
@@ -12,7 +12,6 @@ description: >
 additionalProperties: false
 submittable: false
 downloadable: false
-previous_version_downloadable: false
 validators: null
 
 systemProperties:
@@ -50,9 +49,8 @@ properties:
       - FM Simple Somatic Mutation
       - FM Copy Number Variation
       - FM Structural Variation
-      - GENIE Copy Number Variation
       - GENIE Simple Somatic Mutation
-      - GENIE Structural Variation
+      - GENIE Copy Number Variation
       - VCF LiftOver
 
   submitted_genomic_profiles:

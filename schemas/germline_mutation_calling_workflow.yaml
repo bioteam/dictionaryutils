@@ -3,7 +3,7 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "germline_mutation_calling_workflow"
 title: Germline Mutation Calling Workflow
 type: object
-namespace: https://gdc.cancer.gov
+namespace: https://vpodc.org/
 category: analysis
 program: '*'
 project: '*'
@@ -13,7 +13,6 @@ description: >
 additionalProperties: false
 submittable: false
 downloadable: false
-previous_version_downloadable: false
 validators: null
 
 systemProperties:

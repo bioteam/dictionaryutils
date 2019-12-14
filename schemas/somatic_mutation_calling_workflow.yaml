@@ -3,7 +3,7 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "somatic_mutation_calling_workflow"
 title: Somatic Mutation Calling Workflow
 type: object
-namespace: https://gdc.cancer.gov
+namespace: https://vpodc.org/
 category: analysis
 program: '*'
 project: '*'
@@ -13,7 +13,6 @@ description: >
 additionalProperties: false
 submittable: false
 downloadable: false
-previous_version_downloadable: false
 validators: null
 
 systemProperties:
@@ -28,7 +27,7 @@ links:
     backref: somatic_mutation_calling_workflows
     label: performed_on
     target_type: aligned_reads
-    multiplicity: many_to_many
+    multiplicity: one_to_many
     required: true
 
 required:
@@ -47,8 +46,6 @@ properties:
     term:
       $ref: "_terms.yaml#/workflow_type"
     enum:
-      - CaVEMan
-      - GATK4 MuTect2
       - MuSE
       - MuTect2
       - Pindel

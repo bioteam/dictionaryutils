@@ -3,28 +3,27 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "aligned_reads_index"
 title: Aligned Reads Index
 type: object
-namespace: https://gdc.cancer.gov
+nodeTerms: null
+namespace: https://nci-crdc-demo.datacommons.io/
 category: index_file
 program: '*'
 project: '*'
-description: "Data file containing the index for a set of aligned reads."
+description: Data file containing the index for a set of aligned reads.
 additionalProperties: false
-submittable: false
-downloadable: true 
-previous_version_downloadable: false
+submittable: true
 validators: null
 
 systemProperties:
   - id
   - project_id
+  - state
   - created_datetime
   - updated_datetime
-  - state
   - file_state
   - error_type
 
 links:
-  - exclusive: true
+  - exclusive: false
     required: true
     subgroup:
       - name: submitted_aligned_reads_files
@@ -33,15 +32,16 @@ links:
         target_type: submitted_aligned_reads
         multiplicity: one_to_one
         required: false
-      - name: aligned_reads_files
+      - name: core_metadata_collections
         backref: aligned_reads_indexes
-        label: derived_from
-        target_type: aligned_reads
-        multiplicity: one_to_one
+        label: data_from
+        target_type: core_metadata_collection
+        multiplicity: many_to_one
         required: false
 
 required:
   - submitter_id
+  - type
   - file_name
   - file_size
   - md5sum
@@ -50,31 +50,35 @@ required:
   - data_format
 
 uniqueKeys:
-  - [ id ]
-  - [ project_id, submitter_id ]
+  - [id]
+  - [project_id, submitter_id]
 
 properties:
+
   $ref: "_definitions.yaml#/data_file_properties"
 
   data_category:
     term:
       $ref: "_terms.yaml#/data_category"
     enum:
+      - Raw Sequencing Data
       - Sequencing Data
       - Sequencing Reads
-      - Raw Sequencing Data
-
-  data_type:
-    term:
-      $ref: "_terms.yaml#/data_type"
-    enum: [ "Aligned Reads Index" ]
 
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
-    enum: [ "BAI" ]
+    enum:
+      - BAI
+
+  data_type:
+    term:
+      $ref: "_terms.yaml#/data_type"
+    enum:
+      - Aligned Reads Index
 
   submitted_aligned_reads_files:
     $ref: "_definitions.yaml#/to_one"
-  aligned_reads_files:
+
+  core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
