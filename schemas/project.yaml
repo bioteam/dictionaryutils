@@ -163,14 +163,6 @@ properties:
   date_collected:
     description: "The date or date range in which the project data was collected."
     type: string
-  translational_program: 
-    description: "Describes the Translational Program that it came from."
-    enum:
-    - Research
-    - IPF
-    - Fraction
-    - RCC
-    - Pilot
   therapeutic_area:
     enum:
     - Atherosclerosis NOS
@@ -214,7 +206,6 @@ properties:
     - Sequencing - NOS
     - Targeted Proteome
     - Targeted Sequencing
-    - Unknown
     - WES
     - WGS
     - WXS
@@ -254,7 +245,6 @@ properties:
     - Guardant
     - HCA
     - HTG Molecular
-    - Illumbia
     - illumina
     - M2GEN
     - Medgenome
@@ -285,8 +275,7 @@ properties:
     - UCSD
     - UKBiobank/Regeneron
     - VCU
-    - Vendor
-    - WUXI NextCode
+    - WUXI
     description: "List the name of the Vendor who is processing the data."
   availability_type:
     description: "Is the project open or restricted? Functionality unused in BMS instance."
