@@ -190,6 +190,9 @@ properties:
   trial:
     type: string
     description: "Describes the Trial that was included for the analysis."
+  lead_bi_analyst:
+    type: string
+    description: "Lead Bioinformatics Analyst"
   molecular_analysis_method:
     enum: 
     - Comparative Genomic Hybridization
