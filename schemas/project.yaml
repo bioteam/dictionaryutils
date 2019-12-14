@@ -185,7 +185,7 @@ properties:
   lead_bi_analyst:
     type: string
     description: "Lead Bioinformatics Analyst"
-  experimental_type:
+  experimental_strategy:
     enum: 
     - Comparative Genomic Hybridization
     - Cytogenetics, NOS
