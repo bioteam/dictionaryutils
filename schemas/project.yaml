@@ -193,7 +193,7 @@ properties:
   lead_bi_analyst:
     type: string
     description: "Lead Bioinformatics Analyst"
-  molecular_analysis_method:
+  experimental_type:
     enum: 
     - Comparative Genomic Hybridization
     - Cytogenetics, NOS
@@ -219,7 +219,7 @@ properties:
     - WGS
     - WXS
     - Other
-    description: "Describes the various Analysis Method a analysis can support."
+    description: "Describes the various Experimental Types a analysis can support."
   data_provider:
     enum: 
     - 10x genomics
