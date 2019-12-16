@@ -25,12 +25,6 @@ links:
   - exclusive: true
     required: true
     subgroup:
-      - name: submitted_aligned_reads_files
-        backref: alignment_cocleaning_workflows
-        label: performed_on
-        target_type: submitted_aligned_reads
-        multiplicity: one_to_many
-        required: false
       - name: submitted_unaligned_reads_files
         backref: alignment_cocleaning_workflows
         label: performed_on
@@ -57,9 +51,6 @@ properties:
       $ref: "_terms.yaml#/workflow_type"
     enum:
       - BWA with Mark Duplicates and Cocleaning
-
-  submitted_aligned_reads_files:
-    $ref: "_definitions.yaml#/to_many"
 
   submitted_unaligned_reads_files:
     $ref: "_definitions.yaml#/to_many"

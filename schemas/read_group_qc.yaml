@@ -30,12 +30,6 @@ links:
   - exclusive: true
     required: true
     subgroup:
-      - name: submitted_aligned_reads_files
-        backref: read_group_qcs
-        label: data_from
-        target_type: submitted_aligned_reads
-        multiplicity: one_to_one
-        required: false
       - name: submitted_unaligned_reads_files
         backref: read_group_qcs
         label: data_from
@@ -145,9 +139,6 @@ properties:
       $ref: "_terms.yaml#/workflow_type"
     enum:
       - Read Group Quality Control
-
-  submitted_aligned_reads_files:
-    $ref: "_definitions.yaml#/to_one"
 
   submitted_unaligned_reads_files:
     $ref: "_definitions.yaml#/to_many"

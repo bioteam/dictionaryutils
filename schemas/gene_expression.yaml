@@ -33,12 +33,6 @@ links:
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-      - name: submitted_aligned_reads_files
-        backref: gene_expressions
-        label: derived_from
-        target_type: submitted_aligned_reads
-        multiplicity: many_to_many
-        required: false
       - name: rna_expression_workflows
         backref: gene_expressions
         label: data_from
@@ -100,9 +94,6 @@ properties:
 
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
-
-  submitted_aligned_reads_files:
-    $ref: "_definitions.yaml#/to_many"
 
   rna_expression_workflows:
     $ref: "_definitions.yaml#/to_one"

@@ -25,12 +25,6 @@ links:
   - exclusive: true
     required: true
     subgroup:
-      - name: submitted_aligned_reads_files
-        backref: alignment_workflows
-        label: performed_on
-        target_type: submitted_aligned_reads
-        multiplicity: one_to_many
-        required: false
       - name: submitted_unaligned_reads_files
         backref: alignment_workflows
         label: performed_on
@@ -57,9 +51,6 @@ properties:
       - BWA-mem
       - STAR
       - spinnaker
-
-  submitted_aligned_reads_files:
-    $ref: "_definitions.yaml#/to_many"
 
   submitted_unaligned_reads_files:
     $ref: "_definitions.yaml#/to_many"
