@@ -32,12 +32,6 @@ links:
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-      - name: alignment_cocleaning_workflows
-        backref: aligned_reads_files
-        label: data_from
-        target_type: alignment_cocleaning_workflow
-        multiplicity: many_to_one
-        required: false
       - name: alignment_workflows
         backref: aligned_reads_files
         label: data_from
@@ -117,9 +111,6 @@ properties:
       - SOLiD
 
   core_metadata_collections:
-    $ref: "_definitions.yaml#/to_one"
-
-  alignment_cocleaning_workflows:
     $ref: "_definitions.yaml#/to_one"
 
   alignment_workflows:
