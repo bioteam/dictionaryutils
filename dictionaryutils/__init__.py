@@ -166,6 +166,7 @@ class DataDictionary(object):
 
         if not lazy:
             self.load_data(directory=self.root_dir, url=url, local_file=local_file)
+        self.allow_nulls()
 
     def load_data(self, directory=None, url=None, local_file=None):
         """Load and reslove all schemas from directory or url"""
@@ -239,3 +240,19 @@ class DataDictionary(object):
             return [self.resolve_schema(item, root) for item in obj]
         else:
             return obj
+
+    def allow_nulls(self):
+        for key, value in self.schema.items():
+            try:
+                try:
+                    required = value['required']
+                except KeyError:
+                    required = []
+                for k, v in value['properties'].items():
+                    if k not in required and 'type' in v: 
+                        if "null" not in v["type"]:
+                            if (type(v['type']) != list):
+                                v['type'] = [v['type']]
+                            v['type'] += ["null"]
+            except KeyError:
+                pass
