@@ -198,7 +198,7 @@ if __name__ == "__main__":
         doc = json.load(f)
         if args.invalid:
             try:
-                print(("CHECK if {0} is invalid:".format(f.name)), end=' ')
+                print(("CHECK if {0} is invalid:".format(f.name)), end=" ")
                 print(type(doc))
                 if type(doc) == dict:
                     validate_entity(doc, dictionary.schema)
@@ -213,7 +213,7 @@ if __name__ == "__main__":
             else:
                 raise Exception("Expected invalid, but validated.")
         else:
-            print(("CHECK if {0} is valid:".format(f.name)), end=' ')
+            print(("CHECK if {0} is valid:".format(f.name)), end=" ")
             if type(doc) == dict:
                 validate_entity(doc, dictionary.schema)
             elif type(doc) == list:

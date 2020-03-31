@@ -93,7 +93,6 @@ def load_schemas_from_file(local_file, schemas=None, resolvers=None):
     return schemas, resolvers
 
 
-
 def dump_schemas_from_dir(directory):
     """Dump schema as a json"""
 
@@ -139,7 +138,7 @@ class DataDictionary(object):
         definitions_paths=None,
         metaschema_path=None,
         url=None,
-        local_file=None
+        local_file=None,
     ):
         """Creates a new dictionary instance.
 
@@ -245,14 +244,14 @@ class DataDictionary(object):
         for key, value in self.schema.items():
             try:
                 try:
-                    required = value['required']
+                    required = value["required"]
                 except KeyError:
                     required = []
-                for k, v in value['properties'].items():
-                    if k not in required and 'type' in v: 
+                for k, v in value["properties"].items():
+                    if k not in required and "type" in v:
                         if "null" not in v["type"]:
-                            if (type(v['type']) != list):
-                                v['type'] = [v['type']]
-                            v['type'] += ["null"]
+                            if type(v["type"]) != list:
+                                v["type"] = [v["type"]]
+                            v["type"] += ["null"]
             except KeyError:
                 pass

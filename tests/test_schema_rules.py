@@ -9,7 +9,7 @@ def test_no_mixed_type_in_enum():
                 some_object_iterator = iter(prop)
             except TypeError as te:
                 assert False, "{}: has non iterable property".format(schema["id"])
-                #print some_object, 'is not iterable'
+                # print some_object, 'is not iterable'
 
             if "enum" in prop:
                 assert all(

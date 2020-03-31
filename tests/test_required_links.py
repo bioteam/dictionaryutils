@@ -21,9 +21,15 @@ def test_required_fields_in_links():
             ):
                 # guard against not-iterable errors in the schema
                 try:
-                    my_it = iter(schema["properties"][link["name"]]["anyOf"][0]["items"]["properties"])
+                    my_it = iter(
+                        schema["properties"][link["name"]]["anyOf"][0]["items"][
+                            "properties"
+                        ]
+                    )
                 except:
-                    assert False, "Node {} cannot iterate properties on link {}".format(schema["id"], link["name"])
+                    assert False, "Node {} cannot iterate properties on link {}".format(
+                        schema["id"], link["name"]
+                    )
                 for nodeprops in schema["properties"][link["name"]]["anyOf"][0][
                     "items"
                 ]["properties"]:
