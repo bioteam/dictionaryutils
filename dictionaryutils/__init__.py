@@ -241,17 +241,18 @@ class DataDictionary(object):
             return obj
 
     def allow_nulls(self):
-        for key, value in self.schema.items():
-            try:
-                try:
-                    required = value["required"]
-                except KeyError:
-                    required = []
-                for k, v in value["properties"].items():
-                    if k not in required and "type" in v:
-                        if "null" not in v["type"]:
-                            if type(v["type"]) != list:
-                                v["type"] = [v["type"]]
-                            v["type"] += ["null"]
-            except KeyError:
-                pass
+        """
+        Recursively adds "none" to the types of non required fields in the dictionary.
+        This is done so we can remove properties from entities by updating the property to null. 
+        """
+        for node_properties in self.schema.values():
+            required = node_properties.get("required", [])
+            for prop_id, prop in value.get("properties", {}).items():
+                if (
+                    prop_id not in required
+                    and "type" in prop
+                    and "null" not in prop["type"]
+                ):
+                    if not isinstance(prop["type"], list):
+                        prop["type"] = [prop["type"]]
+                    prop["type"] += ["null"]
