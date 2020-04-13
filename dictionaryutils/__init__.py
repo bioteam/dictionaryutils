@@ -247,7 +247,7 @@ class DataDictionary(object):
         """
         for node_properties in self.schema.values():
             required = node_properties.get("required", [])
-            for prop_id, prop in value.get("properties", {}).items():
+            for prop_id, prop in node_properties.get("properties", {}).items():
                 if (
                     prop_id not in required
                     and "type" in prop
