@@ -13,7 +13,7 @@ def test_no_mixed_type_in_enum():
 
             if "enum" in prop:
                 assert all(
-                    [type(i) == str for i in prop["enum"]]
+                    [type(i) == str or i == None for i in prop["enum"]]
                 ), "{}: enum values should all be string".format(schema["id"])
 
 

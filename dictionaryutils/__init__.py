@@ -250,8 +250,6 @@ class DataDictionary(object):
             for prop_id, prop in node_properties.get("properties", {}).items():
                 if (
                     prop_id not in required
-                    # "type" is a required prop but if omitted we want the dictionary tests to fail
-                    # during `test_required_ubiquitous_properties` not here during initialization
                     and "type" in prop
                     and "null" not in prop["type"]
                 ):
