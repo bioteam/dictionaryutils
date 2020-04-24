@@ -242,7 +242,7 @@ class DataDictionary(object):
 
     def allow_nulls(self):
         """
-        Recursively adds "none" to the types of non required fields in the dictionary.
+        Adds "none" to the types of non required fields in the dictionary.
         This is done so we can remove properties from entities by updating the property to null. 
         """
         for node_properties in self.schema.values():
