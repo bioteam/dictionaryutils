@@ -93,7 +93,6 @@ def load_schemas_from_file(local_file, schemas=None, resolvers=None):
     return schemas, resolvers
 
 
-
 def dump_schemas_from_dir(directory):
     """Dump schema as a json"""
 
@@ -139,7 +138,7 @@ class DataDictionary(object):
         definitions_paths=None,
         metaschema_path=None,
         url=None,
-        local_file=None
+        local_file=None,
     ):
         """Creates a new dictionary instance.
 
@@ -166,6 +165,7 @@ class DataDictionary(object):
 
         if not lazy:
             self.load_data(directory=self.root_dir, url=url, local_file=local_file)
+        self.allow_nulls()
 
     def load_data(self, directory=None, url=None, local_file=None):
         """Load and reslove all schemas from directory or url"""
@@ -239,3 +239,28 @@ class DataDictionary(object):
             return [self.resolve_schema(item, root) for item in obj]
         else:
             return obj
+
+    def allow_nulls(self):
+        """
+        Adds "none" to the types of non required fields in the dictionary.
+        This is done so we can remove properties from entities by updating the property to null. 
+        """
+        for node_properties in self.schema.values():
+            required = node_properties.get("required", [])
+            for prop_id, prop in node_properties.get("properties", {}).items():
+                if (
+                    prop_id not in required
+                    and "type" in prop
+                    and "null" not in prop["type"]
+                ):
+                    if not isinstance(prop["type"], list):
+                        prop["type"] = [prop["type"]]
+                    prop["type"] += ["null"]
+                elif (
+                    prop_id not in required
+                    and "enum" in prop
+                    and None not in prop["enum"]
+                ):
+                    if not isinstance(prop["enum"], list):
+                        prop["enum"] = [prop["enum"]]
+                    prop["enum"] += [None]
