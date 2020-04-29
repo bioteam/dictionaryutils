@@ -2,6 +2,9 @@ from dictionaryutils import dictionary
 
 
 def test_no_mixed_type_in_enum():
+    # An enum is said "mixed type" if the enum items don't all have the same type. The only
+    # exception to this is NoneType, which is allowed in enums regardless of the type of other
+    # items. This allows us to set the value to None when the property is not required
     for schema in dictionary.schema.values():
         for prop in schema["properties"].values():
 
