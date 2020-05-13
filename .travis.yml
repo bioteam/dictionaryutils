@@ -3,7 +3,7 @@ python:
 - '3.6'
 before_script:
 - yes | python setup.py install
-- git clone https://github.com/bioteam/dictionaryutils.git; cd dictionaryutils; git checkout branch travis
+- git clone https://github.com/bioteam/dictionaryutils.git; cd dictionaryutils; git checkout travis
 script:
 - "./run_tests.sh"
 deploy:
