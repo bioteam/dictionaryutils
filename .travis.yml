@@ -9,7 +9,8 @@ script:
 deploy:
   provider: s3
   access_key_id: AKIAXJOW4I5ZQMNFSB72
-  secret_access_key: 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
+  secret_access_key:
+    secure: ch3nl7GM0Ai34V9/mwmdETHq8HK3dZdpHzJJpUKbOQ3ALt0MfNgPCvvsHDgX1BPh2ALSfiDwnk52GR9wT1JIx9ALSH+bzGPbzbmNkcJu+JAS+EunNnjgy7hww7IjcxCrgXVeHIV8LwBM6UWN+7a/MddTxDA0fT+hYwPtcP6cClR4MYY2Y7jV94lb/dtthk4J3CKJkLM75hGcb4O4d3UQcwqU26DLS5ZG1ClL0gEoS153GXCvIsd8dUmD5xUEN9ga0Un/3JDYJ+lbZRtuWWi9h42kBcGHhTBrs39SsLwg+bloznxCJYwB6pbGkedyrvR6iiEUYrFK9fKQyXNZ+Uv9VPFEkXh00HzNG0DTUbArtQSUtv4y4RNwbe/Mqvutwk+WZctmrjGYMeayKlaUOheY7rR6VtEf55q3ijXyhHIk0mWaYYOxkTh2j8rqrMyBYAHVvINsAd6vqexTOPuAIezVicW74W/74ADaECwxFExTd9w2HS4EO+hAce9xbujdIrgYrQgtKBLmNS7k+22utNAj3WJNkb3+gHLYKi/8+b1rcQSNkirT3aRmCj4TZfoqtB6/HdJn8HQi2Ulbz7foNz6fA3ZiQZP5zj26cgN6H5GvlUuV7S8FntkNTLqiS2cmpHSEmjKOFwgYSjPCW/stGWNik6YDBD7CF2bJLf9/I4SW/HQ=
   bucket: bms-gen3-dev
   local-dir: artifacts
   upload-dir: datadictionary/$TRAVIS_BRANCH
