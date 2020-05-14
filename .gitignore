@@ -19,9 +19,7 @@ lib/
 lib64/
 parts/
 sdist/
-src/
 var/
-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -44,8 +42,7 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
-*.cover
-.hypothesis/
+*,cover
 
 # Translations
 *.mo
@@ -53,14 +50,6 @@ coverage.xml
 
 # Django stuff:
 *.log
-local_settings.py
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
 
 # Sphinx documentation
 docs/_build/
@@ -68,41 +57,26 @@ docs/_build/
 # PyBuilder
 target/
 
-# Jupyter Notebook
-.ipynb_checkpoints
+#venv
+.venv/
 
-# pyenv
-.python-version
+#DS_store
+.DS_store
 
-# celery beat schedule file
-celerybeat-schedule
+#SSL ( THe *.crt is optional )
+*.key
+*.crt
 
-# SageMath parsed files
-*.sage.py
+#GDC related files
+gdc-user-token.*
 
-# dotenv
-.env
+#OpenStack
+admin_auth
+.novarc
 
-# virtualenv
-.venv
-venv/
-ENV/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
+#s3 creds
+.s3cfg
+.aws/
 
 # artifacts
 artifacts/
-
-# PyCharm
-.idea/
