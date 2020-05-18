@@ -1,0 +1,100 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "analyte"
+title: Analyte
+type: object
+nodeTerms: null
+namespace: https://gdc.cancer.gov
+category: biospecimen
+project: '*'
+program: '*'
+description: Any aspect of an aliquot used in an analysis or assay to characterize the sample.
+  These aspects range from molecules, such as DNA and RNA,
+  that can be extracted from the aliquot to general descriptions of the aliquot's components,
+  such as cell count and morphology.
+additionalProperties: false
+submittable: true
+downloadable: false
+previous_version_downloadable: false
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - state
+  - created_datetime
+  - updated_datetime
+
+links:
+  - exclusive: true
+    required: true
+    subgroup:
+      - name: aliquots
+        backref: analytes
+        label: derived_from
+        target_type: aliquot
+        multiplicity: many_to_one
+        required: true
+
+required:
+  - submitter_id
+  - analyte_type
+  - aliquots
+
+uniqueKeys:
+  - [id]
+  - [project_id, submitter_id]
+
+properties:
+
+  $ref:
+    - "_definitions.yaml#/ubiquitous_properties"
+
+  amount:
+    $ref:
+      - "_terms.yaml#/amount/common"
+    type: number
+
+  analyte_quantity:
+    $ref:
+      - "_terms.yaml#/analyte_quantity/common"
+    type: number
+
+  analyte_type:
+    $ref:
+      - "_terms.yaml#/analyte_type/common"
+    enum:
+      - cfDNA
+      - DNA
+      - EBV Immortalized Normal
+      - FFPE DNA
+      - FFPE RNA
+      - GenomePlex (Rubicon) Amplified DNA
+      - Repli-G (Qiagen) DNA
+      - Repli-G Pooled (Qiagen) DNA
+      - Repli-G X (Qiagen) DNA
+      - RNA
+      - Total RNA
+
+  analyte_type_id:
+    $ref:
+      - "_terms.yaml#/analyte_type_id/common"
+    enum:
+      - D
+      - E
+      - G
+      - H
+      - R
+      - S
+      - T
+      - W
+      - X
+      - Y
+
+  analyte_volume:
+    $ref:
+      - "_terms.yaml#/analyte_volume/common"
+    type: number
+
+  aliquots:
+    $ref: "_definitions.yaml#/to_one"
