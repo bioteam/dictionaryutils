@@ -14,8 +14,6 @@ description: Any aspect of an aliquot used in an analysis or assay to characteri
   such as cell count and morphology.
 additionalProperties: false
 submittable: true
-downloadable: false
-previous_version_downloadable: false
 validators: null
 
 systemProperties:
@@ -26,15 +24,12 @@ systemProperties:
   - updated_datetime
 
 links:
-  - exclusive: true
+  - name: aliquots
+    backref: analytes
+    label: derived_from
+    target_type: aliquot
+    multiplicity: many_to_one
     required: true
-    subgroup:
-      - name: aliquots
-        backref: analytes
-        label: derived_from
-        target_type: aliquot
-        multiplicity: many_to_one
-        required: true
 
 required:
   - submitter_id
@@ -49,52 +44,6 @@ properties:
 
   $ref:
     - "_definitions.yaml#/ubiquitous_properties"
-
-  amount:
-    $ref:
-      - "_terms.yaml#/amount/common"
-    type: number
-
-  analyte_quantity:
-    $ref:
-      - "_terms.yaml#/analyte_quantity/common"
-    type: number
-
-  analyte_type:
-    $ref:
-      - "_terms.yaml#/analyte_type/common"
-    enum:
-      - cfDNA
-      - DNA
-      - EBV Immortalized Normal
-      - FFPE DNA
-      - FFPE RNA
-      - GenomePlex (Rubicon) Amplified DNA
-      - Repli-G (Qiagen) DNA
-      - Repli-G Pooled (Qiagen) DNA
-      - Repli-G X (Qiagen) DNA
-      - RNA
-      - Total RNA
-
-  analyte_type_id:
-    $ref:
-      - "_terms.yaml#/analyte_type_id/common"
-    enum:
-      - D
-      - E
-      - G
-      - H
-      - R
-      - S
-      - T
-      - W
-      - X
-      - Y
-
-  analyte_volume:
-    $ref:
-      - "_terms.yaml#/analyte_volume/common"
-    type: number
 
   aliquots:
     $ref: "_definitions.yaml#/to_one"
