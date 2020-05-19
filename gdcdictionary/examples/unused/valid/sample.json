@@ -10,7 +10,7 @@
     "freezing_method": "OCT",
     "initial_weight": 0.5,
     "intermediate_dimension": "1.2",
-    "is_ffpe": true,
+    "is_ffpe": 1,
     "longest_dimension": "1.5",
     "method_of_sample_procurement": "Indeterminant",
     "oct_embedded": "false",

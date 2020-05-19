@@ -1,5 +1,12 @@
 {
     "code": "BLGSP",
+    "dbgap_accession_number":  "BLGSP",
+    "project_barcode":  "1234",
+    "project_description":  "foo",
+    "project_type":  "Non Clinical",
+    "availability_type":  "Open",
+    "investigator_name":  "vanetten",
+    "creator":  "vanetten",
     "name": "Burkitt Lymphoma Genome Sequencing Project",
     "state": "open",
     "type": "project",
