@@ -1,7 +1,10 @@
 import FileSaver from 'file-saver';
 import PropTypes from 'prop-types';
 import JSZip from 'jszip';
-import { dataDictionaryTemplatePath, appname } from '../localconf';
+//import { dataDictionaryTemplatePath, appname } from '../localconf';
+
+const dataDictionaryTemplatePath = "FIXME";
+const appname = "Data Dictionary Vizualizations"
 
 const concatTwoWords = (w1, w2) => {
   if (w1.length === 0) return w2;
