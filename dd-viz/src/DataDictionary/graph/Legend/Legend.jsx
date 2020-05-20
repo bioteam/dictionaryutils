@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { capitalizeFirstLetter } from '../../../utils';
 import { getCategoryIconSVG, getCategoryColor } from '../../NodeCategories/helper';
 import './Legend.css';
 
@@ -59,7 +58,7 @@ class Legend extends React.Component {
                             )
                           }
                         </span>
-                        <span className='data-dictionary-graph-legend__text'>{capitalizeFirstLetter(category)}</span>
+                        <span className='data-dictionary-graph-legend__text'>{category}</span>
                       </div>
                     );
                   })
