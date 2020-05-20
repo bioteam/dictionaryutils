@@ -26,6 +26,8 @@ matrix:
       cache:
         directories:
         - node_modules
+      before_script:
+      - cd dd-viz
       script:
         - yarn install
         - yarn build
