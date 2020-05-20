@@ -80,3 +80,5 @@ admin_auth
 
 # artifacts
 artifacts/
+
+node_modules/
