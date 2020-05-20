@@ -20,3 +20,24 @@ matrix:
         on:
           repo: bioteam/dictionaryutils
           all_branches: true
+    - language: node_js
+      node_js:
+        - "stable"
+      cache:
+        directories:
+        - node_modules
+      script:
+        - yarn install
+        - yarn build
+        deploy:
+          provider: s3
+          access_key_id: AKIAXJOW4I5Z2QT4YYEJ
+          secret_access_key:
+            secure: Do9kthKOJnzNQOHOoxtudqElGAW04YrhN1u58AeHb4kbhF81oLsgfx63B2YWP5mP6Cxq1SSuLZQmvUQxIFUahlAmGEfF3o6Is///ymq+uFtFAUUFlqlVPwukaadB2W77Ukd6LWk2wHl6fOEN6cwlAHhf9ucttaU2btMP1L3haes1g3YUarJIst62fBWBM1QU+lWQV+uBuKL2FsUGEB07+KIP/GcRJendz4g1yBYA6l4mMKb4xDIDGQjgYH7h7JtAIfyo0ecUDRDOhGQ5NF1a0/WlZ4NxhmXIbvlwDSnCKlWrY4ROKTjWeng7fTauZ0JcntIKDTeozZ1HU8Z4/ZDbT2vqyH772bQ24Lyl8GQYK9lW4eQq7DlYPhoEp6CDpN14QYvQRJL2gbqE1F+oWNc3DlMzaOXl5HA6uKg/GVsxwVRlaTtOzhDmwCfkWhrQqx4iUTjVQLGDSvtSHRBghefKx4ntqpH9WdvOLmtflKN7GJzy4ZOwYpynEDuM5i3rdA6YXXroU8yHX46qjRzwFGCD0Cf4ogDTnn29YdqBFwQgflQd/TOoBFuS2pqQRS1IM8GmaAyJFPwvIgi06/Nn2YthwdK2G55q8spdQvXfPXL0WwIutoZL9RI0izrO92miK9WxwQWJnEdPrxNXe6ECBISvFr1UTjOsGv7c2sScuEgOT1A=
+          bucket: bms-gen3-dev
+          local-dir: build
+          upload-dir: datadictionary/$TRAVIS_BRANCH/viz
+          skip_cleanup: true
+          on:
+            repo: bioteam/dictionaryutils
+            all_branches: true
