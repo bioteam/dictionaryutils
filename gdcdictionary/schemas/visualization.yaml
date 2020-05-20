@@ -53,8 +53,7 @@ properties:
     type: string
   spotfire_build_url_web_browser:
     description: >
-Web Browser Spotfire URL
+      Web Browser Spotfire URL
     type: string
-
   studies:
     $ref: "_definitions.yaml#/to_many"
