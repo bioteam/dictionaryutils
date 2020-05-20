@@ -1,0 +1,23 @@
+.graph-edge {
+  fill: none;
+  stroke: black;
+  stroke-width: 1px;
+}
+
+.graph-edge--required {
+  stroke: var(--g3-color__highlight-orange);;
+}
+
+.graph-edge--highlighted {
+  stroke-width: 3px;
+}
+
+.graph-edge--faded {
+  opacity: var(--opacity--faded);
+}
+
+.graph-edge--half-faded {
+  opacity: var(--opacity--half-faded);
+  stroke-dasharray: 5, 5;
+  stroke-width: 2px;
+}
