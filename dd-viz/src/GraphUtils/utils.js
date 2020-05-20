@@ -232,6 +232,7 @@ export function nodesBreadthFirst(nodes, edges) {
   for (let head = 0; head < queue.length; head += 1) {
     const { query, level } = queue[head]; // breadth first
     name2ActualLvl[query] = level;
+    // eslint-disable-next-line
     name2EdgesIn[query].forEach((edge) => {
       // At some point the d3 force layout converts edge.source
       //   and edge.target into node references ...
@@ -250,6 +251,7 @@ export function nodesBreadthFirst(nodes, edges) {
   }
 
   // Reset and run for real
+  // eslint-disable-next-line
   queue = [];
   queue.push({ query: root, level: 0 });
 
