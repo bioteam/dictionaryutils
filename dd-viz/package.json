@@ -21,6 +21,7 @@
     "react-redux": "^5.0.7",
     "string-similarity": "^3.0.0",
     "underscore": "^1.8.3",
+    "viz.js": "2.0.0",
     "fuse.js": "^3.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
