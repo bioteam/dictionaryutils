@@ -7,9 +7,9 @@ between the nodes. Finally, the schemas define the valid key-value pairs that ca
 describe the nodes. 
 
 ## Visualization
-* Travis Build Status {BRANCH}
-* schema.json {BRANCH}
-* Dictionary Visulaization {BRANCH}
+* Travis Build Status [![Build Status](https://travis-ci.com/bioteam/dictionaryutils.svg?branch=philip)](https://travis-ci.com/github/bioteam/dictionaryutils/branches)
+* Dictionary Schema [schema.json](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/https://bms-gen3-dev.s3.amazonaws.com/datadictionary/philip/schema.json/schema.json)
+* Dictionary Visualization [viz](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/dictionary-viz/viz/index.html#https://bms-gen3-dev.s3.amazonaws.com/datadictionary/philip/schema.json)
 
 ## Data Dictionary Structure 
 
