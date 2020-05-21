@@ -1,2 +1,0 @@
-- name: Current Branch
-  uses: ryolambert/current-branch@v1.0
