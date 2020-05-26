@@ -26,3 +26,8 @@ jobs:
         export SCHEMA="Dictionary Schema [schema.json]($SCHEMA_URL)"
         export VIZ="Dictionary Visualization [viz](https:\/\/bms-gen3-dev.s3.amazonaws.com\/datadictionary\/master\/viz\/index.html#$SCHEMA_URL)"
         printenv
+        sed -i "" "s/Travis Build Status.*/$TRAVIS/g" README.md
+        sed -i "" "s/Dictionary Schema.*/$SCHEMA/g" README.md
+        sed -i "" "s/Dictionary Visualization.*/$VIZ/g" README.md
+        git commit -am "Update README with branch"
+        git push origin $BRANCH
