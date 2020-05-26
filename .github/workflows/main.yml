@@ -18,12 +18,12 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+    # Github action to set environment variables that can be globally accessed between steps.
+    - uses: allenevans/set-env@v1.0.0
 
     - name: This branch
-    # Github action to set environment variables that can be globally accessed between steps.
-      uses: allenevans/set-env@v1.0.0
-      with:
-        BRANCH: $(git rev-parse --abbrev-ref HEAD) 
+      run:
+        echo $(git rev-parse --abbrev-ref HEAD) 
 
     - name: Printenv
       run: |
