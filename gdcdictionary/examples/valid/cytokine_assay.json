@@ -1,0 +1,14 @@
+{
+    "type":"cytokine_assay",
+    "submitter_id":"cytokine run 1",
+    "assay_instrument":"BioRad",
+    "assay_instrument_model":"BioPlex 200",
+    "assay_method":"ELISA",
+    "assay_kit_name":"MolecularMD",
+    "assay_kit_vendor":"Some Guy",
+    "assay_kit_version":"v34.2",
+    "assay_target":"BRAF",
+    "analytes": {
+         "submitter_id":"Cytokine_assay_input242"
+    }
+}
