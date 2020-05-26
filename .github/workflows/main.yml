@@ -13,19 +13,16 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    # Github action to set environment variables that can be globally accessed between steps.
-    - uses: allenevans/set-env@v1.0.0
 
-    - name: This branch
-      run:
-        echo $(git rev-parse --abbrev-ref HEAD) 
-
-    - name: Printenv
+    - name: Update README with branch
       run: |
-        echo "BRANCH=${BRANCH}"
+        export BRANCH=$(git rev-parse --abbrev-ref HEAD) 
+        export TRAVIS="Travis Build Status [![Build Status](https:\/\/travis-ci.com\/bioteam\/dictionaryutils.svg?branch=$BRANCH)](https:\/\/travis-ci.com\/github\/bioteam\/dictionaryutils\/branches)"
+        export SCHEMA_URL="https:\/\/bms-gen3-dev.s3.amazonaws.com\/datadictionary\/$BRANCH\/schema.json"
+        export SCHEMA="Dictionary Schema [schema.json]($SCHEMA_URL)"
+        export VIZ="Dictionary Visualization [viz](https:\/\/bms-gen3-dev.s3.amazonaws.com\/datadictionary\/master\/viz\/index.html#$SCHEMA_URL)"
         printenv
