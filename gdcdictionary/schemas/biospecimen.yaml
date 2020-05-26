@@ -12,7 +12,7 @@ description: >
   or research purposes, including a sample obtained from a living organism or taken from the
   biological object after halting of all its life functions. Biospecimen can contain one or more
   components including but not limited to cellular molecules, cells, tissues, organs, body fluids,
-  embryos, and body excretory products. In the case of contrived samples, it describes any material
+  embryos, and body excretory products. In the subject of contrived samples, it describes any material
   obtained from a normal donor. Link this record to the followup node in order to record patient
   context variables related to blood draws or biospecimen collection.
 additionalProperties: false
@@ -28,10 +28,10 @@ systemProperties:
 
 
 links:
-  - name: cases
+  - name: subjects
     backref: biospecimens
     label: derived_from
-    target_type: case
+    target_type: subject
     multiplicity: many_to_one
     required: true
   - name: followups
@@ -48,7 +48,7 @@ uniqueKeys:
 required:
   - submitter_id
   - type
-  - cases
+  - subjects
   - biospecimen_type
   - biospecimen_anatomic_site
   - blood_tube_type
@@ -385,7 +385,7 @@ properties:
 
   collaboration_id:
     description: >
-      In cases where the same biospecimen is used by multiple institutions, a deidenfitied id may provided here to tie those together. Work with your collaborators assure the same id is in all projects.
+      In subjects where the same biospecimen is used by multiple institutions, a deidenfitied id may provided here to tie those together. Work with your collaborators assure the same id is in all projects.
     type: string
 
   days_to_collection:
@@ -600,7 +600,7 @@ properties:
       The specific description of the tumor morphology. Please use the ICD-0-3 code name (e.g. "Neoplasm, benign", "Carcinoma, Nos", or "Hepatocellular adenoma").
     type: string
 
-  cases:
+  subjects:
     $ref: "_definitions.yaml#/to_one"
   followups:
     $ref: "_definitions.yaml#/to_one"

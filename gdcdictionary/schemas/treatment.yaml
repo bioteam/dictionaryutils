@@ -30,10 +30,10 @@ links:
         target_type: diagnosis
         multiplicity: many_to_one
         required: false
-      - name: cases
+      - name: subjects
         backref: treatments
         label: describes
-        target_type: case
+        target_type: subject
         multiplicity: many_to_one
         required: false
       - name: followups
@@ -213,7 +213,7 @@ properties:
 
   diagnoses:
     $ref: "_definitions.yaml#/to_one"
-  cases:
+  subjects:
     $ref: "_definitions.yaml#/to_one"
   followups:
     $ref: "_definitions.yaml#/to_one"

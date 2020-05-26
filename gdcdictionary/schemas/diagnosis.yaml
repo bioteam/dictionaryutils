@@ -23,10 +23,10 @@ systemProperties:
   - updated_datetime
 
 links:
-  - name: cases
+  - name: subjects
     backref: diagnoses
     label: describes
-    target_type: case
+    target_type: subject
     multiplicity: many_to_one
     required: true
 
@@ -3953,5 +3953,5 @@ properties:
       -  G3 Poorly differentiated (high grade)
       -  G4 Undifferentiated (high grade)
 
-  cases:
+  subjects:
     $ref: "_definitions.yaml#/to_one"

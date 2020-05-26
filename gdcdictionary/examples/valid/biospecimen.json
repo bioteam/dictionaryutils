@@ -24,7 +24,7 @@
     "procurement_temperature": 20,
     "shipping_temperature": 0,
     "blood_tube_type":"EDTA",
-    "cases": {
+    "subjects": {
         "submitter_id":"Case 1"
     }
 }

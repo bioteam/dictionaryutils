@@ -21,10 +21,10 @@ systemProperties:
   - updated_datetime
 
 links:
-  - name: cases
+  - name: subjects
     backref: comorbidities
     label: describes
-    target_type: case
+    target_type: subject
     multiplicity: many_to_one
     required: true
   - name: followups
@@ -37,7 +37,7 @@ links:
 required:
   - submitter_id
   - type
-  - cases
+  - subjects
   - comorbidity
   - days_to_comorbidity
 
@@ -152,7 +152,7 @@ properties:
       Number of days between the date used for index and the date the patient was diagnosed with a comorbidity.
     type: integer
 
-  cases:
+  subjects:
     $ref: "_definitions.yaml#/to_one"
   followups:
     $ref: "_definitions.yaml#/to_one"

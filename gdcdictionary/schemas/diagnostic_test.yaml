@@ -21,10 +21,10 @@ systemProperties:
   - updated_datetime
 
 links:
-  - name: cases
+  - name: subjects
     backref: diagnostic_tests
     label: describes
-    target_type: case
+    target_type: subject
     multiplicity: many_to_one
     required: true
   - name: followups
@@ -43,7 +43,7 @@ links:
 required:
   - submitter_id
   - type
-  - cases
+  - subjects
   - days_to_test
   - test_type
 
@@ -56,7 +56,7 @@ properties:
 
   analyte_name:
     description: >
-      The name of analyte or biomarker tested in the case that the test is a quantitative assay.
+      The name of analyte or biomarker tested in the subject that the test is a quantitative assay.
     type: string
 
   assay_kit_name:
@@ -504,7 +504,7 @@ properties:
       The numerical value representing the diagnostic test measurement of the 'analyte_name'; also indicate the 'test_units'.
     type: number
 
-  cases:
+  subjects:
     $ref: "_definitions.yaml#/to_one"
   followups:
     $ref: "_definitions.yaml#/to_one"
