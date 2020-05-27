@@ -23,7 +23,7 @@
     "residual_disease":"RX",
     "tissue_or_organ_of_origin": "c34.3",
     "tumor_grade": "GX Grade cannot be assessed (undetermined grade)",
-    "cases": {
+    "subjects": {
         "submitter_id": "BLGSP-71-06-00019"
     }
 }

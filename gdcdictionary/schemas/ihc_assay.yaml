@@ -1,0 +1,72 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "ihc_assay"
+title: IHC Assay
+type: object
+namespace: https://www.bloodpac.org
+category: notation
+program: '*'
+project: '*'
+description: >
+  Information pertaining to processed results obtained from an IHC assay.
+additionalProperties: false
+submittable: true
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - created_datetime
+  - updated_datetime
+  - state
+
+links:
+  - name: analytes
+    backref: ihc_assays
+    label: data_from
+    target_type: analyte
+    multiplicity: many_to_one
+    required: true
+
+uniqueKeys:
+  - [ id ]
+  - [ project_id, submitter_id ]
+
+required:
+  - submitter_id
+  - type
+  - assay_instrument
+  - assay_instrument_model
+  - assay_method
+  - analytes
+
+properties:
+  $ref: "_definitions.yaml#/ubiquitous_properties"
+
+  assay_instrument:
+    description: "The specific instrument type used to perform the assay."
+    enum:
+      - Roche
+  assay_instrument_model:
+    description: "The specific model of instrument used to perform the assay."
+    enum:
+      - Ultra IHC
+  assay_kit_name:
+    description: "Name of the assay kit used."
+    type: string
+  assay_kit_vendor:
+    description: "Vendor that provided the assay kit."
+    type: string
+  assay_kit_version:
+    description: "Version of the assay kit used."
+    type: string
+  assay_method:
+    description: "General methodology used to perform the assay."
+    enum:
+      - Immersion
+      - Irrigation
+  assay_target:
+    description: "Target for the assay: can be a gene, protein, or otherwise."
+    type: string
+  analytes:
+    $ref: "_definitions.yaml#/to_one"

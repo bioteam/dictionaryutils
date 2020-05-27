@@ -26,10 +26,10 @@ systemProperties:
   - updated_datetime
 
 links:
-  - name: cases
+  - name: subjects
     backref: followups
     label: describes
-    target_type: case
+    target_type: subject
     multiplicity: many_to_one
     required: true
 
@@ -37,7 +37,7 @@ required:
   - submitter_id
   - type
   - days_to_followup
-  - cases
+  - subjects
 
 uniqueKeys:
   - [id]
@@ -961,5 +961,5 @@ properties:
     description: "The weight of the patient measured in kilograms."
     type: number
 
-  cases:
+  subjects:
     $ref: "_definitions.yaml#/to_one"

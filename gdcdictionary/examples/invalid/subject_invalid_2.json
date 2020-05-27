@@ -1,6 +1,6 @@
 {
-  "type": "case",
-  "alias": "case_1",
+  "type": "subject",
+  "alias": "subject_1",
   "member_of": [
     {
       "id": "e58e1f64-d733-405f-95f1-ede1628c81e7"

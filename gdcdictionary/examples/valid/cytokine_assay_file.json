@@ -1,0 +1,14 @@
+{
+    "type":"cytokine_assay_file",
+    "submitter_id":"cytokine data file 1",
+    "data_category":"Mutant Allele Fractions",
+    "data_type":"Tabulated Results",
+    "data_format":"TSV",
+    "experimental_strategy":"ELISA",
+    "file_name":"results.tsv",
+    "file_size":12381660,
+    "md5sum":"d0880b77467c7782009520f8729cc50e",
+    "analytes": {
+         "submitter_id":"Cytokine_assay_input242"
+    }
+}

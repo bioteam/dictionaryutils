@@ -22,17 +22,17 @@ systemProperties:
   - updated_datetime
 
 links:
-  - name: cases
+  - name: subjects
     backref: demographics
     label: describes
-    target_type: case
+    target_type: subject
     multiplicity: one_to_one
     required: true
 
 required:
   - submitter_id
   - type
-  - cases
+  - subjects
 
 uniqueKeys:
   - [id]
@@ -106,5 +106,5 @@ properties:
       - "Lost to Follow-up"
       - "Unknown"
 
-  cases:
+  subjects:
     $ref: "_definitions.yaml#/to_one"

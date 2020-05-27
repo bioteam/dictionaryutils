@@ -21,17 +21,17 @@ systemProperties:
   - updated_datetime
 
 links:
-  - name: cases
+  - name: subjects
     backref: exposures
     label: describes
-    target_type: case
+    target_type: subject
     multiplicity: many_to_one
     required: true
 
 required:
   - submitter_id
   - type
-  - cases
+  - subjects
 
 uniqueKeys:
   - [id]
@@ -71,5 +71,5 @@ properties:
     maximum: 89
     minimum: 0
 
-  cases:
+  subjects:
     $ref: "_definitions.yaml#/to_one"

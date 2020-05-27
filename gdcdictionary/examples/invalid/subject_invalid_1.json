@@ -1,6 +1,6 @@
 {
-  "type": "case",
-  "alias": "case_1",
+  "type": "subject",
+  "alias": "subject_1",
   "gender": "female",
   "race": "Unknown"
 }

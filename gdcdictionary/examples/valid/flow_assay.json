@@ -1,0 +1,14 @@
+{
+    "type":"flow_assay",
+    "submitter_id":"flow run 1",
+    "assay_instrument":"Beckman",
+    "assay_instrument_model":"CytoFLEX‎",
+    "assay_method":"Biomarker",
+    "assay_kit_name":"MolecularMD",
+    "assay_kit_vendor":"Some Guy",
+    "assay_kit_version":"v34.2",
+    "assay_target":"BRAF",
+    "analytes": {
+         "submitter_id":"Flow_assay_input242"
+    }
+}
