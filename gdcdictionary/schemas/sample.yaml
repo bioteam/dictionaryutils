@@ -26,17 +26,17 @@ required:
   - submitter_id
   - type
   - composition
-  - biospecimens
+  - subjects
 
 uniqueKeys:
   - [id]
   - [project_id, submitter_id]
 
 links:
-  - name: biospecimens
+  - name: subjects
     backref: samples
     label: derived_from
-    target_type: biospecimen
+    target_type: subject
     multiplicity: many_to_many
     required: true
 
@@ -131,5 +131,5 @@ properties:
       - "No"
       - "Unknown"
 
-  biospecimens:
+  subjects:
     $ref: "_definitions.yaml#/to_many"
