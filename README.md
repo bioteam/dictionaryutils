@@ -12,9 +12,9 @@ Each [**branch**](https://github.com/bioteam/dictionaryutils/branches) within th
 
 These links below will be automatically updated by a [Github Action](https://github.com/bioteam/dictionaryutils/actions) within a few minutes after creating a branch.
 
-* Travis Build Status BRANCH **clinical-data-utilization** [![Build Status](https://travis-ci.com/bioteam/dictionaryutils.svg?branch=clinical-data-utilization)](https://travis-ci.com/github/bioteam/dictionaryutils/branches)
-* Dictionary Schema BRANCH **clinical-data-utilization** [schema.json](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/clinical-data-utilization/schema.json)
-* Dictionary Visualization BRANCH **clinical-data-utilization** [dictionary-visualizer](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/master/viz/index.html#https://bms-gen3-dev.s3.amazonaws.com/datadictionary/clinical-data-utilization/schema.json)
+* Travis Build Status BRANCH **flow** [![Build Status](https://travis-ci.com/bioteam/dictionaryutils.svg?branch=flow)](https://travis-ci.com/github/bioteam/dictionaryutils/branches)
+* Dictionary Schema BRANCH **flow** [schema.json](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/flow/schema.json)
+* Dictionary Visualization BRANCH **flow** [dictionary-visualizer](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/master/viz/index.html#https://bms-gen3-dev.s3.amazonaws.com/datadictionary/flow/schema.json)
 
 ## Data Dictionary Structure
 
