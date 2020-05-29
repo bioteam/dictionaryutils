@@ -8,9 +8,9 @@ describe the nodes.
 
 ## Visualization
 
-* Travis Build Status [![Build Status](https://travis-ci.com/bioteam/dictionaryutils.svg?branch=baz)](https://travis-ci.com/github/bioteam/dictionaryutils/branches)
-* Dictionary Schema [schema.json](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/baz/schema.json)
-* Dictionary Visualization [viz](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/master/viz/index.html#https://bms-gen3-dev.s3.amazonaws.com/datadictionary/baz/schema.json)
+* Travis Build Status [![Build Status](https://travis-ci.com/bioteam/dictionaryutils.svg?branch=master)](https://travis-ci.com/github/bioteam/dictionaryutils/branches)
+* Dictionary Schema [schema.json](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/master/schema.json)
+* Dictionary Visualization [viz](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/master/viz/index.html#https://bms-gen3-dev.s3.amazonaws.com/datadictionary/master/schema.json)
 
 ## Data Dictionary Structure
 
