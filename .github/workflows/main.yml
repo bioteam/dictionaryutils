@@ -15,10 +15,10 @@ jobs:
     - name: Create local changes
       run: |
         export BRANCH=$(git rev-parse --abbrev-ref HEAD) 
-        export TRAVIS="Travis Build Status [![Build Status](https:\/\/travis-ci.com\/bioteam\/dictionaryutils.svg?branch=$BRANCH)](https:\/\/travis-ci.com\/github\/bioteam\/dictionaryutils\/branches)"
+        export TRAVIS="Travis BRANCH **$BRANCH** Build Status [![Build Status](https:\/\/travis-ci.com\/bioteam\/dictionaryutils.svg?branch=$BRANCH)](https:\/\/travis-ci.com\/github\/bioteam\/dictionaryutils\/branches)"
         export SCHEMA_URL="https:\/\/bms-gen3-dev.s3.amazonaws.com\/datadictionary\/$BRANCH\/schema.json"
-        export SCHEMA="Dictionary Schema [schema.json]($SCHEMA_URL)"
-        export VIZ="Dictionary Visualization [viz](https:\/\/bms-gen3-dev.s3.amazonaws.com\/datadictionary\/master\/viz\/index.html#$SCHEMA_URL)"
+        export SCHEMA="Dictionary BRANCH **$BRANCH** Schema [schema.json]($SCHEMA_URL)"
+        export VIZ="Dictionary BRANCH **$BRANCH** Visualization [dictionary-visualizer](https:\/\/bms-gen3-dev.s3.amazonaws.com\/datadictionary\/master\/viz\/index.html#$SCHEMA_URL)"
         sed -i "s/Travis Build Status.*/$TRAVIS/g" README.md
         sed -i "s/Dictionary Schema.*/$SCHEMA/g" README.md
         sed -i "s/Dictionary Visualization.*/$VIZ/g" README.md
