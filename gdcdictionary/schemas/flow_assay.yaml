@@ -1,7 +1,7 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
 id: "flow_assay"
-title: IHC Assay
+title: Flow Assay
 type: object
 namespace: https://www.bloodpac.org
 category: notation
