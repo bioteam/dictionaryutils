@@ -49,6 +49,11 @@ constraints: null
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
 
+  aliquot_emoji:
+    description: "This is a silly property"
+    enum:
+      - Smiley Face
+      - Poop Emoji
   aliquot_container:
     description: "The device in which the final aliquot is held. Slides or vials."
     enum:
