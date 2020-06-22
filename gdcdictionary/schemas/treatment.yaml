@@ -50,8 +50,6 @@ uniqueKeys:
 required:
   - submitter_id
   - type
-  - therapeutic_agents
-  - treatment_class
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
@@ -175,6 +173,15 @@ properties:
       - "Cancer-related Supportive Care"
       - "Non-cancer-related Prescription"
       - "Over-the-counter Agent"
+
+  treatement_code:
+    description: "Treatement code."
+    type: string
+
+  treatment-group:
+    description: "Treatement group."
+    type: string
+
 
   treatment_intent_type:
     term:
