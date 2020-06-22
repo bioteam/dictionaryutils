@@ -1,0 +1,90 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "experiment"
+title: Experiment
+type: object
+namespace: https://www.bloodpac.org
+category: administrative
+program: '*'
+project: '*'
+description: >
+  The application of an assay to one or more samples that are replicates. An individual experiment can be included
+  in more than one study (i.e. reused).
+additionalProperties: false
+submittable: true
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - created_datetime
+  - updated_datetime
+  - state
+
+links:
+  - name: studies
+    backref: experiments
+    label: performed_for
+    target_type: study
+    multiplicity: many_to_one
+    required: true
+
+required:
+  - submitter_id
+  - type
+  - assay_type
+  - studies
+
+uniqueKeys:
+  - [ id ]
+  - [ project_id, submitter_id ]
+
+properties:
+  $ref: "_definitions.yaml#/ubiquitous_properties"
+  associated_control:
+    description: >
+      The submitter_id for any experiment that can be associated, paired, or matched to this experiment 
+      as an analytical control. Linked experiment must have a populated control_type.
+    type: string
+  experiment_description:
+    description: "Brief description of the experiment being performed. Free text"
+    type: string
+  assay_type:
+    description: >
+      The assay/technique (currently NGS only) used in the experiment to produce the desired measurement data. 
+      The selected option will be linked via a lookup service to the relevant ontology selected by the administrators.
+    enum:
+      - ATAC-Seq
+      - ChIP-Seq
+      - CITE-Seq
+      - CUT&RUN
+      - CRISPR knockout screen
+      - CRISPRa activation screen
+      - CRISPRi interference screen
+      - microbiome targeted RNA sequencing
+      - microbiome total RNA sequencing
+      - microbiome whole genome sequencing (WGS)
+      - microRNA-Seq
+      - mRNA-Seq
+      - PRISM screen
+      - ribosomal profiling
+      - single cell ATAC-Seq
+      - single nuclei ATAC-Seq
+      - single cell mRNA-Seq
+      - single nuclei mRNA-Seq
+      - single cell total RNA-Seq
+      - targeted (DNA) resequencing
+      - targeted RNA-Seq
+      - total RNA-Seq
+      - whole exome sequencing (WES)
+      - whole genome bisulfite sequencing (WGBS)
+      - whole genome sequencing (WGS)
+  control_type:
+    description: >
+      The type of control this experiment can serve as, relative to another.
+    enum:
+      - ChIP input
+      - human reference
+      - matched normal
+  studies:
+    $ref: "_definitions.yaml#/to_many"
