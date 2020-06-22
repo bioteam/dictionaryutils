@@ -174,7 +174,7 @@ properties:
       - "Non-cancer-related Prescription"
       - "Over-the-counter Agent"
 
-  treatement_code:
+  treatment_code:
     description: "Treatement code."
     type: string
 
