@@ -178,7 +178,7 @@ properties:
     description: "Treatement code."
     type: string
 
-  treatment-group:
+  treatment_group:
     description: "Treatement group."
     type: string
 
