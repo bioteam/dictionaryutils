@@ -1,0 +1,78 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "treatment"
+title: Treatment
+type: object
+namespace: https://www.bloodpac.org
+category: administrative
+program: '*'
+project: '*'
+description: >
+  The addition of a drug or stressor to a subject (when linked from subject) or 
+  sample (when linked from sample) with the purpose of eliciting a biological 
+  response to be measured.
+additionalProperties: false
+submittable: true
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - created_datetime
+  - updated_datetime
+  - state
+
+links:
+  - name: samples
+    backref: treatments
+    label: performed_for
+    target_type: sample
+    multiplicity: many_to_one
+    required: false
+
+required:
+  - submitter_id
+  - type
+  - dose
+  - dose_units
+
+uniqueKeys:
+  - [ id ]
+  - [ submitter_id ]
+
+depenencies:
+    dose: [dose_units]
+    dose_units: [dose]
+
+properties:
+  $ref: "_definitions.yaml#/ubiquitous_properties"
+  treatment_description:
+    description: "Brief description of the applied treatment."
+    type: string
+
+  dose: 
+    description: "Dose of drug given."
+    type: number
+
+  dose_units:
+    description: "Appropriate unit for the given dose."
+    enum:
+      - M
+      - mg
+      - mg/kg
+      - mg/mL
+      - mM
+      - ng/mL
+      - ng/µL
+      - nM
+      - percent
+      - pfu
+      - pM
+      - rad
+      - U/mL
+      - units
+      - µg
+      - µg/mL
+      - µM
+  samples:
+    $ref: "_definitions.yaml#/to_many"
