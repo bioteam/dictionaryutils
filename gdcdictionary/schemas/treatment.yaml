@@ -35,6 +35,7 @@ required:
   - type
   - dose
   - dose_units
+  - samples
 
 uniqueKeys:
   - [ id ]
