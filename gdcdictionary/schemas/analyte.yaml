@@ -30,18 +30,12 @@ required:
   - aliquots
 
 links:
-  - name: sample
+  - name: samples
     backref: analytes
     label: derived_from
     target_type: sample
     multiplicity: many_to_many
     required: true
-  - name: studies
-    backref: analytes
-    label: analyzed_for
-    target_type: study
-    multiplicity: many_to_many
-    required: false
 
 uniqueKeys:
   - [id]
@@ -129,7 +123,5 @@ properties:
       - enum: ['WT']
       - type: number
 
-  aliquots:
-    $ref: "_definitions.yaml#/to_many"
-  studies:
+  samples:
     $ref: "_definitions.yaml#/to_many"
