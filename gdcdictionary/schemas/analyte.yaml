@@ -27,7 +27,7 @@ required:
   - type
   - analyte_type
   - analyte_isolation_method
-  - aliquots
+  - samples
 
 links:
   - name: samples
