@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: analytes
+  - name: samples
     backref: flow_assays
     label: data_from
-    target_type: analyte
+    target_type: sample
     multiplicity: many_to_one
     required: true
 
@@ -69,5 +69,5 @@ properties:
   assay_target:
     description: "Target for the assay: can be a gene, protein, or otherwise."
     type: string
-  analytes:
+  samples:
     $ref: "_definitions.yaml#/to_one"
