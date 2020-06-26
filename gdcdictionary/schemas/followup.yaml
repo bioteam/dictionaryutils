@@ -1,7 +1,7 @@
 schema: "http://json-schema.org/draft-04/schema#"
 
-id: "followup"
-title: Follow-Up
+id: "other_patient_domains"
+title: Other Patient Domains
 type: object
 namespace: https://www.bloodpac.org
 category: clinical

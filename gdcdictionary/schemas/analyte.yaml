@@ -30,10 +30,10 @@ required:
   - aliquots
 
 links:
-  - name: aliquots
+  - name: sample
     backref: analytes
     label: derived_from
-    target_type: aliquot
+    target_type: sample
     multiplicity: many_to_many
     required: true
   - name: studies
