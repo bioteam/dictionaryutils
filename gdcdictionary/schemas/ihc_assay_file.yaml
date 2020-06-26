@@ -24,12 +24,6 @@ links:
   - exclusive: false
     required: true
     subgroup:
-      - name: core_metadata_collections
-        backref: ihc_assay_files
-        label: data_from
-        target_type: core_metadata_collection
-        multiplicity: many_to_one
-        required: false
       - name: ihc_assays
         backref: ihc_assay_files
         label: data_from
