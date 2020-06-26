@@ -58,18 +58,23 @@ properties:
     description: "Name of the disease for the subject."
     type: string
   species:
+    # Organism in 
     description: "Taxonomic species of the subject."
     enum:
+     - Canis familiaris
+     - Canis lupus
+     - Canis lupus familiaris
      - Drosophila melanogaster
      - Homo sapiens
+     - Macaca fascicularis
      - Mus musculus
      - Mustela putorius furo
+     - Rattus norvegicus
      - Rattus rattus
      - Sus scrofa
-     - Canis lupus familiaris
-
   breed:
     description: >
+      # Rename and make generic so as to be able to specify strain for non-dog, non-human species?
       American Kennel Club dog breeds information
     type: string
   index_date:

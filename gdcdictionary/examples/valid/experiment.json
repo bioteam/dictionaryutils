@@ -1,20 +1,9 @@
-[
-    {
-        "type": "experiment",
-        "submitter_id": "experiment_1",
-        "assay_type": "ChIP-Seq",
-        "associated_control": "control_expt_1",
-        "studies": {
-            "submitter_id": "study_1"
-        }
-    },
-    {
-        "type": "experiment",
-        "submitter_id": "control_expt_1",
-        "assay_type": "ChIP-Seq",
-        "control_type": "ChIP input",
-        "studies": {
-            "submitter_id": "study_1"
-        }
+
+{
+    "type": "experiment",
+    "submitter_id": "experiment_1",
+    "assay_type": "ChIP-Seq",
+    "studies": {
+        "submitter_id": "study_1"
     }
-]
+}

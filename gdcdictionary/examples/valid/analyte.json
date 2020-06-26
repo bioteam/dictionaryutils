@@ -1,8 +1,9 @@
 {
     "type":"analyte",
-    "submitter_id":"SingleCellDNA",
-    "analyte_isolation_method":"DNAExtractionProtocolZ.pdf",
-    "analyte_type":"DNA",
+    "submitter_id":"SingleCellRNA",
+    "analyte_isolation_method":"RNAExtractionProtocolZ.pdf",
+    "analyte_type":"RNA",
+    "RIN":123,
     "cell_type":"Small CTC",
     "cell_identifier":"sc124155",
     "days_to_assay":80,

@@ -28,6 +28,12 @@ links:
     target_type: study
     multiplicity: many_to_one
     required: true
+  #- name: associated_control
+  #  backref: experiment
+  #  label: control_for
+  #  target_type: experiment
+  #  multiplicity: to_one
+  #  required: false
 
 required:
   - submitter_id
@@ -41,11 +47,13 @@ uniqueKeys:
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
-  associated_control:
-    description: >
-      The submitter_id for any experiment that can be associated, paired, or matched to this experiment 
-      as an analytical control. Linked experiment must have a populated control_type.
-    type: string
+  # Can an instance of a node of a particular type point to another instance of a node of the same type?
+  #
+  #associated_control:
+  #  description: >
+  #    The submitter_id for any experiment that can be associated, paired, or matched to this experiment 
+  #    as an analytical control. Linked experiment must have a populated control_type.
+  #  $ref: "_definitions.yaml#/to_one"
   experiment_description:
     description: "Brief description of the experiment being performed. Free text"
     type: string

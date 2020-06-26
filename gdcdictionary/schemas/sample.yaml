@@ -31,6 +31,7 @@ required:
 uniqueKeys:
   - [id]
   - [project_id, submitter_id]
+  - [project_id, ucsc_shortlabel]
 
 links:
   - name: subjects
@@ -110,6 +111,11 @@ properties:
           - Unknown
       - type: number
 
+  is_normal:
+    description: >
+      Boolean indicating whether the sample is normal or not for tumor/normal matching analysis.
+    type: boolean
+
   sample_quantity:
     description: "For solid samples, the mass of the sample in milligrams (mg)."
     type: number
@@ -117,6 +123,21 @@ properties:
   sample_volume:
     description: "For liquid samples, the volume of the sample in millilitres (mL)."
     type: number
+
+  sample_type:
+    description: The type of sample from which an analyte was extracted and used in the assay.
+    # Some options here overlap with that of existing field composition. xenograft option could perhaps be split into CDX and PDX.
+    enum:
+      - body substance
+      - cell line
+      - microbiome
+      - organoid
+      - primary cells
+      - single cell
+      - spheroid
+      - tissue
+      - tumor biopsy
+      - xenograft
 
   storage_agitation_hours:
     description: >
@@ -130,6 +151,23 @@ properties:
       - "Yes"
       - "No"
       - "Unknown"
+
+  ucsc_shortlabel:
+    description: >
+      The short name for the track displayed in the track list, in the configuration and track settings, and on the details pages. 
+      Suggested maximum length is 17 characters.
+    type: string
+  
+  xenograft_host:
+    description: >
+      The species used as host of a xenograft sample (relevant for identifying contaminating host sequence). 
+      Required when sample_type = xenograft.
+    enum:
+     - Canis familiaris
+     - Canis lupus
+     - Mus musculus
+     - Macaca fascicularis
+     - Rattus norvegicus
 
   subjects:
     $ref: "_definitions.yaml#/to_many"

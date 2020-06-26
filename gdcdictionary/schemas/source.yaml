@@ -1,0 +1,132 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "source"
+title: Source
+type: object
+namespace: https://www.bloodpac.org
+category: TBD
+program: '*'
+project: '*'
+description: >
+  The source (e.g. a collaborating lab or vendor) from which the linked sample, library, data file etc. was obtained.
+  # Potentially duplicates data_provider property and enum list at project level. Could remove it and add a link to project here.
+additionalProperties: false
+submittable: true
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - state
+  - created_datetime
+  - updated_datetime
+
+required:
+  - submitter_id
+  - type
+  - source_title
+
+uniqueKeys:
+  - [id]
+  - [project_id, submitter_id]
+
+links:
+  - exclusive: false
+    required: true
+    subgroup:
+      - name: samples
+        backref: sources
+        label: obtained_from
+        target_type: sample
+        multiplicity: one_to_many
+        required: false
+      - name: submitted_unaligned_reads
+        backref: sources
+        label: obtained_from
+        target_type: submitted_unaligned_reads
+        multiplicity: one_to_many
+        required: false
+      - name: submitted_aligned_reads
+        backref: sources
+        label: obtained_from
+        target_type: submitted_aligned_reads
+        multiplicity: one_to_many
+        required: false
+      - name: submitted_somatic_mutation
+        backref: sources
+        label: obtained_from
+        target_type: submitted_somatic_mutation
+        multiplicity: one_to_many
+        required: false
+
+properties:
+  $ref: "_definitions.yaml#/ubiquitous_properties"
+
+  source_title:
+    description: >
+      The common/official name or title of the source.
+    enum:
+      - Active Motif
+      - Arima Genomics
+      - BGI Americas
+      - Bing Ren, University of California at San Diego
+      - Broad Institute
+      - Cancer Genetics Inc
+      - Celgene (Quanticel Research)
+      - Celgene (Sequencing Research Group)
+      - Celgene (Investigative Toxicology)
+      - Centre Leon Berard
+      - Charite Research Organisation
+      - CoreBiome Inc
+      - Covance Inc
+      - Crown Bioscience
+      - DxTerity Diagnostics Inc
+      - Elim Biopharmaceuticals
+      - EMBL European Nucleotide Archive (ENA)
+      - Finnish Hematology Registry and Clinical Biobank (FHRB)
+      - Foundation Medicine
+      - Genetech
+      - GENEWIZ
+      - Human Longevity Inc
+      - HTG Molecular Diagnostics Inc
+      - HudsonAlpha Genomic Services Laboratory
+      - International Cancer Genome Consortium (ICGC)
+      - Institute of Cancer Research, London
+      - The Institute for Health Science Research Germans Trias i Pujol (IGTP)
+      - James Krueger, Rockefeller University
+      - Jefferson Cancer Genomics Laboratory
+      - Juno Sequencing Core
+      - Jonathan Licht, University of Florida
+      - M2Gen
+      - McDonnell Genome Institute at Washington University (MGI)
+      - NantOmics
+      - NCBI Database of Genotype and Phenotypes (dbGaP)
+      - NCBI Gene Expression Omnibus (GEO)
+      - NCBI Short Read Archive (SRA)
+      - NeoGenomics
+      - Nordic Bioscience A/S
+      - Novogene
+      - Omega Bioservices
+      - OncoMed Pharmaceuticals Inc
+      - Oncotest (now Charles River Laboratories)
+      - Pacific Biosciences
+      - Personalis Genomics
+      - Publication
+      - Q2 Solutions
+      - The Cancer Genome Atlas (TCGA)
+      - TGen
+      - UCSD IGM Genomics Center
+      - Unknown
+      - UCSC Genome Sequencing Center
+      - Vivia Biotech
+      - Wellcome Sanger Institute
+      - WuXi AppTec
+
+  samples:
+    $ref: "_definitions.yaml#/to_many"
+  submitted_unaligned_reads:
+    $ref: "_definitions.yaml#/to_many"
+  submitted_aligned_reads:
+    $ref: "_definitions.yaml#/to_many"
+  submitted_somatic_mutation:
+    $ref: "_definitions.yaml#/to_many"

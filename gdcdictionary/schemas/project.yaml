@@ -80,6 +80,7 @@ properties:
 
   code:
     type: string
+    # Is the DA number an appropriate entry here?
     description: "Unique identifier for the project."
   collaborators:
     type: array

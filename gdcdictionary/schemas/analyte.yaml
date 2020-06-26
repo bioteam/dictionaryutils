@@ -65,6 +65,11 @@ properties:
       - Protein
       - Morphology
       - Cell Count
+  RIN:
+    # Moved from read_group
+    term:
+      $ref: "_terms.yaml#/RIN"
+    type: number
   cell_type:
     description: >
       In the case of single cell analysis, this is the type of cell being analyzed.

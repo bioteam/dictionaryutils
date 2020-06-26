@@ -3,7 +3,9 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "read_group"
 title: Read Group
 type: object
-description: "Sequencing reads from one lane of an NGS experiment."
+description: "Sequencing reads from one lane of an NGS experiment." 
+# Recommend explicitly breaking out the library properties into a library node so that the relationship between read group, 
+# library, and sample is explicit and clear for read group tags that go into SAM/BAM/CRAM files.
 namespace: https://www.bloodpac.org
 category: biospecimen
 project: '*'
@@ -27,6 +29,7 @@ links:
     required: true
     backref: read_groups
 
+
 required:
   - submitter_id
   - type
@@ -44,11 +47,41 @@ uniqueKeys:
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
-
   adapter_sequence:
     term:
       $ref: "_terms.yaml#/adapter_sequence"
     type: string
+  antibody_target:
+    # Ideally, antibody and target would be distinct node types so we can track antibody usage by vendor, catalog and lot #s
+    # Being able to search for data by specific gene targets would also be useful, so that information would need to be
+    # captured somewhere. For now, this field was ported as is from the NGS manifest.
+    description: >
+      Antibody target for ChIP-Seq. Make sure each target can be matched with a corresponding input sample via the
+      (to be implemented) an experiment node with control_type = ChIP input via the associated_control field in the experiment node.
+      For now, indicate input controls by selecting antibody_target = input.
+    enum:
+      - AR
+      - BCL6
+      - CHD4
+      - H3K27ac
+      - H3K27me3
+      - H3K36me2
+      - H3K36me3
+      - H3K4me1
+      - H3K4me2
+      - H3K4me3
+      - H3K79me2
+      - H3K9ac
+      - H3K9me1
+      - H3K9me3
+      - IKZF1
+      - IKZF3
+      - input
+      - LgBiT 
+      - rabbit IgG
+      - SALL4
+      - SMARCA2
+      - SMARCA4
   barcoding_applied:
     description: "True/False: was barcoding applied?"
     type: boolean
@@ -61,6 +94,18 @@ properties:
   cycles:
     description: "The number of cycles used in the assay (e.g., 50,000x per sample)."
     type: string
+  crispr_guide_library:
+    description: >
+      Indicate the CRISPR gRNA library used in the selected CRISPR screen. This field is conditionally required for processing if
+      experiment assay_type is a type of CRISPR screen.
+    enum:
+      - Cellecta CRISPR Human Genome Knockout Library, Modules 1, 2, & 3 (2019)
+      - Cellecta CRISPR Human Genome Knockout Library, Modules 1, 2, & 3 (2017)
+      - Cellecta Human Genome-Wide CRISPRi sgRNA Library
+      - Cellecta Human Genome-Wide CRISPRa Dual-sgRNA Library
+      - Custom Human Kinase library (2019_IPS_hKinase_95481.1-5.4K)
+      - Custom Human ZNF library (2019_IPS_hZNF_92478A.1-3.0K)
+      - Custom Mouse ZNF library (2019_IPS_mZNF_94791.1-2.4K)
   flow_cell_barcode:
     term:
       $ref: "_terms.yaml#/flow_cell_barcode"
@@ -76,17 +121,29 @@ properties:
       - Complete Genomics
       - Illumina HiSeq X Ten
       - Illumina HiSeq X Five
+      - Illumina Genome Analyzer
       - Illumina Genome Analyzer II
       - Illumina Genome Analyzer IIx
+      - Ilumina HiScan HQ
+      - Illumina HiSeq (unspecified)
+      - Illumina HiSeq 1000
+      - Illumina HiSeq 1500
       - Illumina HiSeq 2000
-      - Illumina HiSeq 2500
+      - Illumina HiSeq 2500 High Throughput
+      - Illumina HiSeq 2500 Rapid Run
+      - Illumina HiSeq 2500 (unspecified)
+      - Illumina HiSeq 3000
       - Illumina HiSeq 4000
+      - Illumina HiSeq X
       - Illumina MiniSeq
       - Illumina MiSeq
-      - Illumina NextSeq
+      - Illumina NextSeq (unspecified)
+      - Illumina NextSeq 500
+      - Illumina NovaSeq 6000
       - Ion Torrent PGM
       - Ion Torrent Proton
       - PacBio RS
+      - ThermoFisher Ion S5
       - Ion S5 XL System, Ion 530 Chip
       - Other
   is_paired_end:
@@ -98,9 +155,49 @@ properties:
       $ref: "_terms.yaml#/library_name"
     type: string
   library_preparation_kit_name:
-    term:
-      $ref: "_terms.yaml#/library_preparation_kit_name"
-    type: string
+    description: "Sequencing library preparation method (vendor/custom kit name or protocol)"
+    # Recommend combining this field with vendor, catalog number and version to minimize chance of entry of discrepant field values. 
+    enum:
+      - 10X Genomics Chromium Single Cell 3' v2 Chemistry protocol
+      - 10X Genomics Chromium Single Cell 3' v3 Chemistry protocol
+      - 10X Genomics Chromium Single Cell 5' protocol
+      - 10X Genomics Chromium Single Cell 5' Immune Profiling with Cell Surface Proteins protocol
+      - 10X Genomics Chromium Single Cell 5' Immune Profiling with V(D)J Enrichment protocol
+      - 10X Genomics Chromium Single Cell ATAC protocol
+      - 10X Genomics Chromium Single Cell CNV protocol
+      - Active Motif Next Gen DNA Library Kit
+      - Custom Illumina Nextera-based Kit
+      - Custom Illumina TruSeq-based kit
+      - Diagenode MicroPlex Library Prep Kit v2
+      - Illumina Nextera (Unknown version)
+      - Illumina Nextera XT DNA Library Preparation Kit
+      - Illumina TruSeq DNA LT Sample Prep Kit
+      - Illumina TruSeq DNA Methylation Library Prep Kit
+      - Illumina TruSeq DNA PCR-Free Library Prep Kit
+      - Illumina TruSeq Methyl Capture EPIC Library Prep Kit
+      - Illumina TruSeq RNA Exome
+      - Illumina TruSeq RNA Sample Prep Kit V2
+      - Illumina TruSeq Small RNA Library Prep Kit
+      - Illumina TruSeq Stranded mRNA
+      - Illumina TruSeq Stranded Total RNA Library Prep Kit
+      - Illumina TruSeq Stranded Total RNA Gold Library Prep Kit
+      - Illumina TruSeq (Unknown version)
+      - KAPA HyperPrep Kit
+      - KAPA RNA HyperPrep with RiboErase
+      - Lexogen SENSE Total RNA-Seq Library Prep Kit
+      - NantOmics RNA library prep
+      - New England Biolabs NEBNext Ultra II DNA Library Prep Kit for Illumina
+      - New England Biolabs NEBNext Ultra II Directional RNA Library Prep Kit for Illumina
+      - New England Biolabs NEBNext Ultra RNA Library Prep Kit for Illumina
+      - NuGEN Universal Plus mRNA-Seq Kit
+      - Omni-ATAC protocol
+      - Ovation Ultralow V2 DNA-Seq Library Preparation Kit
+      - Swift Biosciences Accel-NGS 2S Hyb DNA Library Kit
+      - Swift Biosciences Accel-NGS 2S Plus DNA Library Kit
+      - Swift Biosciences Accel-NGS 2S Plus DNA Library Kit with UMIs for ChIP-Seq (custom protocol)
+      - Takara SMARTer Stranded RNA-Seq Kit
+      - Takara SMART-Seq v4 Ultra Low Input RNA Kit
+      - Unspecified library prep method
   library_preparation_kit_vendor:
     term:
       $ref: "_terms.yaml#/library_preparation_kit_vendor"
@@ -129,9 +226,9 @@ properties:
     term:
       $ref: "_terms.yaml#/library_strand"
     enum:
+      - Forward
+      - Reverse
       - Unstranded
-      - First Stranded
-      - Second Stranded
   library_strategy:
     term:
       $ref: "_terms.yaml#/library_strategy"
@@ -165,18 +262,42 @@ properties:
   read_length_upper:
     description: "The upper limit for the length of reads used in the sequencing experiment."
     type: integer
-  RIN:
-    term:
-      $ref: "_terms.yaml#/RIN"
-    type: number
   sequencing_center:
     term:
       $ref: "_terms.yaml#/sequencing_center"
     type: string
   target_capture_kit_name:
-    term:
-      $ref: "_terms.yaml#/target_capture_kit_name"
-    type: string
+    # Recommend combining this field with vendor, catalog number and version to minimize chance of entry of discrepant field values. 
+    description: > 
+      Exome bait sets or gene panels used for targeted enrichment applications (e.g. WES, targeted sequencing. 
+      Required for WES and targeted sequencing assays.
+    enum:
+      - Agilent Haloplex Custom Kit
+      - Agilent SureSelect Clinical Research Exome V1
+      - Agilent SureSelect Clinical Research Exome V2
+      - Agilent SureSelect Human All Exon V1 (38Mb)
+      - Agilent SureSelect Human All Exon V2 (44Mb)
+      - Agilent SureSelect Human All Exon V3 (50Mb)
+      - Agilent SureSelect Human All Exon V3 (50 Mb), with extra content (Morgan)
+      - Agilent SureSelect Human All Exon V4 (51Mb)
+      - Agilent SureSelect Human All Exon V4+UTRs (71Mb)
+      - Agilent SureSelect Human All Exon V5 (50Mb)
+      - Agilent SureSelect Human All Exon V5 (50Mb), with extra content (Morgan)
+      - Agilent SureSelect Human All Exon V5+UTRs (75 Mb)
+      - Agilent SureSelect Human All Exon V6 (60Mb) 
+      - Agilent SureSelect Human All Exon V6+COSMIC (66 Mb)
+      - Agilent SureSelect Human All Exon V6+UTRs (91Mb)
+      - Agilent SureSelect Human All Exon V7 (48Mb)
+      - HTG EdgeSeq Oncology Biomarker Panel (HTG Molecular)
+      - Foundation Medicine FMI T4 panel
+      - Foundation Medicine FMI T5 panel
+      - IDT xGen Exome Research Panel v1.0
+      - Illumina Nextera Rapid Capture Exome v1.2
+      - Illumina TruSeq DNA Exome v1.2
+      - Ion AmpliSeq Transcriptome Human Gene Expression Kit
+      - Roche SeqCap EZ Exome Probes v2.0
+      - Roche SeqCap EZ Exome Probes v3.0
+      - Roche SeqCap EZ MedExome
   target_capture_kit_vendor:
     term:
       $ref: "_terms.yaml#/target_capture_kit_vendor"
@@ -196,5 +317,9 @@ properties:
   universal_molecular_identifier:
     description: "Short sequences or barcodes added to each read for next generation sequencing protocols used to detect and quantify unique transcripts."
     type: string
+  #umi_file:
+  #  description: > 
+  #    Link to gzipped fastq file containing UMI sequences present in accompanying fastq read file(s). 
+  #    Specified as link to submitted_unaligned_reads file with data_type = UMI Reads
   analytes:
     $ref: "_definitions.yaml#/to_one"

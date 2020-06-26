@@ -28,7 +28,7 @@ links:
     label: performed_for
     target_type: sample
     multiplicity: many_to_one
-    required: false
+    required: true
 
 required:
   - submitter_id
