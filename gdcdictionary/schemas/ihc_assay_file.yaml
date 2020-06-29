@@ -36,11 +36,11 @@ links:
         target_type: ihc_assay
         multiplicity: many_to_many
         required: false
-      - name: analytes
+      - name: studies
         backref: ihc_assay_files
         label: data_from
-        target_type: analyte
-        multiplicity: many_to_many
+        target_type: study
+        multiplicity: many_to_one
         required: false
 
 required:
@@ -91,7 +91,7 @@ properties:
       - "Chromogenic"
       - "Immunofluorescence"
 
-  analytes:
+  studies:
     $ref: "_definitions.yaml#/to_one"
   ihc_assays:
     $ref: "_definitions.yaml#/to_one"

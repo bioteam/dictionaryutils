@@ -8,7 +8,7 @@
     "file_name":"results.tsv",
     "file_size":12381660,
     "md5sum":"d0880b77467c7782009520f8729cc50e",
-    "analytes": {
+    "studies": {
          "submitter_id":"Flow_assay_input242"
     }
 }
