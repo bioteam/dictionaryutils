@@ -38,7 +38,7 @@ required:
   - assay_instrument
   - assay_instrument_model
   - assay_method
-  - analytes
+  - studies
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
