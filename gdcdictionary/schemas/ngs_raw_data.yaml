@@ -4,7 +4,7 @@ id: "ngs_raw_data"
 title: NGS raw data
 type: object
 namespace: https://www.bloodpac.org
-category: notation
+category: data_file
 program: '*'
 project: '*'
 description: >
