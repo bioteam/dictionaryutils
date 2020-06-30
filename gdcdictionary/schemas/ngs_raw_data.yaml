@@ -69,6 +69,13 @@ properties:
       - "TSV"
       - "PDF"
 
+  experimental_strategy:
+    term:
+      $ref: "_terms.yaml#/experimental_strategy"
+    enum:
+      - "Biomarker"
+      - "Cell Count"
+
   assay_instrument:
     description: "The specific instrument type used to perform the assay."
     enum:
