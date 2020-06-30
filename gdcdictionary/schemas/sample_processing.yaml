@@ -1,7 +1,7 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "flow_assay"
-title: Flow Assay
+id: "sample_processing"
+title: Sample Processing
 type: object
 namespace: https://www.bloodpac.org
 category: notation
@@ -22,7 +22,7 @@ systemProperties:
 
 links:
   - name: samples
-    backref: flow_assays
+    backref: sample_processings
     label: data_from
     target_type: sample
     multiplicity: many_to_one
