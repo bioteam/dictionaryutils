@@ -35,10 +35,13 @@ uniqueKeys:
 required:
   - submitter_id
   - type
-  - assay_instrument
-  - assay_instrument_model
-  - assay_method
-  - samples
+  - file_name
+  - file_size
+  - data_format
+  - md5sum
+  - data_category
+  - data_type
+  - experimental_strategy
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"

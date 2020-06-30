@@ -1,7 +1,7 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "ihc_assay_file"
-title: IHC Assay File
+id: "proteomic_processed_data"
+title: Proteomic Processed Data
 type: object
 namespace: https://www.bloodpac.org
 category: data_file
@@ -24,10 +24,10 @@ links:
   - exclusive: false
     required: true
     subgroup:
-      - name: ihc_assays
-        backref: ihc_assay_files
+      - name: proteomic_raw_datas
+        backref: proteomic_processed_datas
         label: data_from
-        target_type: ihc_assay
+        target_type: proteomic_raw_data
         multiplicity: many_to_many
         required: false
 
@@ -81,7 +81,7 @@ properties:
 
   analytes:
     $ref: "_definitions.yaml#/to_one"
-  ihc_assays:
+  proteomic_raw_datas:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
