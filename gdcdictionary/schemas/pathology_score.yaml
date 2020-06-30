@@ -1,7 +1,7 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "cytokine_assay_file"
-title: Cytokine Assay File
+id: "pathology_score"
+title: Pathology Score
 type: object
 namespace: https://www.bloodpac.org
 category: data_file
@@ -24,10 +24,10 @@ links:
   - exclusive: false
     required: true
     subgroup:
-      - name: cytokine_assays
-        backref: cytokine_assay_files
+      - name: pathology_images
+        backref: pathology_scores
         label: data_from
-        target_type: cytokine_assay
+        target_type: pathology_image
         multiplicity: many_to_many
         required: false
 
@@ -82,7 +82,7 @@ properties:
 
   analytes:
     $ref: "_definitions.yaml#/to_one"
-  cytokine_assays:
+  pathology_images:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"

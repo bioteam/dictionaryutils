@@ -1,7 +1,7 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "wes_data"
-title: WES Data
+id: "rna_seq_data"
+title: RNA-Seq Data
 type: object
 namespace: https://www.bloodpac.org
 category: data_file
@@ -25,7 +25,7 @@ links:
     required: true
     subgroup:
       - name: ngs_raw_datas
-        backref: wes_datas
+        backref: rna_seq_datas
         label: data_from
         target_type: ngs_raw_data
         multiplicity: many_to_many

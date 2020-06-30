@@ -1,10 +1,10 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "cytokine_assay"
-title: Cytokine Assay
+id: "pathology_image"
+title: Pathology Image
 type: object
 namespace: https://www.bloodpac.org
-category: notation
+category: data_file
 program: '*'
 project: '*'
 description: >
@@ -22,7 +22,7 @@ systemProperties:
 
 links:
   - name: samples
-    backref: cytokine_assays
+    backref: pathology_images
     label: data_from
     target_type: sample
     multiplicity: many_to_one
@@ -71,4 +71,6 @@ properties:
     description: "Target for the assay: can be a gene, protein, or otherwise."
     type: string
   samples:
+    $ref: "_definitions.yaml#/to_one"
+  core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
