@@ -44,7 +44,30 @@ required:
   - experimental_strategy
 
 properties:
-  $ref: "_definitions.yaml#/ubiquitous_properties"
+  $ref: "_definitions.yaml#/data_file_properties"
+
+  data_category:
+    term:
+      $ref: "_terms.yaml#/data_category"
+    enum:
+      - "Mutant Allele Fractions"
+
+  data_type:
+    term:
+      $ref: "_terms.yaml#/data_type"
+    enum:
+      - "Processed Data"
+      - "Tabulated Results"
+      - "Template"
+      - "Unprocessed Data"
+
+  data_format:
+    term:
+      $ref: "_terms.yaml#/data_format"
+    enum:
+      - "SAS"
+      - "TSV"
+      - "PDF"
 
   assay_instrument:
     description: "The specific instrument type used to perform the assay."
