@@ -30,12 +30,6 @@ links:
         target_type: flow_assay
         multiplicity: many_to_many
         required: false
-      - name: analytes
-        backref: flow_assay_files
-        label: data_from
-        target_type: analyte
-        multiplicity: many_to_many
-        required: false
 
 required:
   - submitter_id
@@ -85,9 +79,5 @@ properties:
       - "Biomarker"
       - "Cell Count"
 
-  analytes:
-    $ref: "_definitions.yaml#/to_one"
   flow_assays:
-    $ref: "_definitions.yaml#/to_one"
-  core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"

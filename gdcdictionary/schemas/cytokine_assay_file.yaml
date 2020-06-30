@@ -30,12 +30,6 @@ links:
         target_type: cytokine_assay
         multiplicity: many_to_many
         required: false
-      - name: analytes
-        backref: cytokine_assay_files
-        label: data_from
-        target_type: analyte
-        multiplicity: many_to_many
-        required: false
 
 required:
   - submitter_id
@@ -86,9 +80,5 @@ properties:
       - "Antibody"
       - "Bead"
 
-  analytes:
-    $ref: "_definitions.yaml#/to_one"
   cytokine_assays:
-    $ref: "_definitions.yaml#/to_one"
-  core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
