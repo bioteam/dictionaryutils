@@ -79,5 +79,9 @@ properties:
       - "Chromogenic"
       - "Immunofluorescence"
 
+  analytes:
+    $ref: "_definitions.yaml#/to_one"
   ihc_assays:
+    $ref: "_definitions.yaml#/to_one"
+  core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
