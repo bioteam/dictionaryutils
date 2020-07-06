@@ -44,7 +44,6 @@ required:
   - submitter_id
   - type
   - subjects
-  - days_to_test
   - test_type
 
 uniqueKeys:
@@ -74,10 +73,50 @@ properties:
       The version of the kit used for the test; please also indicate the kit name and vendor in 'assay_kit_name' and 'assay_kit_vendor'.
     type: string
 
+  baseline:
+    description: >
+      The baseline of the test.
+    type: number
+
+  baseline_change:
+    description: >
+      The change in the baseline of the test.
+    type: number
+
+  baseline_percent_change:
+    description: >
+      The percent change in the baseline of the test.
+    type: number
+
+  baseline_unit:
+    description: >
+      The unit of measure for the baseline of the test.
+    type: string
+
+  collection_date:
+    description: >
+      The date of sample collection for the test.
+    type: string
+
+  collection_time:
+    description: >
+      The time of sample collection for the test.
+    type: string
+
   days_to_test:
     description: >
       Number of days between the date used for index and the date the patient was diagnosed with a comorbidity.
     type: integer
+
+  duration_of_therapy_days:
+    description: >
+      The duration of therapy in days.
+    type: integer
+
+  duration_of_therapy_weeks:
+    description: >
+      The duration of therapy in weeks.
+    type: number
 
   equipment_manufacturer:
     description: >
@@ -87,6 +126,16 @@ properties:
   equipment_model:
     description: >
       The equipment name and model number used for the test; please also indicate the manufacturer name in 'equipment_manufacturer'.
+    type: string
+
+  subanalysis_type:
+    description: >
+      The subanalysis taken from the SAS file.
+    type: string
+
+  test:
+    description: >
+      The name for the test taken from SAS.
     type: string
 
   test_anatomic_site:
@@ -455,6 +504,9 @@ properties:
       - "Coagulation Panel"
       - "Complete Blood Count"
       - "Cultures"
+      - "Cytokine"
+      - "Flow"
+      - "IHC"
       - "Imaging"
       - "Lipid Panel"
       - "Liver Panel"
@@ -503,6 +555,16 @@ properties:
     description: >
       The numerical value representing the diagnostic test measurement of the 'analyte_name'; also indicate the 'test_units'.
     type: number
+
+  visit_category:
+    description: >
+      The category of the visit taken from the SAS file.
+    type: string
+
+  visit_number:
+    description: >
+      The visit number taken from the VISIT_DRV column within the SAS file.
+    type: string
 
   subjects:
     $ref: "_definitions.yaml#/to_one"
