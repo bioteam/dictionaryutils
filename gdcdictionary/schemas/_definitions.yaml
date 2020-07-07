@@ -203,15 +203,19 @@ data_file_properties:
     $ref: "#/md5sum"
   file_state:
     $ref: "#/file_state"
-  object_id:
-    $ref: "#/object_id"
-  state:
-    $ref: "#/state"
   error_type:
     $ref: "#/data_file_error_type"
+  object_id:
+    $ref: "#/object_id"
 
 workflow_properties:
   $ref: "#/ubiquitous_properties"
+  workflow_description:
+    description: "A brief description of the workflow or pipeline used to generate the data."
+    type: string
+  workflow_name:
+    description: "The name of an encapsulated bioinformatics workflow or pipeline."
+    type: string
   workflow_link:
     description: "Link to Github hash for the CWL workflow used."
     type: string

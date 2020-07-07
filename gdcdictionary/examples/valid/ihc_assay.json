@@ -1,0 +1,14 @@
+{
+    "type":"ihc_assay",
+    "submitter_id":"ihc run 1",
+    "assay_instrument":"Roche",
+    "assay_instrument_model":"Ultra IHC",
+    "assay_method":"Immersion",
+    "assay_kit_name":"MolecularMD",
+    "assay_kit_vendor":"Some Guy",
+    "assay_kit_version":"v34.2",
+    "assay_target":"BRAF",
+    "studies": {
+         "submitter_id":"IHC_assay_input242"
+    }
+}

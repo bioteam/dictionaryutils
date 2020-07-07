@@ -1,14 +1,14 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "submitted_unaligned_reads"
-title: Submitted Unaligned Reads
+id: "ihc_assay_file"
+title: IHC Assay File
 type: object
-nodeTerms: null
-namespace: https://nci-crdc-demo.datacommons.io/
+namespace: https://www.bloodpac.org
 category: data_file
 program: '*'
 project: '*'
-description: Data file containing unaligned reads that have not been GDC Harmonized.
+description: >
+  A data file containing the results of a IHC assay
 additionalProperties: false
 submittable: true
 validators: null
@@ -16,26 +16,30 @@ validators: null
 systemProperties:
   - id
   - project_id
-  - state
   - created_datetime
   - updated_datetime
-  - file_state
-  - error_type
+  - state
 
 links:
   - exclusive: false
     required: true
     subgroup:
       - name: core_metadata_collections
-        backref: submitted_unaligned_reads_files
+        backref: ihc_assay_files
         label: data_from
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-      - name: read_groups
-        backref: submitted_unaligned_reads_files
+      - name: ihc_assays
+        backref: ihc_assay_files
         label: data_from
-        target_type: read_group
+        target_type: ihc_assay
+        multiplicity: many_to_many
+        required: false
+      - name: studies
+        backref: ihc_assay_files
+        label: data_from
+        target_type: study
         multiplicity: many_to_one
         required: false
 
@@ -44,65 +48,52 @@ required:
   - type
   - file_name
   - file_size
+  - data_format
   - md5sum
   - data_category
   - data_type
-  - data_format
   - experimental_strategy
 
 uniqueKeys:
-  - [id]
-  - [project_id, submitter_id]
+  - [ id ]
+  - [ project_id, submitter_id ]
 
 properties:
-
   $ref: "_definitions.yaml#/data_file_properties"
 
   data_category:
     term:
       $ref: "_terms.yaml#/data_category"
     enum:
-      - Raw Sequencing Data
-      - Sequencing Data
-      - Sequencing Reads
-
-  data_format:
-    term:
-      $ref: "_terms.yaml#/data_format"
-    enum:
-      - BAM
-      - FASTA
-      - FASTQ
+      - "Mutant Allele Fractions"
 
   data_type:
     term:
       $ref: "_terms.yaml#/data_type"
     enum:
-      - Unaligned Reads
+      - "Processed Data"
+      - "Tabulated Results"
+      - "Template"
+      - "Unprocessed Data"
+
+  data_format:
+    term:
+      $ref: "_terms.yaml#/data_format"
+    enum:
+      - "SAS"
+      - "TSV"
+      - "PDF"
 
   experimental_strategy:
     term:
       $ref: "_terms.yaml#/experimental_strategy"
     enum:
-      - ATAC-Seq
-      - Bisulfite-Seq
-      - ChIP-Seq
-      - Low Pass WGS
-      - RNA-Seq
-      - Targeted Sequencing
-      - WGS
-      - WXS
-      - miRNA-Seq
+      - "Chromogenic"
+      - "Immunofluorescence"
 
-  read_pair_number:
-    term:
-      $ref: "_terms.yaml#/read_pair_number"
-    enum:
-      - R1
-      - R2
-
-  core_metadata_collections:
+  studies:
     $ref: "_definitions.yaml#/to_one"
-
-  read_groups:
+  ihc_assays:
+    $ref: "_definitions.yaml#/to_one"
+  core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"

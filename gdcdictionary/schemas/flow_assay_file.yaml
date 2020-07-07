@@ -1,18 +1,16 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "simple_somatic_mutation"
-title: Simple Somatic Mutation
+id: "flow_assay_file"
+title: Flow Assay File
 type: object
-namespace: https://vpodc.org/
+namespace: https://www.bloodpac.org
 category: data_file
 program: '*'
 project: '*'
 description: >
-  Data file containing simple somatic mutations, which have not been annotated or filtered, called
-  from aligned reads.
+  A data file containing the results of a Flow assay
 additionalProperties: false
-submittable: false
-downloadable: true
+submittable: true
 validators: null
 
 systemProperties:
@@ -21,36 +19,40 @@ systemProperties:
   - created_datetime
   - updated_datetime
   - state
-  - file_state
-  - error_type
 
 links:
   - exclusive: false
     required: true
     subgroup:
       - name: core_metadata_collections
-        backref: simple_somatic_mutations
+        backref: flow_assay_files
         label: data_from
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-  - name: somatic_mutation_calling_workflows
-    backref: simple_somatic_mutations
-    label: data_from
-    target_type: somatic_mutation_calling_workflow
-    multiplicity: many_to_one
-    required: false
+      - name: flow_assays
+        backref: flow_assay_files
+        label: data_from
+        target_type: flow_assay
+        multiplicity: many_to_many
+        required: false
+      - name: studies
+        backref: flow_assay_files
+        label: data_from
+        target_type: study
+        multiplicity: many_to_one
+        required: false
 
 required:
   - submitter_id
+  - type
   - file_name
   - file_size
+  - data_format
   - md5sum
   - data_category
   - data_type
-  - data_format
   - experimental_strategy
-  - type
 
 uniqueKeys:
   - [ id ]
@@ -63,33 +65,35 @@ properties:
     term:
       $ref: "_terms.yaml#/data_category"
     enum:
-      - Combined Nucleotide Variation
-      - Simple Nucleotide Variation
+      - "Mutant Allele Fractions"
 
   data_type:
     term:
       $ref: "_terms.yaml#/data_type"
     enum:
-      - Raw CGI Variant
-      - Raw Simple Somatic Mutation
+      - "Processed Data"
+      - "Tabulated Results"
+      - "Template"
+      - "Unprocessed Data"
 
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
     enum:
-      - VCF
+      - "SAS"
+      - "TSV"
+      - "PDF"
 
   experimental_strategy:
     term:
       $ref: "_terms.yaml#/experimental_strategy"
     enum:
-      - WGS
-      - WXS
-      - Low Pass WGS
-      - Validation
-      - Targeted Sequencing
+      - "Biomarker"
+      - "Cell Count"
 
-  somatic_mutation_calling_workflows:
+  studies:
+    $ref: "_definitions.yaml#/to_one"
+  flow_assays:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
