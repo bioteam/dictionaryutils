@@ -24,7 +24,7 @@
     "target_capture_kit_vendor":"asdfasdf",
     "target_capture_kit_version":"v324",
     "target_capture_kit_catalog_number":"asdfa2",
-    "analytes": [
+    "samples": [
         {
             "submitter_id": "2c9108eb-c59a-4227-b650-56e61b3aa0ea"
         }

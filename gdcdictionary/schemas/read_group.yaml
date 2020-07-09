@@ -20,9 +20,9 @@ systemProperties:
   - state
 
 links:
-  - name: analytes
+  - name: samples
     label: derived_from
-    target_type: analyte
+    target_type: sample
     multiplicity: many_to_one
     required: true
     backref: read_groups
@@ -36,7 +36,7 @@ required:
   - is_paired_end
   - read_length_lower
   - read_length_upper
-  - analytes
+  - samples
 
 uniqueKeys:
   - [ id ]
@@ -196,5 +196,5 @@ properties:
   universal_molecular_identifier:
     description: "Short sequences or barcodes added to each read for next generation sequencing protocols used to detect and quantify unique transcripts."
     type: string
-  analytes:
+  samples:
     $ref: "_definitions.yaml#/to_one"
