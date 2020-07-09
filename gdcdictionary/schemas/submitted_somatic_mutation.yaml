@@ -1,16 +1,16 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "simple_germline_variation"
-title: Simple Germline Variation
+id: "submitted_somatic_mutation"
+title: Submitted Somatic Mutation
 type: object
-namespace: https://dcp.bionimbus.org/
+namespace: https://www.bloodpac.org
 category: data_file
 program: '*'
 project: '*'
 description: >
-  Data file containing simple germline variations called from aligned reads.
+  Data file containing somatic mutation calls from a read group.
 additionalProperties: false
-submittable: false
+submittable: true
 validators: null
 
 systemProperties:
@@ -27,39 +27,27 @@ links:
     required: true
     subgroup:
       - name: core_metadata_collections
-        backref: simple_germline_variations
+        backref: submitted_somatic_mutations
         label: data_from
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-      - name: germline_mutation_calling_workflows
-        backref: simple_germline_variations
-        label: data_from
-        target_type: germline_mutation_calling_workflow
-        multiplicity: many_to_one
-        required: false
       - name: read_groups
-        backref: simple_germline_variations
-        label: data_from
+        backref: submitted_somatic_mutations
+        label: derived_from
         target_type: read_group
-        multiplicity: many_to_many
-        required: false
-      - name: aligned_reads_files
-        backref: simple_germline_variations
-        label: data_from
-        target_type: aligned_reads
         multiplicity: many_to_many
         required: false
 
 required:
-  - type
   - submitter_id
+  - type
   - file_name
   - file_size
+  - data_format
   - md5sum
   - data_category
   - data_type
-  - data_format
   - experimental_strategy
 
 uniqueKeys:
@@ -72,31 +60,24 @@ properties:
   data_category:
     term:
       $ref: "_terms.yaml#/data_category"
-    enum: [ "Simple Nucleotide Variation" ]
-
+    type: string
   data_type:
     term:
       $ref: "_terms.yaml#/data_type"
-    enum: [ "Simple Germline Variation" ]
-
+    type: string
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
-    enum: [ "VCF" ]
-
+    type: string
   experimental_strategy:
     term:
       $ref: "_terms.yaml#/experimental_strategy"
-    enum:
-      - WGS
-      - WXS
-      - Low Pass WGS
-      - Validation
-  germline_mutation_calling_workflows:
-    $ref: "_definitions.yaml#/to_one"
+    type: string
+  total_variants:
+    description: "The total number of variants detected carrying a base change difference from the reference genome."
+    type: integer
+
   read_groups:
     $ref: "_definitions.yaml#/to_many"
-  aligned_reads_files:
-    $ref: "_definitions.yaml#/to_many"
   core_metadata_collections:
-    $ref: "_definitions.yaml#/to_many"
+    $ref: "_definitions.yaml#/to_one"
