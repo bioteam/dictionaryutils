@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: analytes
+  - name: subjects
     backref: flow_assays
     label: data_from
-    target_type: analyte
+    target_type: subject
     multiplicity: many_to_one
     required: true
 
@@ -38,7 +38,7 @@ required:
   - assay_instrument
   - assay_instrument_model
   - assay_method
-  - analytes
+  - subjects
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
@@ -69,5 +69,5 @@ properties:
   assay_target:
     description: "Target for the assay: can be a gene, protein, or otherwise."
     type: string
-  analytes:
+  subjects:
     $ref: "_definitions.yaml#/to_one"
