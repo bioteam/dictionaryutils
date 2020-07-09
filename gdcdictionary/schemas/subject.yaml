@@ -67,7 +67,6 @@ properties:
      - Rattus rattus
      - Sus scrofa
      - Canis lupus familiaris
-
   birth_date:
     description: "Birth date of the subject."
     type: datetime
