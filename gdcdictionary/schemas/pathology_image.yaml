@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: samples
+  - name: histopathology_assays
     backref: pathology_images
     label: data_from
-    target_type: sample
+    target_type: histopathology_assay
     multiplicity: many_to_one
     required: true
 
@@ -41,7 +41,6 @@ required:
   - md5sum
   - data_category
   - data_type
-  - experimental_strategy
 
 properties:
   $ref: "_definitions.yaml#/data_file_properties"
@@ -50,60 +49,29 @@ properties:
     term:
       $ref: "_terms.yaml#/data_category"
     enum:
-      - "Mutant Allele Fractions"
+      - Image
+      - Analysis
 
   data_type:
     term:
       $ref: "_terms.yaml#/data_type"
     enum:
-      - "Processed Data"
-      - "Tabulated Results"
-      - "Template"
-      - "Unprocessed Data"
+      - Analysis results
+      - Annotations
+      - Data dictionary
+      - Raw data
 
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
     enum:
-      - "SAS"
-      - "TSV"
-      - "PDF"
+      - CSV
+      - Excel
+      - PDF
+      - Powerpoint
+      - TSV
 
-  experimental_strategy:
-    term:
-      $ref: "_terms.yaml#/experimental_strategy"
-    enum:
-      - "Biomarker"
-      - "Cell Count"
-
-  assay_instrument:
-    description: "The specific instrument type used to perform the assay."
-    enum:
-      - Affymetrix
-      - BioRad
-  assay_instrument_model:
-    description: "The specific model of instrument used to perform the assay."
-    enum:
-      - BioPlex 200
-  assay_kit_name:
-    description: "Name of the assay kit used."
-    type: string
-  assay_kit_vendor:
-    description: "Vendor that provided the assay kit."
-    type: string
-  assay_kit_version:
-    description: "Version of the assay kit used."
-    type: string
-  assay_method:
-    description: "General methodology used to perform the assay."
-    enum:
-      - ELISA
-      - Antibody Array
-      - Bead
-  assay_target:
-    description: "Target for the assay: can be a gene, protein, or otherwise."
-    type: string
-  samples:
+  histopathology_assays:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"

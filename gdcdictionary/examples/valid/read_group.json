@@ -1,0 +1,23 @@
+{
+    "type": "read_group",
+    "submitter_id": "205DDABXX100804.3.C317.TCGA-AB-2899-03A-01W-0733-08.4.bam",
+    "adapter_sequence":"ACTCGACTCGCTAG",
+    "barcoding_applied": true,
+    "flow_cell_barcode":"HY7HVCCXX",
+    "instrument_model": "Illumina HiSeq 2000",
+    "is_paired_end": true,
+    "library_name":"Solexa_adfa",
+    "library_preparation_kit_name":"adsfkajdsfl",
+    "library_preparation_kit_vendor":"adfakldsjf",
+    "library_preparation_kit_version":"v13",
+    "library_preparation_kit_catalog_number":"a1513",
+    "library_strand":"Unstranded",
+    "platform": "Illumina",
+    "read_length_lower":250,
+    "read_length_upper":300,
+    "sequencing_center": "BI",
+    "rna_seq_assays": {
+        "submitter_id": "2c9108eb-c59a-4227-b650-56e61b3aa0ea"
+    }
+
+}

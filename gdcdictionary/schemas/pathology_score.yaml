@@ -8,7 +8,7 @@ category: data_file
 program: '*'
 project: '*'
 description: >
-  A data file containing the results of a Cytokine assay
+  A data file containing the scores of a histopathology analysis.
 additionalProperties: false
 submittable: true
 validators: null
@@ -40,7 +40,6 @@ required:
   - md5sum
   - data_category
   - data_type
-  - experimental_strategy
 
 uniqueKeys:
   - [ id ]
@@ -53,35 +52,23 @@ properties:
     term:
       $ref: "_terms.yaml#/data_category"
     enum:
-      - "Mutant Allele Fractions"
+      - Analysis
 
   data_type:
     term:
       $ref: "_terms.yaml#/data_type"
     enum:
-      - "Processed Data"
-      - "Tabulated Results"
-      - "Template"
-      - "Unprocessed Data"
+      - Pathology scores
 
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
     enum:
-      - "SAS"
-      - "TSV"
-      - "PDF"
+      - CSV
+      - Excel
+      - Powerpoint
+      - TSV
 
-  experimental_strategy:
-    term:
-      $ref: "_terms.yaml#/experimental_strategy"
-    enum:
-      - "ELISA"
-      - "Antibody"
-      - "Bead"
-
-  analytes:
-    $ref: "_definitions.yaml#/to_one"
   pathology_images:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:

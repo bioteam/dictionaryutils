@@ -1,14 +1,14 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "wes_data"
-title: WES Data
+id: "submitted_aligned_reads"
+title: Submitted Aligned Reads
 type: object
 namespace: https://www.bloodpac.org
 category: data_file
 program: '*'
 project: '*'
 description: >
-  A data file containing the results of a Flow assay
+  Data file containing aligned reads that are used as input to GDC workflows.
 additionalProperties: false
 submittable: true
 validators: null
@@ -19,15 +19,23 @@ systemProperties:
   - created_datetime
   - updated_datetime
   - state
+  - file_state
+  - error_type
 
 links:
   - exclusive: false
     required: true
     subgroup:
-      - name: ngs_raw_datas
-        backref: wes_datas
+      - name: core_metadata_collections
+        backref: submitted_aligned_reads_files
         label: data_from
-        target_type: ngs_raw_data
+        target_type: core_metadata_collection
+        multiplicity: many_to_one
+        required: false
+      - name: read_groups
+        backref: submitted_aligned_reads_files
+        label: data_from
+        target_type: read_group
         multiplicity: many_to_many
         required: false
 
@@ -40,7 +48,6 @@ required:
   - md5sum
   - data_category
   - data_type
-  - experimental_strategy
 
 uniqueKeys:
   - [ id ]
@@ -53,35 +60,21 @@ properties:
     term:
       $ref: "_terms.yaml#/data_category"
     enum:
-      - "Mutant Allele Fractions"
-
+      - Sequencing Reads
   data_type:
     term:
       $ref: "_terms.yaml#/data_type"
     enum:
-      - "Processed Data"
-      - "Tabulated Results"
-      - "Template"
-      - "Unprocessed Data"
-
+      - Aligned Reads
+      - Alignment Coordinates
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
     enum:
-      - "SAS"
-      - "TSV"
-      - "PDF"
+      - BAM
+      - BED
 
-  experimental_strategy:
-    term:
-      $ref: "_terms.yaml#/experimental_strategy"
-    enum:
-      - "Biomarker"
-      - "Cell Count"
-
-  analytes:
-    $ref: "_definitions.yaml#/to_one"
-  ngs_raw_datas:
-    $ref: "_definitions.yaml#/to_one"
+  read_groups:
+    $ref: "_definitions.yaml#/to_many"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
