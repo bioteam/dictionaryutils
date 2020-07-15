@@ -41,7 +41,6 @@ uniqueKeys:
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
   study_id:
-    description: "The submitter_id for any study with which this study is associated, paired, or matched."
     type: integer
   study_name:
     type: string

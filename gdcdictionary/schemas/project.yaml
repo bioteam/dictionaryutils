@@ -25,18 +25,6 @@ systemProperties:
   - updated_datetime
 
 required:
-  - type
-  - code
-  - name
-  - state
-  - programs
-  - dbgap_accession_number
-  - project_barcode
-  - project_description
-  - project_type
-  - availability_type
-  - investigator_name
-  - creator
 
 uniqueKeys:
   - [ id ]
