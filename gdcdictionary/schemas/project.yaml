@@ -25,6 +25,7 @@ systemProperties:
   - updated_datetime
 
 required:
+  - programs
 
 uniqueKeys:
   - [ id ]
