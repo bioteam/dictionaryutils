@@ -40,6 +40,352 @@ uniqueKeys:
 
 # Subject properties
 properties:
+  external_id:
+    type: string
+  date_of_birth:
+    type: string
+  age:
+    type: string
+  current_other_nio_end_date_other:
+    type: string
+  current_other_io_thrpy_ipilimumab:
+    type: string
+  second_primary_site:
+    type: string
+  current_other_nio_date_other:
+    type: string
+  current_other_nio_dosage_hormonal:
+    type: string
+  treatment_outcome_type_start_date:
+    type: string
+  prior_pd_1_end_date_keytruda:
+    type: string
+  prior_other_io_dosage_other:
+    type: string
+  status_date_post_progression:
+    type: string
+  current_other_nio_start_date_target:
+    type: string
+  current_other_nio_start_date_hormon:
+    type: string
+  msi_test:
+    type: string
+  prior_pd_1_end_date_nivolumab:
+    type: string
+  treatment_outcome_type:
+    type: string
+  prior_other_nio_end_date_target:
+    type: string
+  record_id:
+    type: string
+  status_date_baseline:
+    type: string
+  current_other_nio_start_date_surg:
+    type: string
+  lims_registration_type:
+    type: string
+  status_date_off_treatment:
+    type: string
+  msi_status:
+    type: string
+  current_other_nio_end_date_surg:
+    type: string
+  prior_pd_1_date_keytruda:
+    type: string
+  current_other_nio_start_date_chemo:
+    type: string
+  adverse_events:
+    type: string
+  status_date_progression:
+    type: string
+  current_pd_1_end_date_nivolumab:
+    type: string
+  prior_other_nio_thrpy_other:
+    type: string
+  related_record_720:
+    type: string
+  cancer_statusat_last_contact:
+    type: string
+  consumes_alcohol:
+    type: string
+  current_other_nio_date_chemo:
+    type: string
+  prior_other_nio_start_date_chemo:
+    type: string
+  prior_other_io_start_date_other:
+    type: string
+  prior_other_io_end_date_other:
+    type: string
+  cancer_type:
+    type: string
+  current_other_nio_end_date_chemo:
+    type: string
+  smoking_history:
+    type: string
+  prior_other_nio_surgery:
+    type: string
+  current_other_nio_thrpy_targeted:
+    type: string
+  current_pd_1_dosage_nivo:
+    type: string
+  metastatic_init_dx_date:
+    type: string
+  current_other_nio_date_targeted:
+    type: string
+  prior_other_nio_thrpy_hormonal:
+    type: string
+  prior_pd_1_start_date_keytruda:
+    type: string
+  status_date:
+    type: string
+  mmr_status:
+    type: string
+  prior_other_io_thrpy_other:
+    type: string
+  current_other_io_end_date_other:
+    type: string
+  current_other_nio_start_date_rad:
+    type: string
+  gleason_score:
+    type: string
+  molecular_histologic_subtype:
+    type: string
+  prior_other_nio_thrpy_targeted:
+    type: string
+  prior_other_io_thrpy_ipilimumab:
+    type: string
+  gleason_score_details:
+    type: string
+  prior_other_nio_start_date_surg:
+    type: string
+  prior_pd_1_start_date_cemiplimab:
+    type: string
+  race:
+    type: string
+  prior_other_nio_dosage_radiation:
+    type: string
+  mmr_test:
+    type: string
+  current_other_nio_thrpy_hormonal:
+    type: string
+  ethnicity:
+    type: string
+  current_pd_1_date_cemiplimab:
+    type: string
+  current_other_nio_dosage_radiation:
+    type: string
+  prior_other_nio_thrpy_surgery:
+    type: string
+  initial_diagnosed_date:
+    type: string
+  recist_version:
+    type: string
+  prior_pd_1_dosage_nivolumab:
+    type: string
+  current_other_io_start_date_ipili:
+    type: string
+  current_other_io_date_ipilimumab:
+    type: string
+  prior_pd_1_dosage_cemiplimab:
+    type: string
+  comments:
+    type: string
+  causeof_death:
+    type: string
+  current_other_nio_date_radiation:
+    type: string
+  current_other_nio_thrpy_surgery:
+    type: string
+  current_other_nio_dosage_other:
+    type: string
+  current_pd_1_dosage_keytruda:
+    type: string
+  treatment_outcome_type_end_date:
+    type: string
+  is_smoker:
+    type: string
+  cancer_site:
+    type: string
+  prior_other_nio_date_hormonal:
+    type: string
+  prior_other_nio_start_date_rad:
+    type: string
+  prior_other_nio_date_radiation:
+    type: string
+  prior_other_nio_start_date_target:
+    type: string
+  current_other_nio_thrpy_other:
+    type: string
+  dateof_death:
+    type: string
+  concomitant_medications:
+    type: string
+  prior_pd_1_checkpoint_cemiplimab:
+    type: string
+  prior_other_io_date_ipilimumab:
+    type: string
+  study_id:
+    type: string
+  current_pd_1_end_date_cemiplimab:
+    type: string
+  n_score:
+    type: string
+  current_status:
+    type: string
+  ecog_status_time_current_treatment:
+    type: string
+  current_pd_1_checkpoint_cemiplimab:
+    type: string
+  metastatic_disease_site:
+    type: string
+  weight:
+    type: string
+  prior_pd_1_start_date_nivolumab:
+    type: string
+  current_other_io_thrpy_other:
+    type: string
+  t_score:
+    type: string
+  prior_pd_1_dosage_keytruda:
+    type: string
+  recist:
+    type: string
+  prior_other_nio_dosage_other:
+    type: string
+  prior_pd_1_checkpoint_keytruda:
+    type: string
+  prior_other_nio_end_date_other:
+    type: string
+  current_other_nio_thrpy_radiation:
+    type: string
+  current_other_io_date_other:
+    type: string
+  current_other_nio_dosage_chemo:
+    type: string
+  prior_pd_1_end_date_cemiplimab:
+    type: string
+  current_other_nio_end_date_target:
+    type: string
+  prior_other_nio_dosage_hormonal:
+    type: string
+  sex:
+    type: string
+  current_other_nio_end_date_hormon:
+    type: string
+  prior_other_nio_dosage_targeted:
+    type: string
+  pathology_report_description:
+    type: string
+  prior_other_nio_end_date_chemo:
+    type: string
+  prior_other_nio_start_date_hormonal:
+    type: string
+  current_other_nio_dosage_targeted:
+    type: string
+  status_date_on_treatment:
+    type: string
+  prior_pd_1_checkpoint_nivolumab:
+    type: string
+  current_other_io_start_date_other:
+    type: string
+  current_pd_1_date_keytruda:
+    type: string
+  current_pd_1_end_date_keytruda:
+    type: string
+  current_other_nio_start_date_other:
+    type: string
+  attachment:
+    type: string
+  stage_at_dx:
+    type: string
+  prior_other_nio_date_other:
+    type: string
+  prior_other_nio_end_date_rad:
+    type: string
+  current_pd_1_dosage_cemiplimab:
+    type: string
+  m_score:
+    type: string
+  prior_other_nio_date_surgery:
+    type: string
+  second_primary:
+    type: string
+  visit_date:
+    type: string
+  grade:
+    type: string
+  current_other_io_dosage_other:
+    type: string
+  prior_other_nio_dosage_chemo:
+    type: string
+  dateof_last_known_contact:
+    type: string
+  prior_other_nio_start_date_other:
+    type: string
+  prior_other_io_date_other:
+    type: string
+  prior_other_nio_end_date_surg:
+    type: string
+  current_pd_1_checkpoint_nivo:
+    type: string
+  current_other_io_dosage_ipilimumab:
+    type: string
+  current_other_nio_date_surgery:
+    type: string
+  current_pd_1_start_date_cemiplimab:
+    type: string
+  patient_id:
+    type: string
+  prior_other_nio_date_targeted:
+    type: string
+  prior_pd_1_date_nivolumab:
+    type: string
+  complete_progression_date:
+    type: string
+  height:
+    type: string
+  current_other_nio_surgery:
+    type: string
+  prior_other_nio_end_date_hormonal:
+    type: string
+  prior_other_nio_thrpy_chemo:
+    type: string
+  prior_other_io_dosage_ipilimumab:
+    type: string
+  current_other_nio_thrpy_chemo:
+    type: string
+  prior_other_io_end_date_ipili:
+    type: string
+  current_other_io_end_date_ipili:
+    type: string
+  prior_pd_1_date_cemiplimab:
+    type: string
+  current_pd_1_start_date_nivolumab:
+    type: string
+  current_other_nio_date_hormonal:
+    type: string
+  additional_medical_history:
+    type: string
+  current_pd_1_date_nivolumab:
+    type: string
+  current_other_nio_end_date_rad:
+    type: string
+  current_pd_1_start_date_keytruda:
+    type: string
+  current_pd_1_checkpoint_keytruda:
+    type: string
+  death_date:
+    type: string
+  alcohol_consumption_history:
+    type: string
+  prior_other_io_start_date_ipili:
+    type: string
+  prior_other_nio_date_chemo:
+    type: string
+  prior_other_nio_thrpy_radiation:
+    type: string
+
+
   type:
     type: string
   id:
