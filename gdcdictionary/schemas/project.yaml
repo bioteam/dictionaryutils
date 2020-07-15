@@ -25,7 +25,18 @@ systemProperties:
   - updated_datetime
 
 required:
+  - type
+  - code
+  - name
+  - state
   - programs
+  - dbgap_accession_number
+  - project_barcode
+  - project_description
+  - project_type
+  - availability_type
+  - investigator_name
+  - creator
 
 uniqueKeys:
   - [ id ]
@@ -45,6 +56,28 @@ constraints: null
 # code, disease_type and primary_site are in the current data model for project
 # and likely shouldn't be
 properties:
+  project_id:
+    type: integer
+  leader:
+    type: string
+  project_name:
+    type: string
+  start_date:
+    $ref: "_definitions.yaml#/datetime"
+  end_date:
+    $ref: "_definitions.yaml#/datetime"
+  project_desc:
+    type: string
+  status:
+    type: string
+  collaborator:
+    type: string
+  duration:
+    type: string
+  team:
+    type: string
+  longitudinal:
+    type: string
 
   created_datetime:
     $ref: "_definitions.yaml#/datetime"
