@@ -33,7 +33,7 @@ links:
         backref: read_groups
         label: data_from
         target_type: wes_assay
-        mutliplicity: many_to_one
+        multiplicity: many_to_one
         required: false
       - name: atac_seq_assays
         backref: read_groups
