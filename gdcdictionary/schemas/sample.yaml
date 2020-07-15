@@ -42,6 +42,63 @@ links:
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
+  other_sample_id:
+    type: integer
+  tube_barcode:
+    type: string
+  concentration_units:
+    type: integer
+  amount_units:
+    type: integer
+  longitudinal_timepoint:
+    type: integer
+  exemplar_sample_type:
+    type: string
+  gleason_score:
+    type: integer
+  description:
+    type: string
+  species:
+    type: string
+  container_type:
+    type: string
+  total_mass:
+    type: integer
+  volume:
+    type: integer
+  gleason_score_details:
+    type: string
+  sample_health_comments:
+    type: string
+  sample_health:
+    type: string
+  bms_tumor_content:
+    type: string
+  study_id:
+    type: integer
+  tumor_content:
+    type: string
+  timepoint_date:
+    $ref: "_definitions.yaml#/datetime"
+  concentration:
+    type: integer
+  thickness:
+    type: integer
+  mass:
+    type: integer
+  tissue_origin_site:
+    type: string
+  diameter:
+    type: integer
+  tissue_origin:
+    type: string
+  estimated_tissue_dimensions:
+    type: string
+  cell_viability:
+    type: string
+  cell_type:
+    type: string
+
 
   blood_fractionation_method:
     description: >
