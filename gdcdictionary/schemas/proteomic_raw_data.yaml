@@ -24,7 +24,7 @@ links:
   - name: proteomic_assays
     backref: proteomic_raw_datas
     label: data_from
-    target_type: sample
+    target_type: proteomic_assay
     multiplicity: many_to_one
     required: true
 
