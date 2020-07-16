@@ -21,7 +21,7 @@ systemProperties:
   - state
 
 links:
-  - name: samples
+  - name: proteomic_assays
     backref: proteomic_raw_datas
     label: data_from
     target_type: sample
@@ -101,7 +101,7 @@ properties:
   assay_target:
     description: "Target for the assay: can be a gene, protein, or otherwise."
     type: string
-  samples:
+  proteomic_assays:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
