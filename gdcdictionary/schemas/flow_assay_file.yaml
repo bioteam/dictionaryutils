@@ -1,13 +1,14 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "aligned_reads_index"
-title: Aligned Reads Index
+id: "flow_assay_file"
+title: Flow Assay File
 type: object
 namespace: https://www.bloodpac.org
-category: index_file
+category: data_file
 program: '*'
 project: '*'
-description: "Data file containing the index for a set of aligned reads."
+description: >
+  A data file containing the results of a Flow assay
 additionalProperties: false
 submittable: true
 validators: null
@@ -18,24 +19,28 @@ systemProperties:
   - created_datetime
   - updated_datetime
   - state
-  - file_state
-  - error_type
 
 links:
   - exclusive: false
     required: true
     subgroup:
       - name: core_metadata_collections
-        backref: aligned_reads_indexes
+        backref: flow_assay_files
         label: data_from
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-      - name: submitted_aligned_reads_files
-        backref: aligned_reads_indexes
-        label: derived_from
-        target_type: submitted_aligned_reads
-        multiplicity: one_to_one
+      - name: flow_assays
+        backref: flow_assay_files
+        label: data_from
+        target_type: flow_assay
+        multiplicity: many_to_many
+        required: false
+      - name: studies
+        backref: flow_assay_files
+        label: data_from
+        target_type: study
+        multiplicity: many_to_one
         required: false
 
 required:
@@ -43,10 +48,11 @@ required:
   - type
   - file_name
   - file_size
+  - data_format
   - md5sum
   - data_category
   - data_type
-  - data_format
+  - experimental_strategy
 
 uniqueKeys:
   - [ id ]
@@ -59,19 +65,35 @@ properties:
     term:
       $ref: "_terms.yaml#/data_category"
     enum:
-      - Sequencing Reads
+      - "Mutant Allele Fractions"
+
   data_type:
     term:
       $ref: "_terms.yaml#/data_type"
     enum:
-      - Aligned Reads Index
+      - "Processed Data"
+      - "Tabulated Results"
+      - "Template"
+      - "Unprocessed Data"
+
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
     enum:
-      - BAI
+      - "SAS"
+      - "TSV"
+      - "PDF"
 
-  submitted_aligned_reads_files:
+  experimental_strategy:
+    term:
+      $ref: "_terms.yaml#/experimental_strategy"
+    enum:
+      - "Biomarker"
+      - "Cell Count"
+
+  studies:
+    $ref: "_definitions.yaml#/to_one"
+  flow_assays:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
-    $ref: "_definitions.yaml#/to_many"
+    $ref: "_definitions.yaml#/to_one"

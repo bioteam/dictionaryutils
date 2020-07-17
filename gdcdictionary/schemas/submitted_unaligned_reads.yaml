@@ -71,7 +71,6 @@ properties:
     enum:
       - BAM
       - FASTQ
-
   read_groups:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:

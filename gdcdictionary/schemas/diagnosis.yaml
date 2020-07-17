@@ -33,13 +33,7 @@ links:
 required:
   - submitter_id
   - type
-  - classification_of_tumor
-  - days_to_diagnosis
-  - morphology
-  - primary_diagnosis
-  - tissue_or_organ_of_origin
-  - tumor_grade
-
+  - subjects
 
 uniqueKeys:
   - [id]
@@ -47,6 +41,14 @@ uniqueKeys:
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
+
+  age:
+    description: "Age at diagnosis."
+    type: number
+  
+  age_unit:
+    description: "Age unit at diagnosis."
+    type: string
 
   age_at_diagnosis:
     term:
@@ -295,6 +297,7 @@ properties:
       - CR-Complete Response
       - CRU-Complete Response Unconfirmed
       - DU-Disease Unchanged
+      - DP-Death Prior To Assessment
       - IMR-Immunoresponse
       - IPD-Immunoprogression
       - MR-Minimal/Marginal response
@@ -302,6 +305,7 @@ properties:
       - Non-CR/Non-PD-Non-CR/Non-PD
       - NPB-No Palliative Benefit
       - NR-NO RESPONSE
+      - Other
       - PA-Palliative Therapy
       - PB-Palliative Benefit
       - PD-Progressive Disease

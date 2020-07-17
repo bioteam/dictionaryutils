@@ -1,14 +1,14 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "sample_processing"
-title: Sample Processing
+id: "cytokine_assay"
+title: Cytokine Assay
 type: object
 namespace: https://www.bloodpac.org
 category: notation
 program: '*'
 project: '*'
 description: >
-  Information pertaining to processed results obtained from an IHC assay.
+  Information pertaining to processed results obtained from an Cytokine assay.
 additionalProperties: false
 submittable: true
 validators: null
@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: samples
-    backref: sample_processings
+  - name: studies
+    backref: cytokine_assays
     label: data_from
-    target_type: sample
+    target_type: study
     multiplicity: many_to_one
     required: true
 
@@ -38,7 +38,7 @@ required:
   - assay_instrument
   - assay_instrument_model
   - assay_method
-  - samples
+  - studies
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
@@ -46,11 +46,12 @@ properties:
   assay_instrument:
     description: "The specific instrument type used to perform the assay."
     enum:
-      - Beckman
+      - Affymetrix
+      - BioRad
   assay_instrument_model:
     description: "The specific model of instrument used to perform the assay."
     enum:
-      - CytoFLEX‎
+      - BioPlex 200
   assay_kit_name:
     description: "Name of the assay kit used."
     type: string
@@ -63,11 +64,11 @@ properties:
   assay_method:
     description: "General methodology used to perform the assay."
     enum:
-      - Cell Counting
-      - Cell Sorting
-      - Biomarker
+      - ELISA
+      - Antibody Array
+      - Bead
   assay_target:
     description: "Target for the assay: can be a gene, protein, or otherwise."
     type: string
-  samples:
+  studies:
     $ref: "_definitions.yaml#/to_one"

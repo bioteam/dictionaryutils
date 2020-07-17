@@ -1,10 +1,10 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "proteomic_raw_data"
-title: Proteomic Raw Data
+id: "flow_assay"
+title: Flow Assay
 type: object
 namespace: https://www.bloodpac.org
-category: data_file
+category: notation
 program: '*'
 project: '*'
 description: >
@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: proteomic_assays
-    backref: proteomic_raw_data_files
+  - name: studies
+    backref: flow_assays
     label: data_from
-    target_type: proteomic_assay
+    target_type: study
     multiplicity: many_to_one
     required: true
 
@@ -35,55 +35,22 @@ uniqueKeys:
 required:
   - submitter_id
   - type
-  - file_name
-  - file_size
-  - data_format
-  - md5sum
-  - data_category
-  - data_type
-  - experimental_strategy
+  - assay_instrument
+  - assay_instrument_model
+  - assay_method
+  - studies
 
 properties:
-  $ref: "_definitions.yaml#/data_file_properties"
-
-  data_category:
-    term:
-      $ref: "_terms.yaml#/data_category"
-    enum:
-      - "Mutant Allele Fractions"
-
-  data_type:
-    term:
-      $ref: "_terms.yaml#/data_type"
-    enum:
-      - "Processed Data"
-      - "Tabulated Results"
-      - "Template"
-      - "Unprocessed Data"
-
-  data_format:
-    term:
-      $ref: "_terms.yaml#/data_format"
-    enum:
-      - "SAS"
-      - "TSV"
-      - "PDF"
-
-  experimental_strategy:
-    term:
-      $ref: "_terms.yaml#/experimental_strategy"
-    enum:
-      - "Biomarker"
-      - "Cell Count"
+  $ref: "_definitions.yaml#/ubiquitous_properties"
 
   assay_instrument:
     description: "The specific instrument type used to perform the assay."
     enum:
-      - Roche
+      - Beckman
   assay_instrument_model:
     description: "The specific model of instrument used to perform the assay."
     enum:
-      - Ultra IHC
+      - CytoFLEX‎
   assay_kit_name:
     description: "Name of the assay kit used."
     type: string
@@ -96,12 +63,11 @@ properties:
   assay_method:
     description: "General methodology used to perform the assay."
     enum:
-      - Immersion
-      - Irrigation
+      - Cell Counting
+      - Cell Sorting
+      - Biomarker
   assay_target:
     description: "Target for the assay: can be a gene, protein, or otherwise."
     type: string
-  proteomic_assays:
-    $ref: "_definitions.yaml#/to_one"
-  core_metadata_collections:
+  studies:
     $ref: "_definitions.yaml#/to_one"

@@ -24,8 +24,8 @@ links:
   - exclusive: false
     required: true
     subgroup:
-      - name: proteomic_raw_datas
-        backref: proteomic_processed_datas
+      - name: proteomic_raw_data_files
+        backref: proteomic_processed_data_files
         label: data_from
         target_type: proteomic_raw_data
         multiplicity: many_to_many
@@ -79,9 +79,9 @@ properties:
       - "Chromogenic"
       - "Immunofluorescence"
 
-  analytes:
+  studies:
     $ref: "_definitions.yaml#/to_one"
-  proteomic_raw_datas:
+  proteomic_raw_data_files:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
