@@ -32,10 +32,10 @@ links:
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-      - name: read_groups
+      - name: submitted_aligned_reads_files
         backref: submitted_somatic_mutations
         label: derived_from
-        target_type: read_group
+        target_type: submitted_aligned_reads
         multiplicity: many_to_many
         required: false
 
@@ -48,7 +48,6 @@ required:
   - md5sum
   - data_category
   - data_type
-  - experimental_strategy
 
 uniqueKeys:
   - [ id ]
@@ -69,15 +68,11 @@ properties:
     term:
       $ref: "_terms.yaml#/data_format"
     type: string
-  experimental_strategy:
-    term:
-      $ref: "_terms.yaml#/experimental_strategy"
-    type: string
   total_variants:
     description: "The total number of variants detected carrying a base change difference from the reference genome."
     type: integer
 
-  read_groups:
+  submitted_aligned_reads_files:
     $ref: "_definitions.yaml#/to_many"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"

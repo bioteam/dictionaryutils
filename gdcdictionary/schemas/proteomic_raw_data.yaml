@@ -1,14 +1,14 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "flow_assay_file"
-title: Flow Assay File
+id: "proteomic_raw_data"
+title: Proteomic Raw Data
 type: object
 namespace: https://www.bloodpac.org
 category: data_file
 program: '*'
 project: '*'
 description: >
-  A data file containing the results of a Flow assay
+  Information pertaining to processed results obtained from an IHC assay.
 additionalProperties: false
 submittable: true
 validators: null
@@ -21,27 +21,16 @@ systemProperties:
   - state
 
 links:
-  - exclusive: false
+  - name: proteomic_assays
+    backref: proteomic_raw_data_files
+    label: data_from
+    target_type: proteomic_assay
+    multiplicity: many_to_one
     required: true
-    subgroup:
-      - name: core_metadata_collections
-        backref: flow_assay_files
-        label: data_from
-        target_type: core_metadata_collection
-        multiplicity: many_to_one
-        required: false
-      - name: flow_assays
-        backref: flow_assay_files
-        label: data_from
-        target_type: flow_assay
-        multiplicity: many_to_many
-        required: false
-      - name: studies
-        backref: flow_assay_files
-        label: data_from
-        target_type: study
-        multiplicity: many_to_one
-        required: false
+
+uniqueKeys:
+  - [ id ]
+  - [ project_id, submitter_id ]
 
 required:
   - submitter_id
@@ -53,10 +42,6 @@ required:
   - data_category
   - data_type
   - experimental_strategy
-
-uniqueKeys:
-  - [ id ]
-  - [ project_id, submitter_id ]
 
 properties:
   $ref: "_definitions.yaml#/data_file_properties"
@@ -91,9 +76,32 @@ properties:
       - "Biomarker"
       - "Cell Count"
 
-  studies:
-    $ref: "_definitions.yaml#/to_one"
-  flow_assays:
+  assay_instrument:
+    description: "The specific instrument type used to perform the assay."
+    enum:
+      - Roche
+  assay_instrument_model:
+    description: "The specific model of instrument used to perform the assay."
+    enum:
+      - Ultra IHC
+  assay_kit_name:
+    description: "Name of the assay kit used."
+    type: string
+  assay_kit_vendor:
+    description: "Vendor that provided the assay kit."
+    type: string
+  assay_kit_version:
+    description: "Version of the assay kit used."
+    type: string
+  assay_method:
+    description: "General methodology used to perform the assay."
+    enum:
+      - Immersion
+      - Irrigation
+  assay_target:
+    description: "Target for the assay: can be a gene, protein, or otherwise."
+    type: string
+  proteomic_assays:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"

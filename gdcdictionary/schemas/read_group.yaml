@@ -20,23 +20,42 @@ systemProperties:
   - state
 
 links:
-  - name: samples
-    label: derived_from
-    target_type: sample
-    multiplicity: many_to_one
+  - exclusive: false
     required: true
-    backref: read_groups
+    subgroup:
+      - name: rna_seq_assays
+        backref: read_groups
+        label: data_from
+        target_type: rna_seq_assay
+        multiplicity: many_to_one
+        required: false
+      - name: wes_assays
+        backref: read_groups
+        label: data_from
+        target_type: wes_assay
+        multiplicity: many_to_one
+        required: false
+      - name: atac_seq_assays
+        backref: read_groups
+        label: data_from
+        target_type: atac_seq_assay
+        multiplicity: many_to_one
+        required: false
+      - name: chip_seq_assays
+        backref: read_groups
+        label: data_from
+        target_type: chip_seq_assay
+        multiplicity: many_to_one
+        required: false
 
 required:
   - submitter_id
   - type
   - platform
   - instrument_model
-  - library_strategy
   - is_paired_end
   - read_length_lower
   - read_length_upper
-  - samples
 
 uniqueKeys:
   - [ id ]
@@ -44,7 +63,6 @@ uniqueKeys:
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
-
   adapter_sequence:
     term:
       $ref: "_terms.yaml#/adapter_sequence"
@@ -113,18 +131,6 @@ properties:
     term:
       $ref: "_terms.yaml#/library_preparation_kit_version"
     type: string
-  library_selection:
-    term:
-      $ref: "_terms.yaml#/library_selection"
-    enum:
-      - Amplicon
-      - Hybrid Selection
-      - PCR
-      - Affinity Enrichment
-      - Poly-T Enrichment
-      - RNA Depletion
-      - Targeted Sequencing
-      - Other
   library_strand:
     term:
       $ref: "_terms.yaml#/library_strand"
@@ -132,19 +138,6 @@ properties:
       - Unstranded
       - First Stranded
       - Second Stranded
-  library_strategy:
-    term:
-      $ref: "_terms.yaml#/library_strategy"
-    enum:
-      - WGS
-      - WXS
-      - RNA-Seq
-      - ChIP-Seq
-      - miRNA-Seq
-      - Bisulfite-Seq
-      - Validation
-      - Amplicon
-      - Other
   platform:
     term:
       $ref: "_terms.yaml#/platform"
@@ -165,36 +158,19 @@ properties:
   read_length_upper:
     description: "The upper limit for the length of reads used in the sequencing experiment."
     type: integer
-  RIN:
-    term:
-      $ref: "_terms.yaml#/RIN"
-    type: number
   sequencing_center:
     term:
       $ref: "_terms.yaml#/sequencing_center"
     type: string
-  target_capture_kit_name:
-    term:
-      $ref: "_terms.yaml#/target_capture_kit_name"
-    type: string
-  target_capture_kit_vendor:
-    term:
-      $ref: "_terms.yaml#/target_capture_kit_vendor"
-    type: string
-  target_capture_kit_catalog_number:
-    term:
-      $ref: "_terms.yaml#/target_capture_kit_catalog_number"
-    type: string
-  target_capture_kit_version:
-    term:
-      $ref: "_terms.yaml#/target_capture_kit_version"
-    type: string
-  target_capture_kit_target_region:
-    term:
-      $ref: "_terms.yaml#/target_capture_kit_target_region"
-    type: string
   universal_molecular_identifier:
     description: "Short sequences or barcodes added to each read for next generation sequencing protocols used to detect and quantify unique transcripts."
     type: string
-  samples:
+  
+  rna_seq_assays:
+    $ref: "_definitions.yaml#/to_one"
+  wes_assays:
+    $ref: "_definitions.yaml#/to_one"
+  atac_seq_assays:
+    $ref: "_definitions.yaml#/to_one"
+  chip_seq_assays:
     $ref: "_definitions.yaml#/to_one"

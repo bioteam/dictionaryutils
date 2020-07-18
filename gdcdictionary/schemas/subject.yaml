@@ -55,7 +55,7 @@ properties:
     description: "Primary site for the subject."
     type: string
   disease_type:
-    description: "Name of the disease for the subject."
+    description: "Name of the disease for the subject. (Use DOID from Disease Ontology)"
     type: string
   species:
     description: "Taxonomic species of the subject."

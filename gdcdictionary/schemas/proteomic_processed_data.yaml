@@ -1,14 +1,14 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "flow_assay_file"
-title: Flow Assay File
+id: "proteomic_processed_data"
+title: Proteomic Processed Data
 type: object
 namespace: https://www.bloodpac.org
 category: data_file
 program: '*'
 project: '*'
 description: >
-  A data file containing the results of a Flow assay
+  A data file containing the results of a IHC assay
 additionalProperties: false
 submittable: true
 validators: null
@@ -24,23 +24,11 @@ links:
   - exclusive: false
     required: true
     subgroup:
-      - name: core_metadata_collections
-        backref: flow_assay_files
+      - name: proteomic_raw_data_files
+        backref: proteomic_processed_data_files
         label: data_from
-        target_type: core_metadata_collection
-        multiplicity: many_to_one
-        required: false
-      - name: flow_assays
-        backref: flow_assay_files
-        label: data_from
-        target_type: flow_assay
+        target_type: proteomic_raw_data
         multiplicity: many_to_many
-        required: false
-      - name: studies
-        backref: flow_assay_files
-        label: data_from
-        target_type: study
-        multiplicity: many_to_one
         required: false
 
 required:
@@ -88,12 +76,12 @@ properties:
     term:
       $ref: "_terms.yaml#/experimental_strategy"
     enum:
-      - "Biomarker"
-      - "Cell Count"
+      - "Chromogenic"
+      - "Immunofluorescence"
 
   studies:
     $ref: "_definitions.yaml#/to_one"
-  flow_assays:
+  proteomic_raw_data_files:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
