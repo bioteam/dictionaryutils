@@ -1,14 +1,14 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "alignment_workflow"
-title: Alignment Workflow
+id: "variant_calling_workflow"
+title: Variant Calling Workflow
 type: object
 namespace: https://www.bloodpac.org
 category: analysis
 program: '*'
 project: '*'
 description: >
-  A description of the specific bioinformatics workflow or pipeline used for sequence alignment.
+  A description of the specific bioinformatics workflow or pipeline used for variant calling.
 additionalProperties: false
 submittable: true
 validators: null
@@ -19,18 +19,20 @@ systemProperties:
   - created_datetime
   - updated_datetime
   - state
+  - file_state
+  - error_type
 
 links:
-  - name: input_unaligned_reads_files
-    backref: associated_alignment_workflows
+  - name: input_aligned_reads_files
+    backref: associated_variant_calling_workflows
     label: performed_on
-    target_type: unaligned_reads
+    target_type: aligned_reads
     multiplicity: many_to_many
     required: true
-  - name: output_aligned_reads_files
-    backref: alignment_workflows
-    label: generate
-    target_type: aligned_reads
+  - name: output_somatic_mutations
+    backref: variant_calling_workflows
+    label: generated
+    target_type: somatic_mutation
     multiplicity: one_to_one
     required: true
 
@@ -48,7 +50,7 @@ uniqueKeys:
 properties:
   $ref: "_definitions.yaml#/workflow_properties"
 
-  input_unaligned_reads_files:
+  input_aligned_reads_files:
     $ref: "_definitions.yaml#/to_many"
-  output_aligned_reads_files:
+  output_somatic_mutations:
     $ref: "_definitions.yaml#/to_one"

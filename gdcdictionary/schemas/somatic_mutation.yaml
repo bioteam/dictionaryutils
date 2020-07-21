@@ -1,14 +1,14 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "submitted_aligned_reads"
-title: Submitted Aligned Reads
+id: "somatic_mutation"
+title: Somatic Mutation
 type: object
 namespace: https://www.bloodpac.org
 category: data_file
 program: '*'
 project: '*'
 description: >
-  Data file containing aligned reads that are used as input to GDC workflows.
+  Data file containing somatic mutation calls from a read group.
 additionalProperties: false
 submittable: true
 validators: null
@@ -27,15 +27,15 @@ links:
     required: true
     subgroup:
       - name: core_metadata_collections
-        backref: submitted_aligned_reads_files
+        backref: somatic_mutations
         label: data_from
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-      - name: submitted_unaligned_reads_files
-        backref: submitted_aligned_reads_files
-        label: data_from
-        target_type: submitted_unaligned_reads
+      - name: aligned_reads_files
+        backref: somatic_mutations
+        label: derived_from
+        target_type: aligned_reads
         multiplicity: many_to_many
         required: false
 
@@ -59,21 +59,20 @@ properties:
   data_category:
     term:
       $ref: "_terms.yaml#/data_category"
-    enum:
-      - Sequencing Reads
+    type: string
   data_type:
     term:
       $ref: "_terms.yaml#/data_type"
-    enum:
-      - Aligned Reads
-      - Alignment Coordinates
+    type: string
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
-    enum:
-      - BAM
-      - BED
-  submitted_unaligned_reads_files:
+    type: string
+  total_variants:
+    description: "The total number of variants detected carrying a base change difference from the reference genome."
+    type: integer
+
+  aligned_reads_files:
     $ref: "_definitions.yaml#/to_many"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"

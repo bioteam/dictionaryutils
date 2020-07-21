@@ -1,13 +1,14 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "submitted_unaligned_reads"
-title: Submitted Unaligned Reads
+id: "aligned_reads"
+title: Aligned Reads
 type: object
 namespace: https://www.bloodpac.org
 category: data_file
 program: '*'
 project: '*'
-description: "Data file containing unaligned reads that have not been GDC Harmonized."
+description: >
+  Data file containing aligned reads that are used as input to GDC workflows.
 additionalProperties: false
 submittable: true
 validators: null
@@ -26,16 +27,16 @@ links:
     required: true
     subgroup:
       - name: core_metadata_collections
-        backref: submitted_unaligned_reads_files
+        backref: aligned_reads_files
         label: data_from
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-      - name: read_groups
-        backref: submitted_unaligned_reads_files
+      - name: unaligned_reads_files
+        backref: aligned_reads_files
         label: data_from
-        target_type: read_group
-        multiplicity: many_to_one
+        target_type: unaligned_reads
+        multiplicity: many_to_many
         required: false
 
 required:
@@ -43,10 +44,10 @@ required:
   - type
   - file_name
   - file_size
+  - data_format
   - md5sum
   - data_category
   - data_type
-  - data_format
 
 uniqueKeys:
   - [ id ]
@@ -64,14 +65,15 @@ properties:
     term:
       $ref: "_terms.yaml#/data_type"
     enum:
-      - Unaligned Reads
+      - Aligned Reads
+      - Alignment Coordinates
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
     enum:
       - BAM
-      - FASTQ
-  read_groups:
-    $ref: "_definitions.yaml#/to_one"
+      - BED
+  unaligned_reads_files:
+    $ref: "_definitions.yaml#/to_many"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
