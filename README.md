@@ -12,9 +12,9 @@ Each [**branch**](https://github.com/bioteam/dictionaryutils/branches) within th
 
 These links below will be automatically updated by a [Github Action](https://github.com/bioteam/dictionaryutils/actions) within a few minutes after creating a branch.
 
-* Travis Build Status BRANCH **root** [![Build Status](https://travis-ci.com/bioteam/dictionaryutils.svg?branch=root)](https://travis-ci.com/github/bioteam/dictionaryutils/branches)
-* Dictionary Schema BRANCH **root** [schema.json](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/root/schema.json)
-* Dictionary Visualization BRANCH **root** [dictionary-visualizer](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/master/viz/index.html#https://bms-gen3-dev.s3.amazonaws.com/datadictionary/root/schema.json)
+* Travis Build Status BRANCH **adam2** [![Build Status](https://travis-ci.com/bioteam/dictionaryutils.svg?branch=adam2)](https://travis-ci.com/github/bioteam/dictionaryutils/branches)
+* Dictionary Schema BRANCH **adam2** [schema.json](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/adam2/schema.json)
+* Dictionary Visualization BRANCH **adam2** [dictionary-visualizer](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/master/viz/index.html#https://bms-gen3-dev.s3.amazonaws.com/datadictionary/adam2/schema.json)
 
 ## Data Dictionary Structure
 
