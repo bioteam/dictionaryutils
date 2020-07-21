@@ -12,9 +12,9 @@ Each [**branch**](https://github.com/bioteam/dictionaryutils/branches) within th
 
 These links below will be automatically updated by a [Github Action](https://github.com/bioteam/dictionaryutils/actions) within a few minutes after creating a branch.
 
-* Travis Build Status BRANCH **master** [![Build Status](https://travis-ci.com/bioteam/dictionaryutils.svg?branch=master)](https://travis-ci.com/github/bioteam/dictionaryutils/branches)
-* Dictionary Schema BRANCH **master** [schema.json](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/master/schema.json)
-* Dictionary Visualization BRANCH **master** [dictionary-visualizer](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/master/viz/index.html#https://bms-gen3-dev.s3.amazonaws.com/datadictionary/master/schema.json)
+* Travis Build Status BRANCH **ank-publications-patch-1** [![Build Status](https://travis-ci.com/bioteam/dictionaryutils.svg?branch=ank-publications-patch-1)](https://travis-ci.com/github/bioteam/dictionaryutils/branches)
+* Dictionary Schema BRANCH **ank-publications-patch-1** [schema.json](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/ank-publications-patch-1/schema.json)
+* Dictionary Visualization BRANCH **ank-publications-patch-1** [dictionary-visualizer](https://bms-gen3-dev.s3.amazonaws.com/datadictionary/master/viz/index.html#https://bms-gen3-dev.s3.amazonaws.com/datadictionary/ank-publications-patch-1/schema.json)
 
 ## Data Dictionary Structure
 
