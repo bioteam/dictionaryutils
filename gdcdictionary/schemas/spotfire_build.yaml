@@ -1,0 +1,65 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "spotfire_build"
+title: Spotfire Build
+type: object
+namespace: https://nci-crdc-demo.datacommons.io/
+category: administrative
+program: '*'
+project: '*'
+description: >
+  The urls to a specific spotfire_build.
+additionalProperties: false
+submittable: true
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - created_datetime
+  - updated_datetime
+  - state
+
+links:
+  - name: studies
+    backref: spotfire_builds
+    label: member_of
+    target_type: study
+    multiplicity: many_to_one
+    required: true
+
+required:
+  - submitter_id
+  - studies
+  - client_url
+  - web_browser_url
+
+uniqueKeys:
+  - [id]
+  - [project_id, submitter_id]
+
+# spotfire_build properties
+properties:
+  id:
+    $ref: "_definitions.yaml#/UUID"
+    systemAlias: node_id
+  state:
+    $ref: "_definitions.yaml#/state"
+  submitter_id:
+    type:
+      - string
+      - "null"
+  web_browser_url:
+    description: "Web browser url for spotfire_build."
+    type: string
+  client_url:
+    description: "Client-side url for spotfire_build"
+    type: string
+  studies:
+    $ref: "_definitions.yaml#/to_one"
+  project_id:
+    $ref: "_definitions.yaml#/project_id"
+  created_datetime:
+    $ref: "_definitions.yaml#/datetime"
+  updated_datetime:
+    $ref: "_definitions.yaml#/datetime"
