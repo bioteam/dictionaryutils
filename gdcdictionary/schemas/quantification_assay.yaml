@@ -1,0 +1,115 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "quantification_assay"
+title: Quantification Assay
+type: object
+namespace: https://www.bloodpac.org
+category: notation
+program: '*'
+project: '*'
+description: >
+  Information pertaining to processed results obtained from a quantification assay.
+additionalProperties: false
+submittable: true
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - created_datetime
+  - updated_datetime
+  - state
+
+links:
+  - name: samples
+    backref: quantification_assays
+    label: data_from
+    target_type: sample
+    multiplicity: many_to_one
+    required: true
+
+required:
+  - submitter_id
+  - type
+  - assay_instrument
+  - assay_instrument_model
+  - assay_method
+  - samples
+
+uniqueKeys:
+  - [ id ]
+  - [ project_id, submitter_id ]
+
+properties:
+  $ref: "_definitions.yaml#/ubiquitous_properties"
+
+  assay_instrument:
+    description: "The specific instrument type used to perform the assay."
+    enum:
+      - ABI QuantStudio
+      - Agilent TapeStation
+      - Applied Biosystems Real-Time PCR System
+      - BioTek
+      - CytoTrapNano CTC Platform
+      - Epic Sciences CTC Platform
+      - Fragment Analyzer
+      - HD-SCA Platform
+      - Molecular Devices SpectraMax
+      - Qubit
+  assay_instrument_model:
+    description: "The specific model of instrument used to perform the assay."
+    enum:
+      - ABI 7500 Fast Dx Real-Time PCR
+      - ABI QuantStudio 5
+      - Advanced Analytical Fragment Analyzer
+      - Agilent 2200 TapeStation
+      - Agilent 4200 TapeStation
+      - Agilent Bioanalyzer 2100
+      - BioTek Synergy 4
+      - C88801-RU
+      - ESRUO-01
+      - Fluidigm Hyperion
+      - HDSCA Enumeration
+      - Molecular Devices SpectraMax M2
+      - Qubit 3.0
+  assay_instrument_mode:
+    description: "The specific mode an instrument was run in (e.g., High Sensitivity)."
+    type: string
+  assay_kit_name:
+    description: "Name of the assay kit used."
+    type: string
+  assay_kit_vendor:
+    description: "Vendor that provided the assay kit."
+    type: string
+  assay_kit_version:
+    description: "Version of the assay kit used."
+    type: string
+  assay_method:
+    description: "General methodology used to perform the assay (e.g. PCR, Sequencing)."
+    enum:
+      - DNA Electrophoresis
+      - Fluorometer
+      - Immunohistochemistry
+      - qPCR
+  cell_count:
+    description: >
+      If the sample is cell count, report total whole number of cells counted here.
+    type: integer
+  cell_concentration:
+    description: >
+      If the sample is cell count, report the concentrations of the cells in the aliquot (counted
+      cells per assay volume mL). Report the calculated concentration in cells per milliliters.
+    type: number
+  experimental_step:
+    description: "A description of the experimental purpose or step for which the assay was performed."
+    enum:
+      - DNA Extraction
+      - Library Building
+  molecular_concentration:
+    description: >
+      If the sample is a molecule (e.g. DNA or RNA), report the observed concentration in nanograms
+      per microliters.
+    type: number
+
+  samples:
+    $ref: "_definitions.yaml#/to_one"
