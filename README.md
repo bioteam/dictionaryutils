@@ -174,7 +174,7 @@ brew install travis
 
 ### Install Docker ([Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac/))
 
-### Install tesdict
+### Install testdict
 
 ```bash
 echo -e '\ntestdict() { docker run --rm -v $(pwd):/dictionary quay.io/cdis/dictionaryutils:master; }\n' >> ~/.zshrc
