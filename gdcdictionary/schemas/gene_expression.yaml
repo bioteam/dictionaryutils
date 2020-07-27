@@ -1,0 +1,95 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "gene_expression"
+title: Gene Expression
+type: object
+namespace: https://gdc.cancer.gov
+category: data_file
+project: '*'
+program: '*'
+description: >
+  Data file containing gene expression information generated internally by the GDC.
+additionalProperties: false
+submittable: false
+downloadable: true
+previous_version_downloadable: true
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - created_datetime
+  - updated_datetime
+  - file_state
+  - state
+  - error_type
+
+links:
+  - exclusive: true
+    required: true
+    subgroup:
+      - name: core_metadata_collections
+        backref: gene_expressions
+        label: data_from
+        target_type: core_metadata_collection
+        multiplicity: many_to_one
+        required: false
+      - name: rna_expression_workflows
+        backref: gene_expressions
+        label: data_from
+        target_type: rna_expression_workflow
+        multiplicity: many_to_one
+        required: false
+
+required:
+  - submitter_id
+  - type
+  - file_name
+  - file_size
+  - md5sum
+  - data_category
+  - data_format
+  - data_type
+  - experimental_strategy
+
+uniqueKeys:
+  - [id]
+  - [project_id, submitter_id]
+
+properties:
+
+  $ref: "_definitions.yaml#/data_file_properties"
+
+  data_category:
+    $ref: "_terms.yaml#/data_category"
+    enum:
+      - Transcriptome Profiling
+
+  data_type:
+    $ref: "_terms.yaml#/data_type"
+    enum:
+      - Exon Expression Quantification
+      - Gene Expression Quantification
+      - Isoform Expression Quantification
+      - Splice Junction Quantification
+
+  data_format:
+    $ref: "_terms.yaml#/data_format"
+    enum:
+      - CSV
+      - HDF5
+      - MEX
+      - TSV
+      - TXT
+
+  experimental_strategy:
+    $ref: "_terms.yaml#/experimental_strategy"
+    enum:
+      - RNA-Seq
+      - scRNA-Seq
+      - Total RNA-Seq
+
+  rna_expression_workflows:
+    $ref: "_definitions.yaml#/to_one"
+  core_metadata_collections:
+    $ref: "_definitions.yaml#/to_one"

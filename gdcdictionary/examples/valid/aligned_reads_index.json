@@ -7,7 +7,7 @@
     "data_category": "Sequencing Reads",
     "data_type": "Aligned Reads Index",
     "data_format": "BAI",
-    "submitted_aligned_reads_files": {
+    "aligned_reads_files": {
 	"id": "0cb66276-c29b-4811-a704-38502173c0f8"
     }
 }
