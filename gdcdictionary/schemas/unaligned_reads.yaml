@@ -1,7 +1,7 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "submitted_unaligned_reads"
-title: Submitted Unaligned Reads
+id: "unaligned_reads"
+title: Unaligned Reads
 type: object
 namespace: https://www.bloodpac.org
 category: data_file
@@ -26,13 +26,13 @@ links:
     required: true
     subgroup:
       - name: core_metadata_collections
-        backref: submitted_unaligned_reads_files
+        backref: unaligned_reads_files
         label: data_from
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
       - name: read_groups
-        backref: submitted_unaligned_reads_files
+        backref: unaligned_reads_files
         label: data_from
         target_type: read_group
         multiplicity: many_to_one
