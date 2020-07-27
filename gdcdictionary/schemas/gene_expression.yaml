@@ -7,7 +7,7 @@ namespace: https://gdc.cancer.gov
 category: data_file
 project: '*'
 program: '*'
-description: >-
+description: >
   Data file containing gene expression information generated internally by the GDC.
 additionalProperties: false
 submittable: false
@@ -25,15 +25,25 @@ systemProperties:
   - error_type
 
 links:
-  - name: rna_expression_workflows
-    backref: gene_expressions
-    label: data_from
-    target_type: rna_expression_workflow
-    multiplicity: many_to_one
+  - exclusive: true
     required: true
+    subgroup:
+      - name: core_metadata_collections
+        backref: gene_expressions
+        label: data_from
+        target_type: core_metadata_collection
+        multiplicity: many_to_one
+        required: false
+      - name: rna_expression_workflows
+        backref: gene_expressions
+        label: data_from
+        target_type: rna_expression_workflow
+        multiplicity: many_to_one
+        required: false
 
 required:
   - submitter_id
+  - type
   - file_name
   - file_size
   - md5sum
@@ -48,18 +58,15 @@ uniqueKeys:
 
 properties:
 
-  $ref:
-    - "_definitions.yaml#/data_file_properties"
+  $ref: "_definitions.yaml#/data_file_properties"
 
   data_category:
-    $ref:
-      - "_terms.yaml#/data_category/common"
+    $ref: "_terms.yaml#/data_category"
     enum:
       - Transcriptome Profiling
 
   data_type:
-    $ref:
-      - "_terms.yaml#/data_type/common"
+    $ref: "_terms.yaml#/data_type"
     enum:
       - Exon Expression Quantification
       - Gene Expression Quantification
@@ -67,8 +74,7 @@ properties:
       - Splice Junction Quantification
 
   data_format:
-    $ref:
-      - "_terms.yaml#/data_format/common"
+    $ref: "_terms.yaml#/data_format"
     enum:
       - CSV
       - HDF5
@@ -77,12 +83,13 @@ properties:
       - TXT
 
   experimental_strategy:
-    $ref:
-      - "_terms.yaml#/experimental_strategy/common"
+    $ref: "_terms.yaml#/experimental_strategy"
     enum:
       - RNA-Seq
       - scRNA-Seq
       - Total RNA-Seq
 
   rna_expression_workflows:
+    $ref: "_definitions.yaml#/to_one"
+  core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"

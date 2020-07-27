@@ -30,6 +30,7 @@ links:
 
 required:
   - submitter_id
+  - type
   - studies
   - client_url
   - web_browser_url
@@ -40,15 +41,8 @@ uniqueKeys:
 
 # spotfire_build properties
 properties:
-  id:
-    $ref: "_definitions.yaml#/UUID"
-    systemAlias: node_id
-  state:
-    $ref: "_definitions.yaml#/state"
-  submitter_id:
-    type:
-      - string
-      - "null"
+  $ref: "_definitions.yaml#/ubiquitous_properties"
+
   web_browser_url:
     description: "Web browser url for spotfire_build."
     type: string
@@ -57,9 +51,3 @@ properties:
     type: string
   studies:
     $ref: "_definitions.yaml#/to_one"
-  project_id:
-    $ref: "_definitions.yaml#/project_id"
-  created_datetime:
-    $ref: "_definitions.yaml#/datetime"
-  updated_datetime:
-    $ref: "_definitions.yaml#/datetime"

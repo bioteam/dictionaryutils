@@ -7,7 +7,7 @@ namespace: https://gdc.cancer.gov
 category: analysis
 project: '*'
 program: '*'
-description: >-
+description: >
   Metadata for the RNA expression pipeline used to quantify RNA gene and exon expression
   from unharmonized or GDC harmonized data.
 additionalProperties: false
@@ -33,12 +33,6 @@ links:
         target_type: aligned_reads
         multiplicity: many_to_one
         required: false
-      - name: aligned_reads_files
-        backref: rna_expression_workflows
-        label: performed_on
-        target_type: aligned_reads
-        multiplicity: many_to_one
-        required: false
       - name: unaligned_reads_files
         backref: rna_expression_workflows
         label: performed_on
@@ -48,6 +42,7 @@ links:
 
 required:
   - submitter_id
+  - type
   - workflow_link
   - workflow_type
 
@@ -56,13 +51,10 @@ uniqueKeys:
   - [project_id, submitter_id]
 
 properties:
-
-  $ref:
-    - "_definitions.yaml#/workflow_properties"
+  $ref: "_definitions.yaml#/workflow_properties"
 
   workflow_type:
-    $ref:
-      - "_terms.yaml#/workflow_type/common"
+    $ref: "_terms.yaml#/workflow_type"
     enum:
       - CellRanger - 10x Filtered Counts
       - CellRanger - 10x Raw Counts
@@ -84,9 +76,5 @@ properties:
 
   aligned_reads_files:
     $ref: "_definitions.yaml#/to_one"
-
-  aligned_reads_files:
-    $ref: "_definitions.yaml#/to_one"
-
   unaligned_reads_files:
     $ref: "_definitions.yaml#/to_one"
