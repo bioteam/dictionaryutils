@@ -30,11 +30,11 @@ links:
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-      - name: samples
+      - name: proteomic_assays
         backref: raw_protein_mass_spectrometries
-        label: data_for
-        target_type: sample
-        multiplicity: many_to_many
+        label: data_from
+        target_type: proteomic_assay
+        multiplicity: many_to_one
         required: false
 
 uniqueKeys:
@@ -106,7 +106,7 @@ properties:
       Original file name in https://cptc-xfer.uis.georgetown.edu/publicData/Phase_II_Data/CPTAC_Breast_Cancer_S039
     type: string
 
-  samples:
-    $ref: "_definitions.yaml#/to_many"
+  proteomic_assays:
+    $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_many"
