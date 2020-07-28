@@ -1,0 +1,174 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "visit"
+title: Visit
+type: object
+nodeTerms: null
+namespace: https://gen3.datacommons.io/
+category: administrative
+program: '*'
+project: '*'
+description: A record of a study subject's visit to or remote contact with a medical
+  professional or study administrator to capture time-based data from longitudinal
+  studies. A clinical encounter that encompasses planned and unplanned trial interventions,
+  procedures and assessments that may be performed on a subject. A visit has a start
+  and an end, each described with a rule. The process by which information about the
+  health status of an individual is obtained before and after a study has officially
+  closed; an activity that continues something that has already begun or that repeats
+  something that has already been done.
+additionalProperties: false
+submittable: true
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - state
+  - created_datetime
+  - updated_datetime
+
+links:
+  - name: subjects
+    backref: visits
+    label: describes
+    target_type: subject
+    multiplicity: many_to_one
+    required: true
+
+required:
+  - submitter_id
+  - type
+  - subjects
+
+uniqueKeys:
+  - [id]
+  - [project_id, submitter_id]
+
+properties:
+
+  $ref: "_definitions.yaml#/ubiquitous_properties"
+
+  days_to_visit:
+    description: The number of days between the case Index Date and the date of the
+      visit, call or other interaction.
+    type: integer
+
+  days_to_visit_end:
+    description: The number of days from the index date to the date the patient's
+      visit ended.
+    type: integer
+
+  days_to_visit_start:
+    description: The number of days from the index date to the date the patient's
+      visit began.
+    type: integer
+
+  months_between_visits:
+    description: The number of months between the case Index Date and the date  of
+      the visit, call or other interaction
+    type: integer
+
+  visit_duration:
+    description: The number of days from the start date of the visit to the end date
+      of the visit.
+    type: integer
+
+  visit_epoch:
+    description: If a single visit is sub-divided into multiple time-points or epochs,
+      or if an unscheduled visit takes place between two integer-labeled visits, specify
+      the order of such sub-divisions, timepoints, or unscheduled visits here. For
+      example, specify 'visit_number' of '1' and 'visit_epoch' of '2' for 'Visit 1.2'.
+      If there is no sub-division of a single visit into multiple timepoints or unscheduled
+      visits between numbered visits, submit only 'visit_number'.
+    type: integer
+
+  visit_label:
+    description: The reason for or context of the visit, call or other interaction.
+      For a generic visit, specify "Visit".
+    enum:
+      - Annual Clinical
+      - Baseline
+      - Biopsy
+      - CTCC Only
+      - Consent
+      - Electronic Health Records
+      - Endpoint
+      - Final
+      - Follow up
+      - Genetic Testing
+      - Imaging
+      - Log
+      - Other (specify)
+      - Pre-screening
+      - Premature Withdrawal
+      - Randomize
+      - Re-screen
+      - Screening
+      - Screening/Baseline Combined
+      - Study Completion
+      - Symptomatic Therapy
+      - Transfer Event
+      - Unexpected Event
+      - Unknown
+      - Visit
+      - Washout
+
+  visit_label_other:
+    description: The reason for or context of the visit, call or other interaction,
+      if 'Other (specify)' was chosen for 'visit_label'.
+    type: string
+
+  visit_method:
+    description: The way the visit took place, whether in person or remotely.
+    enum:
+      - Email
+      - In-person Visit
+      - Other (specify)
+      - Phone Call
+      - Software Application
+      - Text Message
+      - Unknown
+      - Website
+      - Written Communication
+
+  visit_method_other:
+    description: The way the visit took place, if 'Other (specify)' was chosen for
+      'visit_method'.
+    type: string
+
+  visit_number:
+    description: The order number of this visit in relation to other visits. For example,
+      if this is 'Visit 2' out of 'Visit 1, Visit 2, ..., Visit N', then specify a
+      'visit_number' of '2'. See 'visit_epoch' to specify sub-divisions of a single
+      visit. For example, if observations were made every hour during a 3 hour visit,
+      specify a 'visit_epoch' of '1','2', and '3' with the same 'visit_number' to
+      record each hour's observations.
+    type: integer
+
+  visit_scheduled:
+    description: Specify whether the visit was scheduled or unscheduled.
+    enum:
+      - Scheduled
+      - Unscheduled
+
+  visit_type:
+    description: Text term used to describe the type of visit.
+    enum:
+      - Inpatient
+      - Intensive outpatient
+      - Outpatient
+
+  visit_units:
+    description: If a visit is defined by a given interval of time, specify the time
+      interval. For example, for a visit defined as 'Month 6 Visit', specify 'Month'
+      for 'visit_units' and specify '6' for 'visit_number'.
+    enum:
+      - Biweekly
+      - Day
+      - Month
+      - Quarter
+      - Week
+      - Year
+
+  subjects:
+    $ref: "_definitions.yaml#/to_one"
