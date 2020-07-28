@@ -1,0 +1,163 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "pathology_slide"
+title: Pathology Slide
+type: object
+namespace: https://vpodc.org/
+category: data_file
+program: '*'
+project: '*'
+description: >
+  Data file containing a pathology slide.
+additionalProperties: false
+submittable: true
+downloadable: true
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - created_datetime
+  - updated_datetime
+  - state
+  - file_state
+  - error_type
+
+links:
+  - exclusive: false
+    required: true
+    subgroup:
+      - name: core_metadata_collections
+        backref: pathology_slides
+        label: data_from
+        target_type: core_metadata_collection
+        multiplicity: many_to_one
+        required: false
+      - name: cases
+        backref: pathology_slides
+        label: data_from
+        target_type: case
+        multiplicity: many_to_one
+        required: false
+      - name: samples
+        backref: pathology_slides
+        label: data_from
+        target_type: sample
+        multiplicity: many_to_one
+        required: false
+
+required:
+  - submitter_id
+  - type
+  - file_name
+  - file_size
+  - md5sum
+  - data_format
+  - data_type
+  - data_category
+
+uniqueKeys:
+  - [ id ]
+  - [ project_id, submitter_id ]
+
+properties:
+  $ref: "_definitions.yaml#/data_file_properties"
+
+  data_type:
+    term:
+      $ref: "_terms.yaml#/data_type"
+    type: string
+
+  data_format:
+    term:
+      $ref: "_terms.yaml#/data_format"
+    enum:
+      - JPEG
+      - SVS
+      - TIFF
+      - PNG
+      - GIF
+      - DCM
+
+  data_category:
+    term:
+      $ref: "_terms.yaml#/data_category"
+    type: string
+
+  study_date:
+    $ref: "_definitions.yaml#/datetime"
+
+  magnification:
+    description: "Magnification used to capture the image."
+    type: number
+
+  patient_sex:
+    description: "Patient's gender."
+    type: string
+
+  series_number:
+    description: "Number of serial studies."
+    type: number
+
+  series_description:
+    description: "Specifics of a given study."
+    type: string
+
+  series_instance_uid:
+    description: "Unique identifier of a series."
+    type: string
+
+  sop_class_uid:
+    description: "Classification of image storage."
+    type: string
+
+  manufacturer:
+    description: "Manufacturer of the study equipment."
+    type: string
+
+  study_description:
+    description: "Type of the study and a studied body part."
+    type: string
+
+  study_id:
+    description: "Identifier of a study."
+    type: number
+
+  study_instance_uid:
+    description: "Unique identifier of a study."
+    type: string
+
+  patient_id:
+    description: "Scrambled patient identifier."
+    type: string
+
+# originally from imaging_exam node:
+  body_part_examined:
+    description: "What part of the body was studied."
+    type: string
+
+  days_to_image:
+    description: "Days from the case index date to the date the image was acquired."
+    type: integer
+
+  imaging_instrument:
+    description: >
+      The instrument model used to acquire the image.
+    type: string
+
+  modality:
+    description: >
+      What mode the imaging instrument was in during image acquisition.
+    type: string
+
+  scan_id:
+    description: >
+      The identification number for a stack of images generated during a single scan.
+    type: string
+
+  core_metadata_collections:
+    $ref: "_definitions.yaml#/to_one"
+  cases:
+    $ref: "_definitions.yaml#/to_one"
+  samples:
+    $ref: "_definitions.yaml#/to_one"
