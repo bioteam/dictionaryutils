@@ -1,0 +1,75 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "center"
+title: Center
+type: object
+category: administrative
+program: '*'
+project: '*'
+description: >
+  Genetic Research Center (GRC) or other clinical center at which research
+  participants are recruited.
+additionalProperties: false
+submittable: true
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - created_datetime
+  - updated_datetime
+  - state
+
+links:
+  - name: projects
+    backref: centers
+    label: contributed_to
+    target_type: project
+    multiplicity: many_to_many
+    required: true
+
+required:
+  - submitter_id
+  - type
+  - projects
+  - name
+  - investigator_name
+
+uniqueKeys:
+  - [ id ]
+  - [ project_id, submitter_id ]
+
+properties:
+  type:
+    enum: [ "center" ]
+  id:
+    $ref: "_definitions.yaml#/UUID"
+    systemAlias: node_id
+  name:
+    type: string
+    description: >
+      Name of center at which participants were recruited and/or at which data were collected.
+  investigator_name:
+    type: string
+    description: >
+      Name of the principal investigator responsible for recruiting participants and/or submitting data.
+  state:
+    $ref: "_definitions.yaml#/state"
+  submitter_id:
+    type:
+      - string
+      - "null"
+  country:
+      type: string
+      description: >
+        Name of the country at which participants were recruited and/or at which data were collected.
+  
+  
+  projects:
+    $ref: "_definitions.yaml#/to_many_project"
+  project_id:
+    $ref: "_definitions.yaml#/project_id"
+  created_datetime:
+    $ref: "_definitions.yaml#/datetime"
+  updated_datetime:
+    $ref: "_definitions.yaml#/datetime"
