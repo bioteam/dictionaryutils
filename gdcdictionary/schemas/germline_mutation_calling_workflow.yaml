@@ -43,8 +43,7 @@ properties:
   $ref: "_definitions.yaml#/workflow_properties"
 
   workflow_type:
-    term:
-      $ref: "_terms.yaml#/workflow_type"
+    $ref: "_terms.yaml#/workflow_type"
     enum:
       - HaplotypeCaller
 
