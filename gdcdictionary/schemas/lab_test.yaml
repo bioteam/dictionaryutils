@@ -32,12 +32,6 @@ links:
         target_type: subject
         multiplicity: many_to_one
         required: false
-      - name: drugs
-        backref: lab_tests
-        label: related_to
-        target_type: drug
-        multiplicity: many_to_many
-        required: false
       - name: samples
         backref: lab_tests
         label: related_to
@@ -313,7 +307,5 @@ properties:
 
   subjects:
     $ref: "_definitions.yaml#/to_one"
-  drugs:
-    $ref: "_definitions.yaml#/to_many"
   samples:
     $ref: "_definitions.yaml#/to_one"

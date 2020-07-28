@@ -8,7 +8,7 @@ category: clinical
 program: '*'
 project: '*'
 description: >
-  Outcome event produced in a participant (related or not with one diagnosis)
+  Outcome event produced in a subject (related or not with one diagnosis)
 additionalProperties: false
 submittable: true
 validators: null
@@ -21,16 +21,16 @@ systemProperties:
   - updated_datetime
 
 links:
-  - name: participants
+  - name: subjects
     backref: outcomes
     label: describes
-    target_type: participant
+    target_type: subject
     multiplicity: many_to_one
     required: true
 
 required:
   - submitter_id
-  - participants
+  - subjects
   - type
 
 uniqueKeys:
@@ -69,5 +69,5 @@ properties:
       - Dead
       - Alive
 
-  participants:
+  subjects:
     $ref: "_definitions.yaml#/to_one"

@@ -21,16 +21,16 @@ systemProperties:
   - updated_datetime
 
 links:
-  - name: participants
+  - name: subjects
     backref: phenotypes
     label: describes
-    target_type: participant
+    target_type: subject
     multiplicity: many_to_one
     required: true
 
 required:
   - type
-  - participants
+  - subjects
   - phenotype
   - observed
   - submitter_id
@@ -2556,5 +2556,5 @@ properties:
     maximum: 32872
     minimum: 0
 
-  participants:
+  subjects:
     $ref: "_definitions.yaml#/to_one"

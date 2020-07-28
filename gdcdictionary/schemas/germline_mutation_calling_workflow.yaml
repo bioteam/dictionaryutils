@@ -22,21 +22,12 @@ systemProperties:
   - state
 
 links:
-  - exclusive: true
+  - name: aligned_reads_files
+    backref: germline_mutation_calling_workflows
+    label: performed_on
+    target_type: aligned_reads
+    multiplicity: many_to_many
     required: true
-    subgroup:
-      - name: submitted_aligned_reads_files
-        backref: germline_mutation_calling_workflows
-        label: performed_on
-        target_type: submitted_aligned_reads
-        multiplicity: many_to_many
-        required: false
-      - name: aligned_reads_files
-        backref: germline_mutation_calling_workflows
-        label: performed_on
-        target_type: aligned_reads
-        multiplicity: many_to_many
-        required: false
 
 required:
   - type
@@ -57,6 +48,4 @@ properties:
       $ref: "_terms.yaml#/workflow_type"
     enum: [ "HaplotypeCaller" ]
   aligned_reads_files:
-    $ref: "_definitions.yaml#/to_many"
-  submitted_aligned_reads_files:
     $ref: "_definitions.yaml#/to_many"

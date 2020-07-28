@@ -3,6 +3,7 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "simple_germline_variation"
 title: Simple Germline Variation
 type: object
+nodeTerms: null
 namespace: https://dcp.bionimbus.org/
 category: data_file
 program: '*'
@@ -44,12 +45,6 @@ links:
         target_type: read_group
         multiplicity: many_to_many
         required: false
-      - name: submitted_aligned_reads_files
-        backref: simple_germline_variations
-        label: data_from
-        target_type: submitted_aligned_reads
-        multiplicity: many_to_many
-        required: false
       - name: aligned_reads_files
         backref: simple_germline_variations
         label: data_from
@@ -73,25 +68,28 @@ uniqueKeys:
   - [ project_id, submitter_id ]
 
 properties:
+
+  $ref: "_definitions.yaml#/ubiquitous_properties"
+
   $ref: "_definitions.yaml#/data_file_properties"
-  
-  type:
-    type: string
-    
+      
   data_category:
     term:
       $ref: "_terms.yaml#/data_category"
-    enum: [ "Simple Nucleotide Variation" ]
+    enum:
+      - Simple Nucleotide Variation
 
   data_type:
     term:
       $ref: "_terms.yaml#/data_type"
-    enum: [ "Simple Germline Variation" ]
+    enum:
+      - Simple Germline Variation
 
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
-    enum: [ "VCF" ]
+    enum:
+      - VCF
 
   experimental_strategy:
     term:
@@ -108,6 +106,5 @@ properties:
     $ref: "_definitions.yaml#/to_many"
   aligned_reads_files:
     $ref: "_definitions.yaml#/to_many"
-  submitted_aligned_reads_files:
-    $ref: "_definitions.yaml#/to_many"
   core_metadata_collections:
+    $ref: "_definitions.yaml#/to_one"

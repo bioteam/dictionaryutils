@@ -33,12 +33,6 @@ links:
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-      - name: cases
-        backref: pathology_slides
-        label: data_from
-        target_type: case
-        multiplicity: many_to_one
-        required: false
       - name: samples
         backref: pathology_slides
         label: data_from
@@ -156,8 +150,6 @@ properties:
     type: string
 
   core_metadata_collections:
-    $ref: "_definitions.yaml#/to_one"
-  cases:
     $ref: "_definitions.yaml#/to_one"
   samples:
     $ref: "_definitions.yaml#/to_one"
