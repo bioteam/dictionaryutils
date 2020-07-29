@@ -32,17 +32,11 @@ links:
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-      - name: aligned_reads_files
+      - name: variant_calling_workflows
         backref: variant_call_files
         label: data_from
-        target_type: aligned_reads
-        multiplicity: many_to_many
-        required: false
-      - name: unaligned_reads_files
-        backref: variant_call_files
-        label: data_from
-        target_type: unaligned_reads
-        multiplicity: many_to_many
+        target_type: variant_calling_workflow
+        multiplicity: many_to_one
         required: false
       - name: subjects
         backref: variant_call_files
@@ -99,16 +93,8 @@ properties:
       - WGS
       - WXS
 
-  variant_calling_workflow:
-    description: Indicate the variant calling workflow or pipeline used to generate
-      the variant calls.
-    type: string
-
-  aligned_reads_files:
-    $ref: "_definitions.yaml#/to_many"
-
-  unaligned_reads_files:
-    $ref: "_definitions.yaml#/to_many"
+  variant_calling_workflows:
+    $ref: "_definitions.yaml#/to_one"
 
   subjects:
     $ref: "_definitions.yaml#/to_many"
