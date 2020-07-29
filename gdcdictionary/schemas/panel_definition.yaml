@@ -5,7 +5,7 @@ title: Panel Definition
 type: object
 nodeTerms: null
 namespace: https://gen3.datacommons.io/
-category: data_observations
+category: notation
 program: '*'
 project: '*'
 description: The definition of a panel or microarray used in an assay. Each submitter_id is a variant for a panel_name.
