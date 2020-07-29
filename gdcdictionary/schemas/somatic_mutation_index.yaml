@@ -25,16 +25,10 @@ links:
   - exclusive: false
     required: true
     subgroup:
-      - name: simple_somatic_mutations
+      - name: somatic_mutations
         backref: somatic_mutation_indexes
         label: derived_from
-        target_type: simple_somatic_mutation
-        multiplicity: one_to_one
-        required: false
-      - name: annotated_somatic_mutations
-        backref: somatic_mutation_indexes
-        label: derived_from
-        target_type: annotated_somatic_mutation
+        target_type: somatic_mutation
         multiplicity: one_to_one
         required: false
       - name: core_metadata_collections
@@ -76,9 +70,7 @@ properties:
       $ref: "_terms.yaml#/data_format"
     enum:
       - TBI
-  simple_somatic_mutations:
-    $ref: "_definitions.yaml#/to_one"
-  annotated_somatic_mutations:
+  somatic_mutations:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_many"
