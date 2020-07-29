@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: samples
+  - name: aliquots
     backref: quantification_assays
     label: data_from
-    target_type: sample
+    target_type: aliquot
     multiplicity: many_to_one
     required: true
 
@@ -34,7 +34,7 @@ required:
   - assay_instrument
   - assay_instrument_model
   - assay_method
-  - samples
+  - aliquots
 
 uniqueKeys:
   - [ id ]
@@ -93,11 +93,11 @@ properties:
       - qPCR
   cell_count:
     description: >
-      If the sample is cell count, report total whole number of cells counted here.
+      If the aliquot is cell count, report total whole number of cells counted here.
     type: integer
   cell_concentration:
     description: >
-      If the sample is cell count, report the concentrations of the cells in the aliquot (counted
+      If the aliquot is cell count, report the concentrations of the cells in the aliquot (counted
       cells per assay volume mL). Report the calculated concentration in cells per milliliters.
     type: number
   experimental_step:
@@ -107,9 +107,9 @@ properties:
       - Library Building
   molecular_concentration:
     description: >
-      If the sample is a molecule (e.g. DNA or RNA), report the observed concentration in nanograms
+      If the aliquot is a molecule (e.g. DNA or RNA), report the observed concentration in nanograms
       per microliters.
     type: number
 
-  samples:
+  aliquots:
     $ref: "_definitions.yaml#/to_one"
