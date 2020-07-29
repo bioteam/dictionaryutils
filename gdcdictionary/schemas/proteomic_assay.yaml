@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: samples
+  - name: aliquots
     backref: proteomic_assays
     label: data_from
-    target_type: sample
+    target_type: aliquot
     multiplicity: many_to_one
     required: true
 
@@ -38,7 +38,7 @@ required:
   - assay_instrument
   - assay_instrument_model
   - doe
-  - samples
+  - aliquots
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
@@ -54,5 +54,5 @@ properties:
   doe:
     description: Brief description of experiment design. Please link documentation via the document node.
     type: string
-  samples:
+  aliquots:
     $ref: "_definitions.yaml#/to_one"

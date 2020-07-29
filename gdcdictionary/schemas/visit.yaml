@@ -5,7 +5,7 @@ title: Visit
 type: object
 nodeTerms: null
 namespace: https://gen3.datacommons.io/
-category: administrative
+category: clinical
 program: '*'
 project: '*'
 description: A record of a study subject's visit to or remote contact with a medical

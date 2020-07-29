@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: samples
+  - name: aliquots
     backref: wes_assays
     label: data_from
-    target_type: sample
+    target_type: aliquot
     multiplicity: many_to_one
     required: true
 
@@ -36,7 +36,7 @@ required:
   - submitter_id
   - type
   - assay_kit_name
-  - samples
+  - aliquots
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
@@ -69,5 +69,5 @@ properties:
     - Roche SeqCap EZ Exome Probes v2.0
     - Roche SeqCap EZ Exome Probes v3.0
     - Roche SeqCap EZ MedExome
-  samples:
+  aliquots:
     $ref: "_definitions.yaml#/to_one"
