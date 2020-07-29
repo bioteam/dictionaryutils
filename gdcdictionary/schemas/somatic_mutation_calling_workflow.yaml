@@ -30,12 +30,6 @@ links:
         target_type: aligned_reads
         multiplicity: many_to_many
         required: true
-      - name: core_metadata_collections
-        backref: somatic_mutation_calling_workflows
-        label: data_from
-        target_type: core_metadata_collection
-        multiplicity: many_to_one
-        required: false
 
 required:
   - submitter_id
@@ -61,5 +55,4 @@ properties:
       - SomaticSniper
   aligned_reads_files:
     $ref: "_definitions.yaml#/to_many"
-  core_metadata_collections:
-    $ref: "_definitions.yaml#/to_many"
+

@@ -1,0 +1,10 @@
+{
+    "type": "somatic_mutation",
+    "submitter_id": "somatic_mutations_from_x",
+    "data_category": "Sequencing Reads",
+    "data_type": "Somatic Mutations",
+    "data_format": "VCF",
+    "file_name": "test.vcf",
+    "file_size": 100,
+    "md5sum": "122dffad321111122233344455566678"
+}
