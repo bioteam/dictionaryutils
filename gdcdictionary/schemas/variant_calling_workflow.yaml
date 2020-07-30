@@ -29,12 +29,6 @@ links:
     target_type: aligned_reads
     multiplicity: many_to_many
     required: true
-  - name: output_somatic_mutations
-    backref: variant_calling_workflows
-    label: generated
-    target_type: somatic_mutation
-    multiplicity: one_to_one
-    required: true
 
 required:
   - submitter_id
@@ -52,5 +46,3 @@ properties:
 
   input_aligned_reads_files:
     $ref: "_definitions.yaml#/to_many"
-  output_somatic_mutations:
-    $ref: "_definitions.yaml#/to_one"
