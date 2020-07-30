@@ -1,14 +1,13 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "aligned_reads"
-title: Aligned Reads
+id: "germline_variation_index"
+title: Germline Variation Index
 type: object
-namespace: https://www.bloodpac.org
-category: data_file
+namespace: https://dcp.bionimbus.org
+category: index_file
 program: '*'
 project: '*'
-description: >
-  Data file containing aligned reads that are used as input to GDC workflows.
+description: "Data file containing the index for a set of germline variants."
 additionalProperties: false
 submittable: true
 validators: null
@@ -26,28 +25,28 @@ links:
   - exclusive: false
     required: true
     subgroup:
+      - name: simple_germline_variations
+        backref: germline_variation_indexes
+        label: derived_from
+        target_type: simple_germline_variation
+        multiplicity: one_to_one
+        required: false
       - name: core_metadata_collections
-        backref: aligned_reads_files
+        backref: germline_variation_indexes
         label: data_from
         target_type: core_metadata_collection
-        multiplicity: many_to_one
-        required: false
-      - name: alignment_workflows
-        backref: aligned_reads_files
-        label: data_from
-        target_type: alignment_workflow
-        multiplicity: many_to_one
+        multiplicity: many_to_many
         required: false
 
 required:
-  - submitter_id
   - type
+  - submitter_id
   - file_name
   - file_size
-  - data_format
   - md5sum
   - data_category
   - data_type
+  - data_format
 
 uniqueKeys:
   - [ id ]
@@ -55,25 +54,24 @@ uniqueKeys:
 
 properties:
   $ref: "_definitions.yaml#/data_file_properties"
-
+  type:
+    enum: [ "aligned_reads_index" ]
   data_category:
     term:
       $ref: "_terms.yaml#/data_category"
     enum:
-      - Sequencing Reads
+      - Simple Nucleotide Variation
   data_type:
     term:
       $ref: "_terms.yaml#/data_type"
-    enum:
-      - Aligned Reads
-      - Alignment Coordinates
+    enum: [ "Germline Variation Index" ]
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
-    enum:
-      - BAM
-      - BED
-  alignment_workflows:
+    enum: 
+      - TBI
+      - CSI
+  simple_germline_variations:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
-    $ref: "_definitions.yaml#/to_one"
+    $ref: "_definitions.yaml#/to_many"

@@ -27,12 +27,6 @@ links:
     target_type: unaligned_reads
     multiplicity: many_to_many
     required: true
-  - name: output_aligned_reads_files
-    backref: alignment_workflows
-    label: generate
-    target_type: aligned_reads
-    multiplicity: one_to_one
-    required: true
 
 required:
   - submitter_id
@@ -50,5 +44,3 @@ properties:
 
   input_unaligned_reads_files:
     $ref: "_definitions.yaml#/to_many"
-  output_aligned_reads_files:
-    $ref: "_definitions.yaml#/to_one"

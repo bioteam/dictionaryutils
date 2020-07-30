@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: samples
+  - name: aliquots
     backref: rna_seq_assays
     label: data_from
-    target_type: sample
+    target_type: aliquot
     multiplicity: many_to_one
     required: true
 
@@ -36,7 +36,7 @@ required:
   - submitter_id
   - type
   - assay_method
-  - samples
+  - aliquots
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
@@ -61,5 +61,5 @@ properties:
       - total RNA, capture enriched for coding regions
       - poly-A+ mRNA
       - microRNA
-  samples:
+  aliquots:
     $ref: "_definitions.yaml#/to_one"

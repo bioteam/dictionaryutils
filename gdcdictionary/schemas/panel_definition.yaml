@@ -1,0 +1,127 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "panel_definition"
+title: Panel Definition
+type: object
+nodeTerms: null
+namespace: https://gen3.datacommons.io/
+category: notation
+program: '*'
+project: '*'
+description: The definition of a panel or microarray used in an assay. Each submitter_id is a variant for a panel_name.
+additionalProperties: false
+submittable: true
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - state
+  - created_datetime
+  - updated_datetime
+
+links:
+  - exclusive: false
+    required: true
+    subgroup:
+      - name: studies
+        backref: panel_definitions
+        label: related_to
+        target_type: study
+        multiplicity: many_to_many
+        required: false
+
+required:
+  - submitter_id
+  - type
+  - studies
+  - panel_name
+
+uniqueKeys:
+  - [id]
+  - [project_id, submitter_id]
+
+properties:
+
+  $ref: "_definitions.yaml#/ubiquitous_properties"
+
+  panel_name:
+    description: The name of the panel this variant belongs to, for example, 'OncoMap'.
+    type: string
+  alternative_allele:
+    description: The alternative allele.
+    type: string
+  annotation_transcript:
+    description: The annotation transcript.
+    type: string
+  assay_direction:
+    description: The assay direction.
+    type: string
+  cDNA_change:
+    description: The cDNA change for the variant.
+    type: string
+  codon_change:
+    description: The codon change for the variant.
+    type: string
+  dbSNP_rs:
+    description: The dbSNP ID (rs#) of the variant.
+    type: string
+  dbSNP_validation:
+    description: Textual description of the validation status of this variant.
+    type: string
+  entrez_id:
+    description: The entrez ID of the variant.
+    type: string
+  gene_description:
+    description: The description for the gene or variant.
+    type: string
+  genomic_change:
+    description: "The genomic change code for the variant, for example, 'g.chr10:123248024A>C'."
+    type: string
+  other_transcripts:
+    description: A list of other transcripts.
+    type: array
+    items:
+      type: string
+  protein_change:
+    description: The protein change for the variant, for example, 'p.N550K'.
+    type: string
+  reference_allele:
+    description: The reference allele for the variant.
+    type: string
+  refseq_mRNA_id:
+    description: The reference seq mRNA ID for the variant.
+    type: string
+  refseq_protein_id:
+    description: The reference seq protein ID for the variant.
+    type: string
+  swissprot_accession_id:
+    description: The Swiss-Prot accession ID of the variant.
+    type: string
+  swissprot_entry_id:
+    description: The Swiss-Prot entry ID of the variant.
+    type: string
+  transcript_strand:
+    description: The transcript strand.
+    type: string
+  uniProt_region:
+    description: The UniProt region.
+    type: string
+  unitport_amino_acid_position:
+    description: The UniProt amino acid position.
+    type: string
+  variant_type:
+    description: The variant type.
+    type: string
+  variation_allele:
+    description: The variation allele.
+    type: string
+  wildtype_allele:
+    description: The wildtype allele.
+    type: string
+  comments:
+    description: Specific comments about the panel.
+    type: string
+
+  studies:
+    $ref: "_definitions.yaml#/to_many"

@@ -44,10 +44,10 @@ links:
         target_type: read_group
         multiplicity: many_to_one
         required: false
-      - name: samples
+      - name: aliquots
         backref: fragment_analyzer_traces
         label: data_from
-        target_type: sample
+        target_type: aliquot
         multiplicity: many_to_one
         required: false
 
@@ -111,7 +111,7 @@ properties:
   quantification_assays:
     $ref: "_definitions.yaml#/to_one"
 
-  samples:
+  aliquots:
     $ref: "_definitions.yaml#/to_one"
 
   read_groups:

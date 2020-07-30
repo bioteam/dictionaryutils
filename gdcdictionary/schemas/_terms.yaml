@@ -49,6 +49,10 @@ age_at_diagnosis_gt89:
     cde_version: 2.0
     term_url: "https://cdebrowser.nci.nih.gov/CDEBrowser/search?elementDetails=9&FirstTimer=0&PageId=ElementDetailsGroup&publicId=3225640&version=2.0"
 
+age_at_event_days:
+  description: >
+    Age at the time of diagnosis expressed.
+
 ajcc_clinical_m:
   description: >
     Extent of the distant metastasis for the cancer based on evidence obtained from clinical

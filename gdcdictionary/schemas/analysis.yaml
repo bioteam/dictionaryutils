@@ -1,14 +1,14 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "spotfire_build"
-title: Spotfire Build
+id: "analysis"
+title: Analysis
 type: object
 namespace: https://nci-crdc-demo.datacommons.io/
 category: administrative
 program: '*'
 project: '*'
 description: >
-  The urls to a specific spotfire_build.
+  An analysis readout.
 additionalProperties: false
 submittable: true
 validators: null
@@ -48,6 +48,21 @@ properties:
     type: string
   client_url:
     description: "Client-side url for spotfire_build"
+    type: string
+  therapeutic_area:
+    description: "therapeutic area"
+    type: string
+  target:
+    description: "target"
+    type: string
+  indication:
+    description: "indication"
+    type: string
+  biomarker:
+    description: "biomarker"
+    type: string
+  vendor:
+    description: "vendor"
     type: string
   studies:
     $ref: "_definitions.yaml#/to_one"
