@@ -111,7 +111,7 @@ properties:
   duration_of_therapy_days:
     description: >
       The duration of therapy in days.
-    type: integer
+    type: number
 
   duration_of_therapy_weeks:
     description: >
