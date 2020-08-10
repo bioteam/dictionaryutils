@@ -180,3 +180,5 @@ properties:
     $ref: "_definitions.yaml#/to_one"
   chip_seq_assays:
     $ref: "_definitions.yaml#/to_one"
+  aliquots:
+    $ref: "_definitions.yaml#/to_one"
