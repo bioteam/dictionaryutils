@@ -46,6 +46,10 @@ properties:
   web_browser_url:
     description: "Web browser url for spotfire_build."
     type: string
+  category:
+    description: "Category of spotfire_build"
+    enum:
+      -Automation
   client_url:
     description: "Client-side url for spotfire_build"
     type: string
