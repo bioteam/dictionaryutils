@@ -49,7 +49,7 @@ properties:
   category:
     description: "Category of spotfire_build"
     enum:
-      -Automation
+      - Automation
   client_url:
     description: "Client-side url for spotfire_build"
     type: string
