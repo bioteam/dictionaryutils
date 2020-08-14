@@ -22,7 +22,7 @@ systemProperties:
 
 links:
   - name: studies
-    backref: spotfire_builds
+    backref: analyses
     label: member_of
     target_type: study
     multiplicity: many_to_one
