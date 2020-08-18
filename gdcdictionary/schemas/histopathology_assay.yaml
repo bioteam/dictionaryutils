@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: aliquots
+  - name: slides
     backref: histopathology_assays
     label: data_from
-    target_type: aliquot
+    target_type: slide
     multiplicity: many_to_one
     required: true
 
@@ -37,7 +37,7 @@ required:
   - type
   - assay_instrument
   - assay_instrument_model
-  - aliquots
+  - slides
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
@@ -62,5 +62,5 @@ properties:
     item_type: string
     items:
       type: string
-  aliquots:
+  slides:
     $ref: "_definitions.yaml#/to_one"
