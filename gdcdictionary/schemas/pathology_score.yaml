@@ -8,7 +8,7 @@ category: data_file
 program: '*'
 project: '*'
 description: >
-  A data file containing the scores of a histopathology analysis.
+  A data file containing the scores of a histopathology analysis of one or more samples.
 additionalProperties: false
 submittable: true
 validators: null
@@ -24,12 +24,12 @@ links:
   - exclusive: false
     required: true
     subgroup:
-      - name: pathology_images
-        backref: pathology_scores
-        label: data_from
-        target_type: pathology_image
-        multiplicity: many_to_many
-        required: false
+    - name: histopathology_assays
+      backref: pathology_scores
+      label: data_from
+      target_type: histopathology_assay
+      multiplicity: one_to_many
+      required: false
 
 required:
   - submitter_id
@@ -69,7 +69,7 @@ properties:
       - Powerpoint
       - TSV
 
-  pathology_images:
-    $ref: "_definitions.yaml#/to_one"
+  histopathology_assays:
+    $ref: "_definitions.yaml#/to_many"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
