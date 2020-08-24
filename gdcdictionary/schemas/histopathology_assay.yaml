@@ -21,12 +21,22 @@ systemProperties:
   - state
 
 links:
-  - name: slides
-    backref: histopathology_assays
-    label: data_from
-    target_type: slide
-    multiplicity: many_to_one
+  - exclusive: false
     required: true
+    subgroup:
+    - name: slides
+      backref: histopathology_assays
+      label: data_from
+      target_type: slide
+      multiplicity: one_to_one
+      required: false
+    - name: samples
+      backref: histopathology_assays
+      label: data_from
+      target_type: sample
+      multiplicity: many_to_one
+      required: false
+    
 
 uniqueKeys:
   - [ id ]
@@ -35,9 +45,7 @@ uniqueKeys:
 required:
   - submitter_id
   - type
-  - assay_instrument
-  - assay_instrument_model
-  - slides
+  - assay_method
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
@@ -62,5 +70,10 @@ properties:
     item_type: string
     items:
       type: string
+  image_location:
+    description: Link to location of associated image file resulting from the histopathology assay.
+    type: string
   slides:
+    $ref: "_definitions.yaml#/to_one"
+  samples:
     $ref: "_definitions.yaml#/to_one"
