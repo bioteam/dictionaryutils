@@ -70,7 +70,9 @@ properties:
     item_type: string
     items:
       type: string
-  
+  image_location:
+    description: Link to location of associated image file resulting from the histopathology assay.
+    type: string
   slides:
     $ref: "_definitions.yaml#/to_one"
   samples:
