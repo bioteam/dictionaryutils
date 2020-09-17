@@ -47,10 +47,10 @@ links:
         target_type: chip_seq_assay
         multiplicity: many_to_one
         required: false
-      - name: aliquots
+      - name: biospecimens
         backref: read_groups
         label: data_from
-        target_type: aliquot
+        target_type: biospecimen
         multiplicity: many_to_one
         required: false
 
@@ -180,5 +180,5 @@ properties:
     $ref: "_definitions.yaml#/to_one"
   chip_seq_assays:
     $ref: "_definitions.yaml#/to_one"
-  aliquots:
+  biospecimens:
     $ref: "_definitions.yaml#/to_one"

@@ -44,10 +44,10 @@ links:
         target_type: read_group
         multiplicity: many_to_one
         required: false
-      - name: aliquots
+      - name: biospecimens
         backref: fragment_analyzer_traces
         label: data_from
-        target_type: aliquot
+        target_type: biospecimen
         multiplicity: many_to_one
         required: false
 
@@ -111,7 +111,7 @@ properties:
   quantification_assays:
     $ref: "_definitions.yaml#/to_one"
 
-  aliquots:
+  biospecimens:
     $ref: "_definitions.yaml#/to_one"
 
   read_groups:

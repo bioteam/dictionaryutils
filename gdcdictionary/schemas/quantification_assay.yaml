@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: aliquots
+  - name: biospecimens
     backref: quantification_assays
     label: data_from
-    target_type: aliquot
+    target_type: biospecimen
     multiplicity: many_to_one
     required: true
 
@@ -34,7 +34,7 @@ required:
   - assay_instrument
   - assay_instrument_model
   - assay_method
-  - aliquots
+  - biospecimens
 
 uniqueKeys:
   - [ id ]
@@ -93,11 +93,11 @@ properties:
       - qPCR
   cell_count:
     description: >
-      If the aliquot is cell count, report total whole number of cells counted here.
+      If the biospecimen is cell count, report total whole number of cells counted here.
     type: integer
   cell_concentration:
     description: >
-      If the aliquot is cell count, report the concentrations of the cells in the aliquot (counted
+      If the biospecimen is cell count, report the concentrations of the cells in the biospecimen (counted
       cells per assay volume mL). Report the calculated concentration in cells per milliliters.
     type: number
   experimental_step:
@@ -107,9 +107,9 @@ properties:
       - Library Building
   molecular_concentration:
     description: >
-      If the aliquot is a molecule (e.g. DNA or RNA), report the observed concentration in nanograms
+      If the biospecimen is a molecule (e.g. DNA or RNA), report the observed concentration in nanograms
       per microliters.
     type: number
 
-  aliquots:
+  biospecimens:
     $ref: "_definitions.yaml#/to_one"

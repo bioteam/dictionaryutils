@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: aliquots
+  - name: biospecimens
     backref: chip_seq_assays
     label: data_from
-    target_type: aliquot
+    target_type: biospecimen
     multiplicity: many_to_one
     required: true
 
@@ -36,7 +36,7 @@ required:
   - submitter_id
   - type
   - assay_method
-  - aliquots
+  - biospecimens
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
@@ -50,5 +50,5 @@ properties:
   assay_target:
     description: "Target of the assay (e.g. protein, protein isoform, histone modification, epitope tag). Expressed as 'target:antibody_vendor,antibody_product_id,antibody_lot_id"
     type: string
-  aliquots:
+  biospecimens:
     $ref: "_definitions.yaml#/to_one"

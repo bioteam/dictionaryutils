@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: aliquots
+  - name: biospecimens
     backref: proteomic_assays
     label: data_from
-    target_type: aliquot
+    target_type: biospecimen
     multiplicity: many_to_one
     required: true
 
@@ -38,7 +38,7 @@ required:
   - assay_instrument
   - assay_instrument_model
   - doe
-  - aliquots
+  - biospecimens
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
@@ -54,5 +54,5 @@ properties:
   doe:
     description: Brief description of experiment design. Please link documentation via the document node.
     type: string
-  aliquots:
+  biospecimens:
     $ref: "_definitions.yaml#/to_one"

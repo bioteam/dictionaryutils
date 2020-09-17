@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: aliquots
+  - name: biospecimens
     backref: wes_assays
     label: data_from
-    target_type: aliquot
+    target_type: biospecimen
     multiplicity: many_to_one
     required: true
 
@@ -36,7 +36,7 @@ required:
   - submitter_id
   - type
   - assay_kit_name
-  - aliquots
+  - biospecimens
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
@@ -69,5 +69,5 @@ properties:
     - Roche SeqCap EZ Exome Probes v2.0
     - Roche SeqCap EZ Exome Probes v3.0
     - Roche SeqCap EZ MedExome
-  aliquots:
+  biospecimens:
     $ref: "_definitions.yaml#/to_one"
