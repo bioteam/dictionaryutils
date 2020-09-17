@@ -26,7 +26,7 @@ links:
     backref: studies
     label: performed_for
     target_type: project
-    multiplicity: many_to_one
+    multiplicity: many_to_many
     required: true
 
 required:
@@ -90,4 +90,4 @@ properties:
       - Detection/Enumeration/Isolation
       - Genetic Analysis
   projects:
-    $ref: "_definitions.yaml#/to_one_project"
+    $ref: "_definitions.yaml#/to_many_project"
