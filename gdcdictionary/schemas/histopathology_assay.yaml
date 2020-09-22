@@ -21,22 +21,12 @@ systemProperties:
   - state
 
 links:
-  - exclusive: false
-    required: true
-    subgroup:
-    - name: slides
-      backref: histopathology_assays
-      label: data_from
-      target_type: slide
-      multiplicity: one_to_one
-      required: false
-    - name: samples
-      backref: histopathology_assays
-      label: data_from
-      target_type: sample
-      multiplicity: many_to_one
-      required: false
-    
+  - name: biospecimens
+    backref: histopathology_assays
+    label: data_from
+    target_type: biospecimen
+    multiplicity: many_to_one
+    required: true    
 
 uniqueKeys:
   - [ id ]
@@ -73,7 +63,5 @@ properties:
   image_location:
     description: Link to location of associated image file resulting from the histopathology assay.
     type: string
-  slides:
-    $ref: "_definitions.yaml#/to_one"
-  samples:
+  biospecimens:
     $ref: "_definitions.yaml#/to_one"
