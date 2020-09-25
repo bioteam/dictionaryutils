@@ -24,22 +24,16 @@ links:
   - exclusive: false
     required: true
     subgroup:
-      - name: diagnoses
+      - name: visits
         backref: treatments
         label: describes
-        target_type: diagnosis
+        target_type: visit
         multiplicity: many_to_one
         required: false
       - name: subjects
         backref: treatments
         label: describes
         target_type: subject
-        multiplicity: many_to_one
-        required: false
-      - name: followups
-        backref: treatments
-        label: describes
-        target_type: followup
         multiplicity: many_to_one
         required: false
 
@@ -218,9 +212,7 @@ properties:
       - Targeted Molecular Therapy
       - Unknown
 
-  diagnoses:
+  visits:
     $ref: "_definitions.yaml#/to_one"
   subjects:
-    $ref: "_definitions.yaml#/to_one"
-  followups:
     $ref: "_definitions.yaml#/to_one"

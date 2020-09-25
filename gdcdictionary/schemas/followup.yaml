@@ -26,12 +26,21 @@ systemProperties:
   - updated_datetime
 
 links:
-  - name: subjects
-    backref: followups
-    label: describes
-    target_type: subject
-    multiplicity: many_to_one
+  - exclusive: false
     required: true
+    subgroup:
+      - name: visits
+        backref: followups
+        label: describes
+        target_type: visit
+        multiplicity: many_to_one
+        required: false
+      - name: subjects
+        backref: followups
+        label: describes
+        target_type: subject
+        multiplicity: many_to_one
+        required: false
 
 required:
   - submitter_id
@@ -961,5 +970,7 @@ properties:
     description: "The weight of the patient measured in kilograms."
     type: number
 
+  visits:
+    $ref: "_definitions.yaml#/to_one"
   subjects:
     $ref: "_definitions.yaml#/to_one"

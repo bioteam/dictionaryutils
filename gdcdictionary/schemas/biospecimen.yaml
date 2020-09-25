@@ -30,7 +30,7 @@ required:
   - submitter_id
   - type
   - composition
-  - subjects
+  # - subjects
   # - biospecimen_type
   # - biospecimen_anatomic_site
   # - blood_tube_type
@@ -45,12 +45,21 @@ uniqueKeys:
   - [project_id, submitter_id]
 
 links:
-  - name: subjects
-    backref: biospecimens
-    label: derived_from
-    target_type: subject
-    multiplicity: many_to_many
+  - exclusive: false
     required: true
+    subgroup:
+      - name: subjects
+        backref: biospecimens
+        label: derived_from
+        target_type: subject
+        multiplicity: many_to_many
+        required: false
+      - name: visits
+        backref: biospecimens
+        label: derived_from
+        target_type: visit
+        multiplicity: many_to_many
+        required: false
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
@@ -626,4 +635,6 @@ properties:
     type: string
 
   subjects:
+    $ref: "_definitions.yaml#/to_many"
+  visits:
     $ref: "_definitions.yaml#/to_many"

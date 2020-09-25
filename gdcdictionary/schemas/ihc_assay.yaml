@@ -21,10 +21,10 @@ systemProperties:
   - state
 
 links:
-  - name: studies
+  - name: biospecimens
     backref: ihc_assays
     label: data_from
-    target_type: study
+    target_type: biospecimen
     multiplicity: many_to_one
     required: true
 
@@ -38,7 +38,7 @@ required:
   - assay_instrument
   - assay_instrument_model
   - assay_method
-  - studies
+  - biospecimens
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
@@ -68,5 +68,5 @@ properties:
   assay_target:
     description: "Target for the assay: can be a gene, protein, or otherwise."
     type: string
-  studies:
+  biospecimens:
     $ref: "_definitions.yaml#/to_one"

@@ -9,7 +9,7 @@
     "treatment_class": "Cancer-directed",
     "treatment_intent_type": "",
     "treatment_type": "Other",
-    "diagnoses": {
-        "submitter_id": "E9EDB78B-6897-4205-B9AA-0CEF8AAB5A1F_diagnosis"
+    "visits": {
+        "submitter_id": "E9EDB78B-6897-4205-B9AA-0CEF8AAB5A1F_visit"
     }
 }
