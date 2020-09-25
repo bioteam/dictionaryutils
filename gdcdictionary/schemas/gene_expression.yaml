@@ -34,10 +34,10 @@ links:
         target_type: core_metadata_collection
         multiplicity: many_to_one
         required: false
-      - name: rna_expression_workflows
+      - name: unaligned_reads_files
         backref: gene_expressions
         label: data_from
-        target_type: rna_expression_workflow
+        target_type: unaligned_reads
         multiplicity: many_to_one
         required: false
 
@@ -89,7 +89,7 @@ properties:
       - scRNA-Seq
       - Total RNA-Seq
 
-  rna_expression_workflows:
+  unaligned_reads_files:
     $ref: "_definitions.yaml#/to_one"
   core_metadata_collections:
     $ref: "_definitions.yaml#/to_one"
