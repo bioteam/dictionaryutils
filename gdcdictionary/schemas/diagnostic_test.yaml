@@ -21,24 +21,21 @@ systemProperties:
   - updated_datetime
 
 links:
-  - name: subjects
-    backref: diagnostic_tests
-    label: describes
-    target_type: subject
-    multiplicity: many_to_one
+  - exclusive: false
     required: true
-  - name: followups
-    backref: diagnostic_tests
-    label: describes
-    target_type: followup
-    multiplicity: many_to_one
-    required: false
-  - name: diagnoses
-    backref: diagnostic_tests
-    label: describes
-    target_type: diagnosis
-    multiplicity: many_to_one
-    required: false
+    subgroup:
+      - name: visits
+        backref: diagnostic_tests
+        label: describes
+        target_type: visit
+        multiplicity: many_to_one
+        required: false
+      - name: subjects
+        backref: diagnostic_tests
+        label: describes
+        target_type: subject
+        multiplicity: many_to_one
+        required: false
 
 required:
   - submitter_id
@@ -566,9 +563,7 @@ properties:
       The visit number taken from the VISIT_DRV column within the SAS file.
     type: string
 
+  visits:
+    $ref: "_definitions.yaml#/to_one"
   subjects:
-    $ref: "_definitions.yaml#/to_one"
-  followups:
-    $ref: "_definitions.yaml#/to_one"
-  diagnoses:
     $ref: "_definitions.yaml#/to_one"
