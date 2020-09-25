@@ -8,7 +8,7 @@
     "data_category": "Sequencing Reads",
     "data_type": "Unaligned Reads",
     "data_format": "FASTQ",
-    "read_groups": {
+    "biospecimens": {
 	    "submitter_id": "read_group_1"
     }
 }
