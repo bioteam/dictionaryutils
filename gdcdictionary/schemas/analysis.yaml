@@ -49,12 +49,16 @@ properties:
   category:
     description: "Category of spotfire_build"
     enum:
-      - Automation
-      - CCV
-      - Clinical Review
-      - CSP Review
+      - Automated Tabular Biomarker
+      - Consolidated Clinical View
+      - Clinical Review Safety
+      - Clinical Safety Program
+      - ClinPharm
+      - Flow Cytometry
+      - Health Economic Outcomes Research
       - RESP
-      - SI
+      - Safety and Efficacy
+      - Solid Tumor Efficacy
       - TRD
       - Unknown
   client_url:
