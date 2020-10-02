@@ -69,7 +69,7 @@ properties:
     term:
       $ref: "_terms.yaml#/data_format"
     enum:
-      - BAI
+      - IDX
 
   variant_call_files:
     $ref: "_definitions.yaml#/to_one"
