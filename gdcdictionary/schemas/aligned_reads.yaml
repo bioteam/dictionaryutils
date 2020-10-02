@@ -30,13 +30,13 @@ links:
         backref: aligned_reads_files
         label: data_from
         target_type: core_metadata_collection
-        multiplicity: one_to_many
+        multiplicity: many_to_many
         required: false
       - name: unaligned_reads_files
         backref: aligned_reads_files
         label: performed_on
         target_type: unaligned_reads
-        multiplicity: one_to_many
+        multiplicity: many_to_many
         required: false
 
 required:
