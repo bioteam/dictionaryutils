@@ -30,13 +30,13 @@ links:
         backref: aligned_reads_files
         label: data_from
         target_type: core_metadata_collection
-        multiplicity: many_to_one
+        multiplicity: one_to_many
         required: false
       - name: unaligned_reads_files
         backref: aligned_reads_files
         label: performed_on
         target_type: unaligned_reads
-        multiplicity: many_to_one
+        multiplicity: one_to_many
         required: false
 
 required:
@@ -75,6 +75,6 @@ properties:
       - BED
       - MAF
   unaligned_reads_files:
-    $ref: "_definitions.yaml#/to_one"
+    $ref: "_definitions.yaml#/to_many"
   core_metadata_collections:
-    $ref: "_definitions.yaml#/to_one"
+    $ref: "_definitions.yaml#/to_many"
