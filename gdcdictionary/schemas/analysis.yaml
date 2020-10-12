@@ -50,17 +50,16 @@ properties:
     description: "Category of spotfire_build"
     enum:
       - Automated Tabular Biomarker
-      - Consolidated Clinical View
-      - Clinical Review Safety
-      - Clinical Safety Program
       - ClinPharm
+      - Clinical Review OC Safety - blinded
+      - Clinical Review Rave CCV - blinded
+      - Clinical Review WWBDM - blinded
+      - Clinical Safety Program
       - Flow Cytometry
       - Health Economic Outcomes Research
-      - RESP
-      - Safety and Efficacy
+      - Not Specified
+      - SiMDR - Safety and Efficacy
       - Solid Tumor Efficacy
-      - TRD
-      - Unknown
   client_url:
     description: "Client-side url for spotfire_build"
     type: string
