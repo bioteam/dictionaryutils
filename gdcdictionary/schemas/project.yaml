@@ -101,6 +101,7 @@ properties:
   indication: 
     description: "Describes the Type Indication tested for this Analysis."
     enum:
+    - Breast - TNBC
     - Lung
     - Lung - NSCLC
     - Lung - NSCLC - Adenocarcinoma
