@@ -192,6 +192,7 @@ properties:
     - DNA-Seq
     - Edge-Sequencing
     - Exploratory
+    - FFPE
     - FISH
     - Flow Cytometery
     - IHC
