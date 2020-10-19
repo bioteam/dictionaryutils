@@ -164,6 +164,9 @@ properties:
   date_collected:
     description: "The date or date range in which the project data was collected."
     type: string
+  graph_url:
+    description: "A URL to the project graph."
+    type: string
   therapeutic_area:
     enum:
     - Atherosclerosis NOS
