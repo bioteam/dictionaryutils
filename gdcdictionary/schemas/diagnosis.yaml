@@ -176,6 +176,9 @@ properties:
       - Tis (DCIS)
       - Tis (LCIS)
       - Tis (Paget's)
+      - yT1c
+      - yT2
+      - yT3
       - Unknown
   ajcc_pathologic_m:
     term:
