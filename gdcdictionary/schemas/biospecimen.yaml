@@ -385,22 +385,32 @@ properties:
     term:
       $ref: "_terms.yaml#/composition"
     enum:
+      - Blood
       - Buccal Cells
       - Buffy Coat
       - Bone Marrow Components
       - Bone Marrow Components NOS
       - Control Analyte
-      - Cell
+      - Cells
       - Circulating Tumor Cell (CTC)
       - Derived Cell Line
+      - DNA
       - EBV Immortalized
+      - FFPE
       - Fibroblasts from Bone Marrow Normal
+      - Fresh tissue
+      - Frozen tissue
+      - Frozen Plasma
+      - Frozen Tumor
       - Granulocytes
       - Human Original Cells
+      - Leukopak
       - Lymphocytes
       - Mononuclear Cells from Bone Marrow Normal
+      - PBMC
       - Peripheral Blood Components NOS
       - Peripheral Blood Nucleated Cells
+      - Phantom Block
       - Pleural Effusion
       - Plasma
       - Peripheral Whole Blood
