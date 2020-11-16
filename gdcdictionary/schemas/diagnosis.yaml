@@ -251,6 +251,7 @@ properties:
       - Stage IVC
       - Stage Tis
       - Stage X
+      - Non Compliant
   ajcc_pathologic_t:
     term:
       $ref: "_terms.yaml#/ajcc_pathologic_t"
