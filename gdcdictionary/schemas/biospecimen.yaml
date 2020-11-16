@@ -385,6 +385,7 @@ properties:
     term:
       $ref: "_terms.yaml#/composition"
     enum:
+      - Acellular Pleural Fluid
       - Blood
       - Buccal Cells
       - Buffy Coat
