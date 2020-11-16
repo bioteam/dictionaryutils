@@ -68,6 +68,7 @@ properties:
     term:
       $ref: "_terms.yaml#/ajcc_clinical_m"
     enum:
+      - M
       - M0
       - M1
       - M1a
