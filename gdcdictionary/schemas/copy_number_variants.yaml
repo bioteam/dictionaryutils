@@ -1,0 +1,77 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "copy_number_variants"
+title: Copy Number Variants
+type: object
+namespace: http://gdc.nci.nih.gov
+category: data_file
+program: '*'
+project: '*'
+description: >
+  Data file containing normalized copy number information from a biospecimen.
+additionalProperties: false
+submittable: true
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - created_datetime
+  - updated_datetime
+  - state
+  - file_state
+  - error_type
+
+links:
+  - exclusive: false
+    required: true
+    subgroup:
+      - name: core_metadata_collections
+        backref: copy_number_variant_files
+        label: data_from
+        target_type: core_metadata_collection
+        multiplicity: many_to_one
+        required: false
+      - name: biospecimens
+        backref: copy_number_variant_files
+        label: data_from
+        target_type: biospecimen
+        multiplicity: many_to_one
+        required: false
+
+required:
+  - submitter_id
+  - type
+  - file_name
+  - file_size
+  - md5sum
+  - data_category
+  - data_type
+  - data_format
+
+uniqueKeys:
+  - [ id ]
+  - [ project_id, submitter_id ]
+
+properties:
+  $ref: "_definitions.yaml#/data_file_properties"
+
+  data_category:
+    term:
+      $ref: "_terms.yaml#/data_category"
+    enum:
+      - Sequencing Reads
+  data_type:
+    term:
+      $ref: "_terms.yaml#/data_type"
+    enum:
+      - Copy Number Variation
+  data_format:
+    term:
+      $ref: "_terms.yaml#/data_format"
+    enum:
+      - SEG
+  biospecimens:
+    $ref: "_definitions.yaml#/to_one"
+  core_metadata_collections:
+    $ref: "_definitions.yaml#/to_one"
