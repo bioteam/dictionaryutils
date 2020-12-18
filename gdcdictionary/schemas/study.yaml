@@ -3,24 +3,30 @@ $schema: "http://json-schema.org/draft-04/schema#"
 id: "study"
 title: Study
 type: object
-namespace: https://www.bloodpac.org
+# nodeTerms from monarch, think it's harmless here
+nodeTerms: null
+namespace: https://datacommons.web.bms.com/
 category: administrative
+# monarch doesn't have program, project, but I don't think there's anything I can do about that
 program: '*'
 project: '*'
 description: >
   A coordinated set of actions and observations designed to generate data, with the ultimate goal
   of discovery or hypothesis testing.
 additionalProperties: false
-submittable: true
 validators: null
+# monarch doesn't have submittable, but I think that's ok
+submittable: true
 
 systemProperties:
   - id
-  - project_id
   - created_datetime
   - updated_datetime
+# monarch doesn't have project_id or state, but I think that's ok
+  - project_id
   - state
 
+# monarch's study parent is a goal, but I think that's ok
 links:
   - name: projects
     backref: studies
@@ -29,65 +35,64 @@ links:
     multiplicity: many_to_many
     required: true
 
+# monarch doesn't require parent, I don't think I can do anything about that
+# monarch uses study_title instead of submitter_id, I don't think I can do anything about that
 required:
-  - submitter_id
   - type
+  - study_title
+  - research_scientist
   - study_description
+  - created_by
+  - study_objective
+  - study_type
+  - submitter_id
   - projects
 
+# monarch doesn't have project_id, submitter_id, I don't think I can do anything about that
 uniqueKeys:
   - [ id ]
   - [ project_id, submitter_id ]
 
 properties:
   $ref: "_definitions.yaml#/ubiquitous_properties"
-  associated_study:
-    description: "The submitter_id for any study with which this study is associated, paired, or matched."
+# monarch specifies (might be the same thing as above)
+# type
+# id
+# state
+# created_datetime
+# updated_datetime
+
+  created_by:
+    description: "Username or email of user who created the analysis."
     type: string
-  data_description:
-    description: "Brief description of the data being provided for this study. Free text"
+
+  study_title:
+    description: The name of the study.
     type: string
-  drug:
-    description: "A drug associated with this study."
+
+# monarch gets this from LDAP, don't think I can do anything about that
+  research_scientist:
+    description: the primary scientist responsible for the study cohort
     type: string
-  indication:
-    description: "An indication associated with this study."
-    type: string
-  jira_ticket:
-    description: "A Jira ticket associated with this study."
-    type: string
+
   study_description:
-    description: "A brief description of the study being performed. Free text"
+    description: A brief description of the study being performed.
     type: string
-  study_design:
-    description: >
-      Summary of the goals the study is designed to discover. General description of the
-      study's place in relation to a clinical application.
-    enum:
-      - Research/Early Development
-      - Pre-Analytical
-      - Analytical
-      - Clinical
-      - Clinical Assay
-      - Clinical Utility
+
   study_objective:
-    description: >
-      The general objective of the study. What the study hopes to discover or determine
-      through testing.
+    description: The general objective of the study. What the study hopes to discover
+      or determine through testing.
+    type: string
+
+  study_type:
+    description: The category that the study falls under
     enum:
-      - Accuracy
-      - Clinical Detection
-      - Interference
-      - Limit of Detection
-      - Precision (Repeatability)
-      - Precision (Reproducibility)
-      - Specificity/Sensitivity
-      - Stability
-  study_setup:
-    description: >
-      A high level description of the setup used to achieve the study objectives.
-    enum:
-      - Detection/Enumeration/Isolation
-      - Genetic Analysis
+      - Longitudinal
+      - Retrospective
+      - Ex Vivo
+      - RWD
+      - Rapid Autopsy
+
+# monarch has goal for parent
   projects:
     $ref: "_definitions.yaml#/to_many_project"

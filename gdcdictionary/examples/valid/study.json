@@ -1,11 +1,12 @@
 {
     "type": "study",
-    "submitter_id": "study_1",
-    "study_design": "Clinical",
-    "study_objective": "Accuracy",
-    "study_setup": "Genetic Analysis",
+    "study_title": "study_1",
+    "research_scientist": "Evisa.Gjini@bms.com",
     "study_description": "WGS of Tumor and Normal from 8 Lung Cancer Patients",
-    "data_description": "Aligned reads BAMs and sequencing assay results",
+    "created_by": "vanetteb",
+    "study_objective": "study_1",
+    "study_type": "RWD",
+    "submitter_id": "study_1",
     "projects": {
         "submitter_id": "P0001"
     }
