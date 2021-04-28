@@ -1,14 +1,10 @@
 {
     "code": "BLGSP",
-    "dbgap_accession_number":  "BLGSP",
-    "project_barcode":  "1234",
-    "project_description":  "foo",
-    "project_type":  "Non Clinical",
-    "availability_type":  "Open",
-    "investigator_name":  "vanetten",
-    "creator":  "vanetten",
+    "disease_type": "Burkitt Lymphoma",
     "name": "Burkitt Lymphoma Genome Sequencing Project",
+    "primary_site": "Lymph Nodes",
     "state": "open",
+    "dbgap_accession_number": "phs000527",
     "type": "project",
     "programs": [
         {"name": "CGCI"}

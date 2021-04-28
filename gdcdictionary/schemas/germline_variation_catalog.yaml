@@ -1,0 +1,71 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+id: "germline_variation_catalog"
+title: Germline Variation Catalog
+type: object
+category: data_file
+program: '*'
+project: '*'
+description: >
+  Data file containing records for all genomic sites typically used for joint analysis.
+additionalProperties: false
+submittable: false
+validators: null
+
+systemProperties:
+  - id
+  - project_id
+  - created_datetime
+  - updated_datetime
+  - state
+  - file_state
+  - error_type
+
+links:
+  - name: alignment_workflows
+    backref: germline_variation_catalogs
+    label: data_from
+    target_type: alignment_workflow
+    multiplicity: one_to_one
+    required: true
+
+required:
+  - submitter_id
+  - file_name
+  - file_size
+  - md5sum
+  - data_category
+  - data_type
+  - data_format
+  - experimental_strategy
+  - germline_mutation_calling_workflows
+
+uniqueKeys:
+  - [ id ]
+  - [ project_id, submitter_id ]
+
+properties:
+  $ref_ubiq: "_definitions.yaml#/ubiquitous_properties"
+  $ref_file: "_definitions.yaml#/data_file_properties"
+  data_category:
+    term:
+      $ref: "_terms.yaml#/data_category"
+    enum: [ "Simple Nucleotide Variation" ]
+  data_type:
+    term:
+      $ref: "_terms.yaml#/data_type"
+    enum: [ "Germline Variation Catalog" ]
+  data_format:
+    term:
+      $ref: "_terms.yaml#/data_format"
+    enum: [ "gVCF" ]
+  experimental_strategy:
+    term:
+      $ref: "_terms.yaml#/experimental_strategy"
+    enum:
+      - WGS
+      - WXS
+      - Low Pass WGS
+      - Validation
+  alignment_workflows:
+    $ref: "_definitions.yaml#/to_one"

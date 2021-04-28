@@ -11,8 +11,6 @@ description: >
   requirement. (NCIt C47885)
 additionalProperties: false
 submittable: false
-downloadable: false
-previous_version_downloadable: false
 validators: null
 
 systemProperties:
@@ -21,26 +19,19 @@ systemProperties:
   - released
   - releasable
   - intended_release_date
-  - created_datetime
-  - updated_datetime
 
 required:
-  - type
   - code
   - name
+  - disease_type
   - state
+  - primary_site
   - programs
   - dbgap_accession_number
-  - project_barcode
-  - project_description
-  - project_type
-  - availability_type
-  - investigator_name
-  - creator
 
 uniqueKeys:
-  - [ id ]
-  - [ code ]
+  - [id]
+  - [code]
 
 links:
   - name: programs
@@ -56,264 +47,34 @@ constraints: null
 # code, disease_type and primary_site are in the current data model for project
 # and likely shouldn't be
 properties:
-
-  created_datetime:
-    $ref: "_definitions.yaml#/datetime"
-  updated_datetime:
-    $ref: "_definitions.yaml#/datetime"
-  
   type:
     type: string
   id:
     $ref: "_definitions.yaml#/UUID"
     systemAlias: node_id
-    description: "UUID for the project." # TOREVIEW
+    description: "UUID for the project" # TOREVIEW
   name:
     type: string
-    description: "Display name/brief description for the project." # TOREVIEW
-
-  awg_review:
-    description: >
-      Indicates that the project is an AWG project.
-    default: false
-    type: boolean
-
+    description: "Display name for the project" # TOREVIEW
+  dbgap_accession_number:
+    type: string
+    description: "The dbgap accession number for the project." # TOREVIEW
+  primary_site:
+    type: string
+    description: "Primary site for the project" # TOREVIEW
   code:
     type: string
-    description: "Unique identifier for the project."
-  collaborators:
-    type: array
-    item_type: string
-    items:
-      type: string
-    description: "List of collaborators who have data read access to the project. Expressed as '{email}:{role1},{role2}' (actually just an email string for now). Modifying this field will change Arborist permissions."
-  project_barcode:
+    description: "Project code" # TOREVIEW
+  disease_type:
     type: string
-    description: "Unique barcode identifier for the project."
-  project_description:
-    type: string
-    description: "Free flow description of the Project."
-  project_type:
-    description: "Describes the Type of the Project."
-    enum:
-    - Clinical
-    - Non Clinical
-  indication: 
-    description: "Describes the Type Indication tested for this Analysis."
-    enum:
-    - Breast - TNBC
-    - Lung
-    - Lung - NSCLC
-    - Lung - NSCLC - Adenocarcinoma
-    - Lung - NSCLC - Squamous Cell Carcinoma
-    - Lung - NSCLC -Large Cell Carcinoma
-    - Lung - NSCLC -Large Cell Neuroendocrine Tumors
-    - Lung - SCLC
-    - Lung - Mesothelimia
-    - Melonoma
-    - Renal
-    - Bladder
-    - CRC and MSI Tumors
-    - Prostate
-    - HCC
-    - HCC - uninfected
-    - HCC - HBV
-    - HCC - HCV
-    - GBM
-    - GBM - MGMT Methylated
-    - GBM - MGMT Un-Methylated
-    - HEME - Hodgkin Lymphoma
-    - HEME - Hodgkin Lymphoma - LHL
-    - HEME - Hodgkin Lymphoma - MHL
-    - HEME - Hodgkin Lymphoma - OHL
-    - HEME - B Cell Non -Hodgkin Lymphoma
-    - HEME - B Cell Non -Hodgkin Lymphoma - DLBCL
-    - HEME - B Cell Non -Hodgkin Lymphoma - FL
-    - HEME - B Cell Non -Hodgkin Lymphoma - OBL
-    - HEME - B Cell Non -Hodgkin Lymphoma - PMBCL
-    - HEME - T Cell Non -Hodgkin Lymphoma
-    - HEME - T Cell Non -Hodgkin Lymphoma - CTCL
-    - HEME - T Cell Non -Hodgkin Lymphoma - ONCTCL
-    - HEME - T Cell Non -Hodgkin Lymphoma - OCTCL
-    - HEME - T Cell Non -Hodgkin Lymphoma - PTCL
-    - HEME - T Cell Non -Hodgkin Lymphoma - SCTCL
-    - HEME - MM
-    - HEME - LEUKEMIA
-    - HEME - LEUKEMIA - AML
-    - HEME - LEUKEMIA - CML
-    - Fraction
-    - Head and Neck
-    - Gastric/Esophogeal
-    - Other - Pediatric
-    - Other - Ovarian
-    - IOCC - Trials
-    - Other - Viral
-    - Other - Daratumab/Nivo Combo
-    - Other - CNS
-    - Custom
-    - None
-  investigator_name:
-    description: "Name of the principal investigator for the project."
-    type: string
-  creator:
-    description: "Username of user who created the project."
-    type: string
-  investigator_affiliation:
-    description: "The investigator's affiliation with respect to a research institution."
-    type: string
-  date_collected:
-    description: "The date or date range in which the project data was collected."
-    type: string
-  graph_url:
-    description: "A URL to the project graph."
-    type: string
-  therapeutic_area:
-    enum:
-    - Atherosclerosis NOS
-    - Cardiovascular
-    - Dermatology
-    - Fibrosis - DA
-    - Hematology
-    - Immuno Sciences
-    - Infectious Diseases - Discovery
-    - Metabolic Diseases
-    - NASH
-    - Oncology
-    - TBD - Discovery
-    - Virology
-    - Other
-    description: "Describes the Therapeutic Areas Being Tested for in the Analysis."
-  trial:
-    type: string
-    description: "Describes the Trial that was included for the analysis."
-  lead_bi_analyst:
-    type: string
-    description: "Lead Bioinformatics Analyst"
-  experimental_strategy:
-    enum: 
-    - Comparative Genomic Hybridization
-    - Cytogenetics, NOS
-    - DNA-Seq
-    - Edge-Sequencing
-    - Exploratory
-    - FFPE
-    - FISH
-    - Flow Cytometery
-    - IHC
-    - ISH
-    - Karyotype
-    - Microarray
-    - Microsatellite Analysis
-    - Not Reported
-    - Nuclear Staining
-    - RNA-Seq
-    - RT-PCR
-    - Sequencing - NOS
-    - Targeted Proteome
-    - Targeted Sequencing
-    - WES
-    - WGS
-    - WXS
-    - Other
-    description: "Describes the various Experimental Types a analysis can support."
-  data_provider:
-    enum: 
-    - 10x genomics
-    - ABI
-    - Active Motif
-    - Adaptive
-    - AltraBio
-    - Asuragen
-    - Baylor College Of Medicine
-    - BBRC
-    - Beijing Chaoyang Hospital, Capital Medical University
-    - BGI
-    - Biognosys
-    - BLUEPRINT
-    - BMA
-    - BMS
-    - Broad
-    - Brooks
-    - CGG
-    - CGI
-    - Cytapex
-    - DDL
-    - DFCI
-    - EGA
-    - Expression Analysis
-    - Flagship Bioscience
-    - Foundation Medicine
-    - Genewiz
-    - Genomics
-    - GEO
-    - GRC
-    - Guardant
-    - HCA
-    - HTG Molecular
-    - illumina
-    - M2GEN
-    - Medgenome
-    - Moffitt
-    - MSKCC
-    - NIH
-    - Novo Nordisk
-    - Novogene - China
-    - NYGC
-    - Other
-    - Parker Institute for Cancer Immunotherapy
-    - PathAI INC
-    - Personal Genome Diagnostic
-    - Public
-    - Q2 Expression Analysis
-    - Qiagen
-    - QPS
-    - Rockefeller University
-    - Second Genome Solutions
-    - SGI
-    - SRA
-    - Stanford
-    - Swift Biosciences
-    - Tempus
-    - TGEN
-    - Tsinghua
-    - U Lausanne
-    - UCSD
-    - UKBiobank/Regeneron
-    - VCU
-    - WUXI
-    description: "List the name of the Vendor who is processing the data."
-  availability_type:
-    description: "Is the project open or restricted? Functionality unused in BMS instance."
-    enum:
-      - Open
-      - Restricted
-  availability_mechanism:
-    description: "Mechanism by which the project will be made avilable."
-    type: string
-  support_source:
-    description: "The name of source providing support/grant resources."
-    type: string #Adding this even though not in GDC model
-  in_review:
-    description: >
-      Indicates that the project is under review by the submitter. Upload and data modification is disabled.
-    default: false
-    type: boolean
-
-  is_legacy:
-    description: >
-      Indicates whether a project will appear in the Legacy Archive.
-    default: false
-    type: boolean
-    type: string
-  support_id:
-    description: "The ID of the source providing support/grant resources."
-    type: string
+    description: "Full name for the project" # TOREVIEW
   programs:
     $ref: "_definitions.yaml#/to_one"
     description: >
       Indicates that the project is logically part of the indicated project.
+
   state:
-    description: >
+    description: |
       The possible states a project can be in.  All but `open` are
       equivalent to some type of locked state.
     default: open
@@ -345,7 +106,6 @@ properties:
         #   - release (project.released -> true)
         - processing
 
-        - processed
 
         # closed: The closed state is introduced to replace the
         #         ``legacy`` state and means that no further action
@@ -358,22 +118,15 @@ properties:
         #                         backwards compatibility
         - legacy
 
-  release_requested:
-    description: >
-      User requests that the GDC release the project. Release can only be requested if the project
-      is releasable.
-    default: false
-    type: boolean
-
   released:
-    description: >
-      To release a project is to tell the GDC to include all submitted
-      entities in the next GDC index.
+    description: |
+      To release a project is to include all submitted
+      entities in the next release.
     default: false
     type: boolean
 
   releasable:
-    description: >
+    description: |
       A project can only be released by the user when `releasable` is true.
     default: false
     type: boolean
@@ -382,30 +135,3 @@ properties:
     description: Tracks a Project's intended release date.
     type: string
     format: date-time
-  dbgap_accession_number:
-    type: string
-    description: "The dbgap accession number provided for the project."
-  request_submission:
-    description: >
-      Indicates that the user has requested submission to the GDC for harmonization.
-    default: false
-    type: boolean
-
-  submission_enabled:
-    description: >
-      Indicates if submission to a project is allowed.
-    default: true
-    type: boolean
-  disease_type:
-    description: "Full name for the project" # TOREVIEW
-    type: string
-  intended_release_date:
-    description: Tracks a Project's intended release date.
-    type: string
-  primary_site:
-    description: "Primary site for the project" # TOREVIEW
-    type: string
-  programs:
-    description: >
-      Indicates that the project is logically part of the indicated project.
-    $ref: "_definitions.yaml#/to_one"

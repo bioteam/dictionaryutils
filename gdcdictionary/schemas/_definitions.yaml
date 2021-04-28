@@ -13,42 +13,12 @@ parent_uuids:
         $ref: "#/UUID"
     uniqueItems: true
 
-foreign_key_project:
-    type: object
-    # Allow true here because we can have other unique keys defined on
-    # a target type
-    additionalProperties: true
-    #Can either use 'id' which are Gen3 IDs (UUID) or 'code'
-    #which is the user defined ID for project
-    properties:
-        id:
-            $ref: "#/UUID"
-        code:
-            type: string
-
-to_one_project:
-  anyOf:
-    - type: array
-      items:
-        $ref: "#/foreign_key_project"
-        minItems: 1
-        maxItems: 1
-    - $ref: "#/foreign_key_project"
-
-to_many_project:
-  anyOf:
-    - type: array
-      items:
-        $ref: "#/foreign_key_project"
-        minItems: 1
-    - $ref: "#/foreign_key_project"
-
 foreign_key:
     type: object
     # Allow true here because we can have other unique keys defined on
     # a target type
     additionalProperties: True
-    #Can either use 'id' which are GDC IDs (UUID) or 'submitter_id'
+    #Can either use 'id' which are UUIDs or 'submitter_id'
     #which are user defined IDs ("submitter IDs in the backend")
     properties:
         id:
@@ -88,7 +58,7 @@ file_name:
 
 file_size:
     type: integer
-    term:
+    term: 
         $ref: "_terms.yaml#/file_size"
 
 file_format:
@@ -98,13 +68,8 @@ file_format:
 
 md5sum:
     type: string
-    pattern: "^[a-f0-9]{32}$"
     term:
         $ref: "_terms.yaml#/md5sum"
-
-object_id:
-    type: string
-    description: "The GUID of the object in the index service."
 
 release_state:
     description: "Release state of an entity."
@@ -135,7 +100,7 @@ data_file_error_type:
 
 state:
     term:
-        $ref: "_terms.yaml#/state"
+        $ref: "_terms.yaml#/state" 
     default: validated
     downloadable:
         - uploaded
@@ -166,7 +131,7 @@ state:
 
 file_state:
     term:
-        $ref: "_terms.yaml#/file_state"
+        $ref: "_terms.yaml#/file_state" 
     default: registered
     enum:
         - registered
@@ -193,52 +158,15 @@ project_id:
     term:
         $ref: "_terms.yaml#/project_id"
 
-data_file_properties:
-  $ref: "#/ubiquitous_properties"
-  file_name:
-    $ref: "#/file_name"
-  file_size:
-    $ref: "#/file_size"
-  md5sum:
-    $ref: "#/md5sum"
-  file_state:
-    $ref: "#/file_state"
-  error_type:
-    $ref: "#/data_file_error_type"
-  object_id:
-    $ref: "#/object_id"
-
-workflow_properties:
-  $ref: "#/ubiquitous_properties"
-  workflow_description:
-    description: "A brief description of the workflow or pipeline used to generate the data."
-    type: string
-  workflow_name:
-    description: "The name of an encapsulated bioinformatics workflow or pipeline."
-    type: string
-  workflow_link:
-    description: "Link to Github hash for the CWL workflow used."
-    type: string
-  workflow_version:
-    description: "Major version for a GDC workflow."
-    type: string
-  workflow_start_datetime:
-    $ref: "#/datetime"
-  workflow_end_datetime:
-    $ref: "#/datetime"
-
-ubiquitous_properties:
-  type:
-    type: string
+ubiquitous_properties: #All entities except for program and project
   id:
     $ref: "#/UUID"
     systemAlias: node_id
   submitter_id:
     type:
       - string
-    description: >
-      A project-specific identifier for a node. This property is the calling card/nickname/alias for
-      a unit of submission. It can be used in place of the UUID for identifying or recalling a node.
+      - "null"
+    description: "The identifier assigned by the submitter."
   state:
     $ref: "#/state"
   project_id:
@@ -246,4 +174,36 @@ ubiquitous_properties:
   created_datetime:
     $ref: "#/datetime"
   updated_datetime:
+    $ref: "#/datetime"
+  type:
+    type: string
+
+data_file_properties: 
+  file_name:
+    $ref: "#/file_name"
+  file_size:
+    $ref: "#/file_size"
+  md5sum:
+    $ref: "#/md5sum" 
+  file_state:
+    $ref: "#/file_state"
+  error_type:
+    $ref: "#/data_file_error_type"
+  state_comment:
+    type: string
+    description: > 
+      Optional comment about why the file is in the
+      current state, mainly for invalid state.
+  
+
+workflow_properties:
+  workflow_link:
+    description: "Link to Github hash for the CWL workflow used."
+    type: string
+  workflow_version:
+    description: "Major version for a workflow."
+    type: string
+  workflow_start_datetime:
+    $ref: "#/datetime"
+  workflow_end_datetime:
     $ref: "#/datetime"

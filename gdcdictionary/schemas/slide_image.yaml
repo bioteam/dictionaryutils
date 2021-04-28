@@ -1,12 +1,13 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 
-id: "aligned_reads_index"
-title: Aligned Reads Index
+id: "slide_image"
+title: Slide Image
 type: object
-category: index_file
+category: data_file
 program: '*'
 project: '*'
-description: "Data file containing the index for a set of aligned reads."
+description: >
+  Data file containing image of a slide.
 additionalProperties: false
 submittable: true
 validators: null
@@ -21,21 +22,12 @@ systemProperties:
   - error_type
 
 links:
-  - exclusive: true
+  - name: slides
+    backref: slide_images
+    label: data_from
+    target_type: slide
+    multiplicity: one_to_one
     required: true
-    subgroup:
-      - name: submitted_aligned_reads_files
-        backref: aligned_reads_indexes
-        label: derived_from
-        target_type: submitted_aligned_reads
-        multiplicity: one_to_one
-        required: false
-      - name: aligned_reads_files
-        backref: aligned_reads_indexes
-        label: derived_from
-        target_type: aligned_reads
-        multiplicity: one_to_one
-        required: false
 
 required:
   - submitter_id
@@ -45,6 +37,8 @@ required:
   - data_category
   - data_type
   - data_format
+  - experimental_strategy
+  - slides
 
 uniqueKeys:
   - [ id ]
@@ -56,19 +50,20 @@ properties:
   data_category:
     term:
       $ref: "_terms.yaml#/data_category"
-    enum:
-      - Sequencing Data
-      - Sequencing Reads
-      - Raw Sequencing Data
+    enum: [ "Biospecimen" ]
   data_type:
     term:
       $ref: "_terms.yaml#/data_type"
-    enum: [ "Aligned Reads Index" ]
+    enum: [ "Slide Image" ]
   data_format:
     term:
       $ref: "_terms.yaml#/data_format"
-    enum: [ "BAI" ]
-  submitted_aligned_reads_files:
-    $ref: "_definitions.yaml#/to_one"
-  aligned_reads_files:
+    enum:
+      - SVS
+  experimental_strategy:
+    description: "Classification of the slide type with respect to its experimental use."
+    enum:
+      - Diagnostic Slide
+      - Tissue Slide
+  slides:
     $ref: "_definitions.yaml#/to_one"
