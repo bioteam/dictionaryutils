@@ -179,3 +179,4 @@ brew install travis
 ```bash
 echo -e '\ntestdict() { docker run --rm -v $(pwd):/dictionary quay.io/cdis/dictionaryutils:master; }\n' >> ~/.zshrc
 ```
+test
