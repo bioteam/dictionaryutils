@@ -1,0 +1,30 @@
+image: python:3.6
+
+pipelines:
+  default:
+    - step:
+        name: Test and create artifacts/schema.json
+        oidc: true
+        script:
+          # venv setup
+          - python --version
+          - python -m venv venv
+          - . venv/bin/activate
+          - pip install --upgrade pip
+          - python setup.py install
+          # run tests and create artifacts/schema.json
+          - git clone https://awpenn@bitbucket.org/awpenn/upenn-dictionaryutils.git; cd upenn-dictionaryutils
+          - ./run_tests.sh
+          # install awscli dependencies
+          - pip install awscli
+          - pip install colorama
+          - pip list
+          # test awscli install
+          - aws --version
+          - cat artifacts/schema.json
+          # s3 cp artifacts/schema.json to s3 bucket
+          - export AWS_REGION=us-east-1
+          - export AWS_ROLE_ARN=arn:aws:iam::179308192920:role/BBPipelines-role-01
+          - echo $BITBUCKET_STEP_OIDC_TOKEN > $(pwd)/web-identity-token
+          - export AWS_WEB_IDENTITY_TOKEN_FILE=$(pwd)/web-identity-token
+          - aws s3 cp ./artifacts/schema.json s3://addapt-gen3-utility-bucket/datadictionary/master/schema.json
